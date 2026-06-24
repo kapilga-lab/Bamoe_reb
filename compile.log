@@ -1,0 +1,23 @@
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] ----------------< org.acme:your-bamoe-business-service >----------------
+[INFO] Building your-bamoe-business-service 1.0.0-SNAPSHOT
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- clean:3.2.0:clean (default-clean) @ your-bamoe-business-service ---
+[INFO] Deleting D:\SAMADHAN_AI\Bamoe\target
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ your-bamoe-business-service ---
+[INFO] Copying 4 resources from src\main\resources to target\classes
+[INFO] The encoding used to copy filtered properties files have not been set. This means that the same encoding will be used to copy filtered properties files as when copying other filtered resources. This might not be what you want! Run your build with --debug to see which files might be affected. Read more at https://maven.apache.org/plugins/maven-resources-plugin/examples/filtering-properties-files.html
+[INFO] 
+[INFO] --- compiler:3.11.0:compile (default-compile) @ your-bamoe-business-service ---
+[INFO] Changes detected - recompiling the module! :source
+[INFO] Compiling 3 source files with javac [debug release 17] to target\classes
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  9.402 s
+[INFO] Finished at: 2026-06-23T13:15:26+05:30
+[INFO] ------------------------------------------------------------------------

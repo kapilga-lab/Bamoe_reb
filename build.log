@@ -1,0 +1,47 @@
+[INFO] Scanning for projects...
+[ERROR] [ERROR] Some problems were encountered while processing the POMs:
+[ERROR] Non-resolvable import POM: The following artifacts could not be resolved: com.ibm.bamoe:bamoe-bom:pom:9.4.2-ibm-0002 (absent): com.ibm.bamoe:bamoe-bom:pom:9.4.2-ibm-0002 was not found in https://repo.maven.apache.org/maven2 during a previous attempt. This failure was cached in the local repository and resolution is not reattempted until the update interval of central has elapsed or updates are forced @ line 32, column 19
+[ERROR] 'dependencies.dependency.version' for org.jbpm:jbpm-with-drools-spring-boot-starter:jar is missing. @ line 68, column 17
+[ERROR] 'dependencies.dependency.version' for org.kie:kie-addons-springboot-process-management:jar is missing. @ line 72, column 17
+[ERROR] 'dependencies.dependency.version' for org.kie:kie-addons-springboot-process-svg:jar is missing. @ line 76, column 17
+[ERROR] 'dependencies.dependency.version' for org.kie:kie-addons-springboot-source-files:jar is missing. @ line 80, column 17
+[ERROR] 'dependencies.dependency.version' for org.kie:kie-addons-springboot-persistence-jdbc:jar is missing. @ line 86, column 17
+[ERROR] 'dependencies.dependency.version' for org.kie:kogito-addons-springboot-data-index-jpa:jar is missing. @ line 104, column 17
+[ERROR] 'dependencies.dependency.version' for org.kie:kogito-addons-springboot-data-audit:jar is missing. @ line 110, column 17
+[ERROR] 'dependencies.dependency.version' for org.kie:kogito-addons-springboot-data-audit-jpa:jar is missing. @ line 114, column 17
+[ERROR] 'dependencies.dependency.version' for org.kie:kogito-addons-springboot-embedded-jobs:jar is missing. @ line 120, column 17
+[ERROR] 'dependencies.dependency.version' for org.kie:kogito-addons-springboot-embedded-jobs-jpa:jar is missing. @ line 124, column 17
+[ERROR] 'dependencies.dependency.version' for org.jbpm:jbpm-addons-springboot-usertask-storage-jpa:jar is missing. @ line 144, column 17
+[ERROR] 'dependencies.dependency.version' for com.ibm.bamoe:bamoe-spring-boot-idp-discovery:jar is missing. @ line 150, column 17
+[ERROR] 'dependencies.dependency.version' for com.ibm.bamoe:bamoe-gen-ai-task-work-item-handler-spring-boot:jar is missing. @ line 156, column 17
+[ERROR] 'dependencies.dependency.version' for com.ibm.bamoe:bamoe-ai-agent-task-work-item-handler-spring-boot:jar is missing. @ line 162, column 17
+[ERROR] 'dependencies.dependency.version' for com.ibm.bamoe:bamoe-addons-spring-boot-pim:jar is missing. @ line 168, column 17
+[ERROR] 'dependencies.dependency.version' for org.kie.kogito:kogito-scenario-simulation:jar is missing. @ line 207, column 17
+ @ 
+[ERROR] The build could not read 1 project -> [Help 1]
+[ERROR]   
+[ERROR]   The project org.acme:your-bamoe-business-service:1.0.0-SNAPSHOT (D:\SAMADHAN_AI\Bamoe\pom.xml) has 17 errors
+[ERROR]     Non-resolvable import POM: The following artifacts could not be resolved: com.ibm.bamoe:bamoe-bom:pom:9.4.2-ibm-0002 (absent): com.ibm.bamoe:bamoe-bom:pom:9.4.2-ibm-0002 was not found in https://repo.maven.apache.org/maven2 during a previous attempt. This failure was cached in the local repository and resolution is not reattempted until the update interval of central has elapsed or updates are forced @ line 32, column 19 -> [Help 2]
+[ERROR]     'dependencies.dependency.version' for org.jbpm:jbpm-with-drools-spring-boot-starter:jar is missing. @ line 68, column 17
+[ERROR]     'dependencies.dependency.version' for org.kie:kie-addons-springboot-process-management:jar is missing. @ line 72, column 17
+[ERROR]     'dependencies.dependency.version' for org.kie:kie-addons-springboot-process-svg:jar is missing. @ line 76, column 17
+[ERROR]     'dependencies.dependency.version' for org.kie:kie-addons-springboot-source-files:jar is missing. @ line 80, column 17
+[ERROR]     'dependencies.dependency.version' for org.kie:kie-addons-springboot-persistence-jdbc:jar is missing. @ line 86, column 17
+[ERROR]     'dependencies.dependency.version' for org.kie:kogito-addons-springboot-data-index-jpa:jar is missing. @ line 104, column 17
+[ERROR]     'dependencies.dependency.version' for org.kie:kogito-addons-springboot-data-audit:jar is missing. @ line 110, column 17
+[ERROR]     'dependencies.dependency.version' for org.kie:kogito-addons-springboot-data-audit-jpa:jar is missing. @ line 114, column 17
+[ERROR]     'dependencies.dependency.version' for org.kie:kogito-addons-springboot-embedded-jobs:jar is missing. @ line 120, column 17
+[ERROR]     'dependencies.dependency.version' for org.kie:kogito-addons-springboot-embedded-jobs-jpa:jar is missing. @ line 124, column 17
+[ERROR]     'dependencies.dependency.version' for org.jbpm:jbpm-addons-springboot-usertask-storage-jpa:jar is missing. @ line 144, column 17
+[ERROR]     'dependencies.dependency.version' for com.ibm.bamoe:bamoe-spring-boot-idp-discovery:jar is missing. @ line 150, column 17
+[ERROR]     'dependencies.dependency.version' for com.ibm.bamoe:bamoe-gen-ai-task-work-item-handler-spring-boot:jar is missing. @ line 156, column 17
+[ERROR]     'dependencies.dependency.version' for com.ibm.bamoe:bamoe-ai-agent-task-work-item-handler-spring-boot:jar is missing. @ line 162, column 17
+[ERROR]     'dependencies.dependency.version' for com.ibm.bamoe:bamoe-addons-spring-boot-pim:jar is missing. @ line 168, column 17
+[ERROR]     'dependencies.dependency.version' for org.kie.kogito:kogito-scenario-simulation:jar is missing. @ line 207, column 17
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/ProjectBuildingException
+[ERROR] [Help 2] http://cwiki.apache.org/confluence/display/MAVEN/UnresolvableModelException
