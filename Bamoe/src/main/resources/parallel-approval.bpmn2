@@ -9,9 +9,13 @@
     <bpmn2:property id="reviewerAComment" name="reviewerAComment" itemSubjectRef="_StringItem" />
     <bpmn2:property id="reviewerBComment" name="reviewerBComment" itemSubjectRef="_StringItem" />
     <bpmn2:property id="reviewerCComment" name="reviewerCComment" itemSubjectRef="_StringItem" />
+    <bpmn2:property id="reviewerDActors" name="reviewerDActors" itemSubjectRef="_StringItem" />
     <bpmn2:startEvent id="start" name="Start">
       <bpmn2:outgoing>flow_start_fork</bpmn2:outgoing>
     </bpmn2:startEvent>
+    <bpmn2:endEvent id="_729098B6-F1BB-4B08-9C6C-E1EBAB5FFFD2" name="END">
+      <bpmn2:incoming>_BE750B89-ABC1-4380-A3C7-DE0A9719C5BD</bpmn2:incoming>
+    </bpmn2:endEvent>
     <bpmn2:parallelGateway id="forkGateway" name="Fork" gatewayDirection="Diverging">
       <bpmn2:incoming>flow_start_fork</bpmn2:incoming>
       <bpmn2:outgoing>flow_fork_a</bpmn2:outgoing>
@@ -22,11 +26,8 @@
       <bpmn2:incoming>flow_a_join</bpmn2:incoming>
       <bpmn2:incoming>flow_b_join</bpmn2:incoming>
       <bpmn2:incoming>flow_c_join</bpmn2:incoming>
-      <bpmn2:outgoing>flow_join_end</bpmn2:outgoing>
+      <bpmn2:outgoing>_DEB176A4-EF93-43EF-B6EF-8E451B753D5D</bpmn2:outgoing>
     </bpmn2:parallelGateway>
-    <bpmn2:endEvent id="end" name="Done">
-      <bpmn2:incoming>flow_join_end</bpmn2:incoming>
-    </bpmn2:endEvent>
     <bpmn2:userTask id="reviewerATask" name="Reviewer A">
       <bpmn2:extensionElements>
         <drools:metaData name="elementname">
@@ -150,6 +151,32 @@
         </bpmn2:resourceAssignmentExpression>
       </bpmn2:potentialOwner>
     </bpmn2:userTask>
+    <bpmn2:userTask id="_BB4F3B81-90E9-4F6B-82A0-4D1B16D9C122" name="Reviewer D">
+      <bpmn2:extensionElements>
+        <drools:metaData name="customAsync">
+          <drools:metaValue>false</drools:metaValue>
+        </drools:metaData>
+        <drools:metaData name="customAutoStart">
+          <drools:metaValue>false</drools:metaValue>
+        </drools:metaData>
+        <drools:metaData name="elementname">
+          <drools:metaValue>Reviewer D</drools:metaValue>
+        </drools:metaData>
+      </bpmn2:extensionElements>
+      <bpmn2:incoming>_DEB176A4-EF93-43EF-B6EF-8E451B753D5D</bpmn2:incoming>
+      <bpmn2:outgoing>_BE750B89-ABC1-4380-A3C7-DE0A9719C5BD</bpmn2:outgoing>
+      <bpmn2:ioSpecification id="_7B3F5C26-9C63-4F00-9E4B-6C253CF5D604">
+        <bpmn2:inputSet id="_98F7F4DD-F219-474C-84F1-4559CC20651C">
+        </bpmn2:inputSet>
+        <bpmn2:outputSet id="_C16B1381-D680-43D4-883F-54D5A9999695">
+        </bpmn2:outputSet>
+      </bpmn2:ioSpecification>
+      <bpmn2:potentialOwner id="_F2B07D68-8D4D-435E-9B5F-0A59C024E9DA">
+        <bpmn2:resourceAssignmentExpression id="_708B7177-C434-42BB-9892-5A8A465588E6">
+          <bpmn2:formalExpression id="_99B942B5-A5D9-45FA-9A41-1B8B64344D4D">#{reviewerDActors}</bpmn2:formalExpression>
+        </bpmn2:resourceAssignmentExpression>
+      </bpmn2:potentialOwner>
+    </bpmn2:userTask>
     <bpmn2:sequenceFlow id="flow_start_fork" sourceRef="start" targetRef="forkGateway" />
     <bpmn2:sequenceFlow id="flow_fork_a" sourceRef="forkGateway" targetRef="reviewerATask" />
     <bpmn2:sequenceFlow id="flow_fork_b" sourceRef="forkGateway" targetRef="reviewerBTask" />
@@ -157,7 +184,8 @@
     <bpmn2:sequenceFlow id="flow_a_join" sourceRef="reviewerATask" targetRef="joinGateway" />
     <bpmn2:sequenceFlow id="flow_b_join" sourceRef="reviewerBTask" targetRef="joinGateway" />
     <bpmn2:sequenceFlow id="flow_c_join" sourceRef="reviewerCTask" targetRef="joinGateway" />
-    <bpmn2:sequenceFlow id="flow_join_end" sourceRef="joinGateway" targetRef="end" />
+    <bpmn2:sequenceFlow id="_DEB176A4-EF93-43EF-B6EF-8E451B753D5D" sourceRef="joinGateway" targetRef="_BB4F3B81-90E9-4F6B-82A0-4D1B16D9C122" />
+    <bpmn2:sequenceFlow id="_BE750B89-ABC1-4380-A3C7-DE0A9719C5BD" sourceRef="_BB4F3B81-90E9-4F6B-82A0-4D1B16D9C122" targetRef="_729098B6-F1BB-4B08-9C6C-E1EBAB5FFFD2" />
   </bpmn2:process>
   <bpmndi:BPMNDiagram id="BPMNDiagram_parallelApproval">
     <bpmndi:BPMNPlane id="BPMNPlane_parallelApproval" bpmnElement="parallelApproval">
@@ -179,8 +207,11 @@
       <bpmndi:BPMNShape id="shape_joinGateway" bpmnElement="joinGateway">
         <dc:Bounds x="500" y="194" width="50" height="50" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="shape_end" bpmnElement="end">
-        <dc:Bounds x="610" y="200" width="36" height="36" />
+      <bpmndi:BPMNShape id="_E2CCEDB2-50FC-48D1-BCB5-968859F5040D" bpmnElement="_BB4F3B81-90E9-4F6B-82A0-4D1B16D9C122">
+        <dc:Bounds x="640" y="180" width="180" height="100" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="_EF2142E4-1B71-411D-8F5D-5EAE4112452C" bpmnElement="_729098B6-F1BB-4B08-9C6C-E1EBAB5FFFD2">
+        <dc:Bounds x="960" y="200" width="60" height="60" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="edge_flow_start_fork" bpmnElement="flow_start_fork">
         <di:waypoint x="136" y="218" />
@@ -214,9 +245,13 @@
         <di:waypoint x="525" y="343" />
         <di:waypoint x="525" y="244" />
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="edge_flow_join_end" bpmnElement="flow_join_end">
-        <di:waypoint x="550" y="219" />
-        <di:waypoint x="610" y="218" />
+      <bpmndi:BPMNEdge id="_C028E9F5-1C90-4AD6-A244-5317C992D5C5-AUTO-SOURCE-AUTO-TARGET" bpmnElement="_DEB176A4-EF93-43EF-B6EF-8E451B753D5D" sourceElement="shape_joinGateway" targetElement="_E2CCEDB2-50FC-48D1-BCB5-968859F5040D">
+        <di:waypoint x="525" y="219" />
+        <di:waypoint x="730" y="230" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="_7953132E-7B35-4791-B2D3-9892AFF4EA8F-AUTO-SOURCE-AUTO-TARGET" bpmnElement="_BE750B89-ABC1-4380-A3C7-DE0A9719C5BD" sourceElement="_E2CCEDB2-50FC-48D1-BCB5-968859F5040D" targetElement="_EF2142E4-1B71-411D-8F5D-5EAE4112452C">
+        <di:waypoint x="730" y="230" />
+        <di:waypoint x="990" y="230" />
       </bpmndi:BPMNEdge>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>
