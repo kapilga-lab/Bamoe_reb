@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<bpmn2:definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bpmn2="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:drools="http://www.jboss.org/drools" id="_parallel-approval-definitions" targetNamespace="http://www.omg.org/bpmn20" exporter="jBPM" exporterVersion="9.4">
+  <bpmn2:itemDefinition id="_StringItem" structureRef="String" />
+  <bpmn2:process id="parallelApproval" name="Parallel Approval" isExecutable="true" processType="Public">
+    <bpmn2:property id="reviewerAActors" name="reviewerAActors" itemSubjectRef="_StringItem" />
+    <bpmn2:property id="reviewerBActors" name="reviewerBActors" itemSubjectRef="_StringItem" />
+    <bpmn2:property id="reviewerCActors" name="reviewerCActors" itemSubjectRef="_StringItem" />
+    <bpmn2:property id="request" name="request" itemSubjectRef="_StringItem" />
+    <bpmn2:property id="reviewerAComment" name="reviewerAComment" itemSubjectRef="_StringItem" />
+    <bpmn2:property id="reviewerBComment" name="reviewerBComment" itemSubjectRef="_StringItem" />
+    <bpmn2:property id="reviewerCComment" name="reviewerCComment" itemSubjectRef="_StringItem" />
+    <bpmn2:startEvent id="start" name="Start">
+      <bpmn2:outgoing>flow_start_fork</bpmn2:outgoing>
+    </bpmn2:startEvent>
+    <bpmn2:parallelGateway id="forkGateway" name="Fork" gatewayDirection="Diverging">
+      <bpmn2:incoming>flow_start_fork</bpmn2:incoming>
+      <bpmn2:outgoing>flow_fork_a</bpmn2:outgoing>
+      <bpmn2:outgoing>flow_fork_b</bpmn2:outgoing>
+      <bpmn2:outgoing>flow_fork_c</bpmn2:outgoing>
+    </bpmn2:parallelGateway>
+    <bpmn2:parallelGateway id="joinGateway" name="Join" gatewayDirection="Converging">
+      <bpmn2:incoming>flow_a_join</bpmn2:incoming>
+      <bpmn2:incoming>flow_b_join</bpmn2:incoming>
+      <bpmn2:incoming>flow_c_join</bpmn2:incoming>
+      <bpmn2:outgoing>flow_join_end</bpmn2:outgoing>
+    </bpmn2:parallelGateway>
+    <bpmn2:endEvent id="end" name="Done">
+      <bpmn2:incoming>flow_join_end</bpmn2:incoming>
+    </bpmn2:endEvent>
+    <bpmn2:userTask id="reviewerATask" name="Reviewer A">
+      <bpmn2:extensionElements>
+        <drools:metaData name="elementname">
+          <drools:metaValue>Reviewer A</drools:metaValue>
+        </drools:metaData>
+      </bpmn2:extensionElements>
+      <bpmn2:incoming>flow_fork_a</bpmn2:incoming>
+      <bpmn2:outgoing>flow_a_join</bpmn2:outgoing>
+      <bpmn2:ioSpecification id="io_a">
+        <bpmn2:dataInput id="a_in_taskname" name="TaskName" drools:dtype="" />
+        <bpmn2:dataInput id="a_in_request" name="request" drools:dtype="" />
+        <bpmn2:dataOutput id="a_out_comment" name="reviewerAComment" drools:dtype="" />
+        <bpmn2:inputSet id="a_inset">
+          <bpmn2:dataInputRefs>a_in_taskname</bpmn2:dataInputRefs>
+          <bpmn2:dataInputRefs>a_in_request</bpmn2:dataInputRefs>
+        </bpmn2:inputSet>
+        <bpmn2:outputSet id="a_outset">
+          <bpmn2:dataOutputRefs>a_out_comment</bpmn2:dataOutputRefs>
+        </bpmn2:outputSet>
+      </bpmn2:ioSpecification>
+      <bpmn2:dataInputAssociation id="a_dia_taskname">
+        <bpmn2:targetRef>a_in_taskname</bpmn2:targetRef>
+        <bpmn2:assignment id="a_asg_taskname">
+          <bpmn2:from id="a_from_taskname" xsi:type="tFormalExpression">Reviewer A</bpmn2:from>
+          <bpmn2:to id="a_to_taskname">a_in_taskname</bpmn2:to>
+        </bpmn2:assignment>
+      </bpmn2:dataInputAssociation>
+      <bpmn2:dataInputAssociation id="a_dia_request">
+        <bpmn2:sourceRef>request</bpmn2:sourceRef>
+        <bpmn2:targetRef>a_in_request</bpmn2:targetRef>
+      </bpmn2:dataInputAssociation>
+      <bpmn2:dataOutputAssociation id="a_doa_comment">
+        <bpmn2:sourceRef>a_out_comment</bpmn2:sourceRef>
+        <bpmn2:targetRef>reviewerAComment</bpmn2:targetRef>
+      </bpmn2:dataOutputAssociation>
+      <bpmn2:potentialOwner id="a_po">
+        <bpmn2:resourceAssignmentExpression id="a_rae">
+          <bpmn2:formalExpression id="a_fe">#{reviewerAActors}</bpmn2:formalExpression>
+        </bpmn2:resourceAssignmentExpression>
+      </bpmn2:potentialOwner>
+    </bpmn2:userTask>
+    <bpmn2:userTask id="reviewerBTask" name="Reviewer B">
+      <bpmn2:extensionElements>
+        <drools:metaData name="elementname">
+          <drools:metaValue>Reviewer B</drools:metaValue>
+        </drools:metaData>
+      </bpmn2:extensionElements>
+      <bpmn2:incoming>flow_fork_b</bpmn2:incoming>
+      <bpmn2:outgoing>flow_b_join</bpmn2:outgoing>
+      <bpmn2:ioSpecification id="io_b">
+        <bpmn2:dataInput id="b_in_taskname" name="TaskName" drools:dtype="" />
+        <bpmn2:dataInput id="b_in_request" name="request" drools:dtype="" />
+        <bpmn2:dataOutput id="b_out_comment" name="reviewerBComment" drools:dtype="" />
+        <bpmn2:inputSet id="b_inset">
+          <bpmn2:dataInputRefs>b_in_taskname</bpmn2:dataInputRefs>
+          <bpmn2:dataInputRefs>b_in_request</bpmn2:dataInputRefs>
+        </bpmn2:inputSet>
+        <bpmn2:outputSet id="b_outset">
+          <bpmn2:dataOutputRefs>b_out_comment</bpmn2:dataOutputRefs>
+        </bpmn2:outputSet>
+      </bpmn2:ioSpecification>
+      <bpmn2:dataInputAssociation id="b_dia_taskname">
+        <bpmn2:targetRef>b_in_taskname</bpmn2:targetRef>
+        <bpmn2:assignment id="b_asg_taskname">
+          <bpmn2:from id="b_from_taskname" xsi:type="tFormalExpression">Reviewer B</bpmn2:from>
+          <bpmn2:to id="b_to_taskname">b_in_taskname</bpmn2:to>
+        </bpmn2:assignment>
+      </bpmn2:dataInputAssociation>
+      <bpmn2:dataInputAssociation id="b_dia_request">
+        <bpmn2:sourceRef>request</bpmn2:sourceRef>
+        <bpmn2:targetRef>b_in_request</bpmn2:targetRef>
+      </bpmn2:dataInputAssociation>
+      <bpmn2:dataOutputAssociation id="b_doa_comment">
+        <bpmn2:sourceRef>b_out_comment</bpmn2:sourceRef>
+        <bpmn2:targetRef>reviewerBComment</bpmn2:targetRef>
+      </bpmn2:dataOutputAssociation>
+      <bpmn2:potentialOwner id="b_po">
+        <bpmn2:resourceAssignmentExpression id="b_rae">
+          <bpmn2:formalExpression id="b_fe">#{reviewerBActors}</bpmn2:formalExpression>
+        </bpmn2:resourceAssignmentExpression>
+      </bpmn2:potentialOwner>
+    </bpmn2:userTask>
+    <bpmn2:userTask id="reviewerCTask" name="Reviewer C">
+      <bpmn2:extensionElements>
+        <drools:metaData name="elementname">
+          <drools:metaValue>Reviewer C</drools:metaValue>
+        </drools:metaData>
+      </bpmn2:extensionElements>
+      <bpmn2:incoming>flow_fork_c</bpmn2:incoming>
+      <bpmn2:outgoing>flow_c_join</bpmn2:outgoing>
+      <bpmn2:ioSpecification id="io_c">
+        <bpmn2:dataInput id="c_in_taskname" name="TaskName" drools:dtype="" />
+        <bpmn2:dataInput id="c_in_request" name="request" drools:dtype="" />
+        <bpmn2:dataOutput id="c_out_comment" name="reviewerCComment" drools:dtype="" />
+        <bpmn2:inputSet id="c_inset">
+          <bpmn2:dataInputRefs>c_in_taskname</bpmn2:dataInputRefs>
+          <bpmn2:dataInputRefs>c_in_request</bpmn2:dataInputRefs>
+        </bpmn2:inputSet>
+        <bpmn2:outputSet id="c_outset">
+          <bpmn2:dataOutputRefs>c_out_comment</bpmn2:dataOutputRefs>
+        </bpmn2:outputSet>
+      </bpmn2:ioSpecification>
+      <bpmn2:dataInputAssociation id="c_dia_taskname">
+        <bpmn2:targetRef>c_in_taskname</bpmn2:targetRef>
+        <bpmn2:assignment id="c_asg_taskname">
+          <bpmn2:from id="c_from_taskname" xsi:type="tFormalExpression">Reviewer C</bpmn2:from>
+          <bpmn2:to id="c_to_taskname">c_in_taskname</bpmn2:to>
+        </bpmn2:assignment>
+      </bpmn2:dataInputAssociation>
+      <bpmn2:dataInputAssociation id="c_dia_request">
+        <bpmn2:sourceRef>request</bpmn2:sourceRef>
+        <bpmn2:targetRef>c_in_request</bpmn2:targetRef>
+      </bpmn2:dataInputAssociation>
+      <bpmn2:dataOutputAssociation id="c_doa_comment">
+        <bpmn2:sourceRef>c_out_comment</bpmn2:sourceRef>
+        <bpmn2:targetRef>reviewerCComment</bpmn2:targetRef>
+      </bpmn2:dataOutputAssociation>
+      <bpmn2:potentialOwner id="c_po">
+        <bpmn2:resourceAssignmentExpression id="c_rae">
+          <bpmn2:formalExpression id="c_fe">#{reviewerCActors}</bpmn2:formalExpression>
+        </bpmn2:resourceAssignmentExpression>
+      </bpmn2:potentialOwner>
+    </bpmn2:userTask>
+    <bpmn2:sequenceFlow id="flow_start_fork" sourceRef="start" targetRef="forkGateway" />
+    <bpmn2:sequenceFlow id="flow_fork_a" sourceRef="forkGateway" targetRef="reviewerATask" />
+    <bpmn2:sequenceFlow id="flow_fork_b" sourceRef="forkGateway" targetRef="reviewerBTask" />
+    <bpmn2:sequenceFlow id="flow_fork_c" sourceRef="forkGateway" targetRef="reviewerCTask" />
+    <bpmn2:sequenceFlow id="flow_a_join" sourceRef="reviewerATask" targetRef="joinGateway" />
+    <bpmn2:sequenceFlow id="flow_b_join" sourceRef="reviewerBTask" targetRef="joinGateway" />
+    <bpmn2:sequenceFlow id="flow_c_join" sourceRef="reviewerCTask" targetRef="joinGateway" />
+    <bpmn2:sequenceFlow id="flow_join_end" sourceRef="joinGateway" targetRef="end" />
+  </bpmn2:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_parallelApproval">
+    <bpmndi:BPMNPlane id="BPMNPlane_parallelApproval" bpmnElement="parallelApproval">
+      <bpmndi:BPMNShape id="shape_start" bpmnElement="start">
+        <dc:Bounds x="100" y="200" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_forkGateway" bpmnElement="forkGateway">
+        <dc:Bounds x="190" y="194" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_reviewerATask" bpmnElement="reviewerATask">
+        <dc:Bounds x="320" y="60" width="110" height="70" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_reviewerBTask" bpmnElement="reviewerBTask">
+        <dc:Bounds x="320" y="184" width="110" height="70" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_reviewerCTask" bpmnElement="reviewerCTask">
+        <dc:Bounds x="320" y="308" width="110" height="70" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_joinGateway" bpmnElement="joinGateway">
+        <dc:Bounds x="500" y="194" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_end" bpmnElement="end">
+        <dc:Bounds x="610" y="200" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="edge_flow_start_fork" bpmnElement="flow_start_fork">
+        <di:waypoint x="136" y="218" />
+        <di:waypoint x="190" y="219" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_fork_a" bpmnElement="flow_fork_a">
+        <di:waypoint x="215" y="194" />
+        <di:waypoint x="215" y="95" />
+        <di:waypoint x="320" y="95" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_fork_b" bpmnElement="flow_fork_b">
+        <di:waypoint x="240" y="219" />
+        <di:waypoint x="320" y="219" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_fork_c" bpmnElement="flow_fork_c">
+        <di:waypoint x="215" y="244" />
+        <di:waypoint x="215" y="343" />
+        <di:waypoint x="320" y="343" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_a_join" bpmnElement="flow_a_join">
+        <di:waypoint x="430" y="95" />
+        <di:waypoint x="525" y="95" />
+        <di:waypoint x="525" y="194" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_b_join" bpmnElement="flow_b_join">
+        <di:waypoint x="430" y="219" />
+        <di:waypoint x="500" y="219" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_c_join" bpmnElement="flow_c_join">
+        <di:waypoint x="430" y="343" />
+        <di:waypoint x="525" y="343" />
+        <di:waypoint x="525" y="244" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_join_end" bpmnElement="flow_join_end">
+        <di:waypoint x="550" y="219" />
+        <di:waypoint x="610" y="218" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn2:definitions>

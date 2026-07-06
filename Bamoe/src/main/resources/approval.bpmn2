@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<bpmn2:definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bpmn2="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:drools="http://www.jboss.org/drools" id="_approval-definitions" targetNamespace="http://www.omg.org/bpmn20" exporter="jBPM" exporterVersion="9.4">
+  <bpmn2:itemDefinition id="_StringItem" structureRef="String" />
+  <bpmn2:process id="approval" name="Maker Checker Approval" isExecutable="true" processType="Public">
+    <bpmn2:property id="makerActors" name="makerActors" itemSubjectRef="_StringItem" />
+    <bpmn2:property id="request" name="request" itemSubjectRef="_StringItem" />
+    <bpmn2:property id="makerComment" name="makerComment" itemSubjectRef="_StringItem" />
+    <bpmn2:property id="checkerDecision" name="checkerDecision" itemSubjectRef="_StringItem" />
+    <bpmn2:property id="checkerComment" name="checkerComment" itemSubjectRef="_StringItem" />
+    <bpmn2:property id="_989BE3C4-392A-4179-B9F0-AFEB818A0643" name="checkerActors" itemSubjectRef="_StringItem" />
+    <bpmn2:startEvent id="start" name="Start">
+      <bpmn2:outgoing>flow_start_merge</bpmn2:outgoing>
+    </bpmn2:startEvent>
+    <bpmn2:endEvent id="approvedEnd" name="Approved">
+      <bpmn2:incoming>flow_approve</bpmn2:incoming>
+    </bpmn2:endEvent>
+    <bpmn2:endEvent id="rejectedEnd" name="Rejected">
+      <bpmn2:incoming>flow_reject</bpmn2:incoming>
+    </bpmn2:endEvent>
+    <bpmn2:exclusiveGateway id="mergeGateway" name="Merge" gatewayDirection="Converging">
+      <bpmn2:incoming>flow_start_merge</bpmn2:incoming>
+      <bpmn2:incoming>flow_sendback</bpmn2:incoming>
+      <bpmn2:outgoing>flow_merge_maker</bpmn2:outgoing>
+    </bpmn2:exclusiveGateway>
+    <bpmn2:exclusiveGateway id="decisionGateway" name="Decision" gatewayDirection="Diverging" default="flow_sendback">
+      <bpmn2:incoming>flow_checker_gw</bpmn2:incoming>
+      <bpmn2:outgoing>flow_approve</bpmn2:outgoing>
+      <bpmn2:outgoing>flow_reject</bpmn2:outgoing>
+      <bpmn2:outgoing>flow_sendback</bpmn2:outgoing>
+    </bpmn2:exclusiveGateway>
+    <bpmn2:userTask id="makerTask" name="Maker">
+      <bpmn2:extensionElements>
+        <drools:metaData name="elementname">
+          <drools:metaValue>Maker</drools:metaValue>
+        </drools:metaData>
+      </bpmn2:extensionElements>
+      <bpmn2:incoming>flow_merge_maker</bpmn2:incoming>
+      <bpmn2:outgoing>flow_maker_checker</bpmn2:outgoing>
+      <bpmn2:ioSpecification id="_4E2856F7-F937-48DB-A34D-5C0A794260EC">
+        <bpmn2:dataInput id="_916951E5-054D-4EE2-976D-8E5CE02C4D49" name="TaskName" drools:dtype="" />
+        <bpmn2:dataOutput name="request" id="_3A201534-A635-4033-99D3-C5FAE8A93881" drools:dtype="" />
+        <bpmn2:dataOutput name="makerComment" id="_5218ACF4-AD8A-42C7-8F01-FBEEB5921E42" drools:dtype="" />
+        <bpmn2:dataOutput name="checkerActors" id="_7D3F124B-F481-4554-9C35-D4B90B61C319" drools:dtype="" />
+        <bpmn2:inputSet id="_74471065-2478-4D8C-83EA-15B4B174A9D5">
+          <bpmn2:dataInputRefs>_916951E5-054D-4EE2-976D-8E5CE02C4D49</bpmn2:dataInputRefs>
+        </bpmn2:inputSet>
+        <bpmn2:outputSet id="_23BF946D-D838-4967-B506-08264D889A8B">
+          <bpmn2:dataOutputRefs>_3A201534-A635-4033-99D3-C5FAE8A93881</bpmn2:dataOutputRefs>
+          <bpmn2:dataOutputRefs>_5218ACF4-AD8A-42C7-8F01-FBEEB5921E42</bpmn2:dataOutputRefs>
+          <bpmn2:dataOutputRefs>_7D3F124B-F481-4554-9C35-D4B90B61C319</bpmn2:dataOutputRefs>
+        </bpmn2:outputSet>
+      </bpmn2:ioSpecification>
+      <bpmn2:dataInputAssociation id="_FDA03F4A-7EBC-4781-961E-432B0B6DB130">
+        <bpmn2:targetRef>_916951E5-054D-4EE2-976D-8E5CE02C4D49</bpmn2:targetRef>
+        <bpmn2:assignment id="_FD795110-9975-4562-BC5A-74777CA10187">
+          <bpmn2:from id="_E9AA2E47-BF5C-46A7-88CB-CD2586E3FE22" xsi:type="tFormalExpression">Maker</bpmn2:from>
+          <bpmn2:to id="_115A0506-964B-4FBE-998D-08184563A267">_916951E5-054D-4EE2-976D-8E5CE02C4D49</bpmn2:to>
+        </bpmn2:assignment>
+      </bpmn2:dataInputAssociation>
+      <bpmn2:dataOutputAssociation id="_92E2FCE1-0CF6-4518-93E8-6A7D9357A870">
+        <bpmn2:sourceRef>_3A201534-A635-4033-99D3-C5FAE8A93881</bpmn2:sourceRef>
+        <bpmn2:targetRef>request</bpmn2:targetRef>
+      </bpmn2:dataOutputAssociation>
+      <bpmn2:dataOutputAssociation id="_EBAD823D-9802-4D3D-A45D-77B8E8E50881">
+        <bpmn2:sourceRef>_5218ACF4-AD8A-42C7-8F01-FBEEB5921E42</bpmn2:sourceRef>
+        <bpmn2:targetRef>makerComment</bpmn2:targetRef>
+      </bpmn2:dataOutputAssociation>
+      <bpmn2:dataOutputAssociation id="_1D66BBAC-D0D2-4757-B856-E85A247C048C">
+        <bpmn2:sourceRef>_7D3F124B-F481-4554-9C35-D4B90B61C319</bpmn2:sourceRef>
+        <bpmn2:targetRef>_989BE3C4-392A-4179-B9F0-AFEB818A0643</bpmn2:targetRef>
+      </bpmn2:dataOutputAssociation>
+      <bpmn2:potentialOwner id="_9C710085-A0AD-4E2B-9B82-9CFE881B1646">
+        <bpmn2:resourceAssignmentExpression id="_E4DBB8C2-FACF-4915-ABF3-BFCBBF7CA012">
+          <bpmn2:formalExpression id="_8116C8FA-247E-491A-B42D-5925C91ADA88">#{makerActors}</bpmn2:formalExpression>
+        </bpmn2:resourceAssignmentExpression>
+      </bpmn2:potentialOwner>
+    </bpmn2:userTask>
+    <bpmn2:userTask id="checkerTask" name="Checker">
+      <bpmn2:incoming>flow_maker_checker</bpmn2:incoming>
+      <bpmn2:outgoing>flow_checker_gw</bpmn2:outgoing>
+      <bpmn2:ioSpecification id="_427B61E8-E5BB-4628-8AEF-F792180DC050">
+        <bpmn2:dataInput id="_71DCAAE6-1479-41B5-9096-197EF98661A0" name="TaskName" drools:dtype="" />
+        <bpmn2:dataInput id="_68AACD52-EF0A-4FE3-9828-37F8F5EF9852" name="request" drools:dtype="" />
+        <bpmn2:dataInput id="_35798ED0-D9F3-4F9D-BD7B-31A5B7964E70" name="makerComment" drools:dtype="" />
+        <bpmn2:dataInput id="_BBD20EC1-E0AA-4BC8-A716-7B7FC52835D6" name="checkerActors" drools:dtype="" />
+        <bpmn2:dataOutput name="checkerDecision" id="_9FA35C4D-178B-44D6-9F29-D8139431833C" drools:dtype="" />
+        <bpmn2:dataOutput name="checkerComment" id="_815EF01D-5673-4204-BD94-E3754C19EC43" drools:dtype="" />
+        <bpmn2:inputSet id="_361851D6-2A57-4C49-A606-284063DE000D">
+          <bpmn2:dataInputRefs>_71DCAAE6-1479-41B5-9096-197EF98661A0</bpmn2:dataInputRefs>
+          <bpmn2:dataInputRefs>_68AACD52-EF0A-4FE3-9828-37F8F5EF9852</bpmn2:dataInputRefs>
+          <bpmn2:dataInputRefs>_35798ED0-D9F3-4F9D-BD7B-31A5B7964E70</bpmn2:dataInputRefs>
+          <bpmn2:dataInputRefs>_BBD20EC1-E0AA-4BC8-A716-7B7FC52835D6</bpmn2:dataInputRefs>
+        </bpmn2:inputSet>
+        <bpmn2:outputSet id="_9C503FA8-DFA3-410F-A933-371B2DA69803">
+          <bpmn2:dataOutputRefs>_9FA35C4D-178B-44D6-9F29-D8139431833C</bpmn2:dataOutputRefs>
+          <bpmn2:dataOutputRefs>_815EF01D-5673-4204-BD94-E3754C19EC43</bpmn2:dataOutputRefs>
+        </bpmn2:outputSet>
+      </bpmn2:ioSpecification>
+      <bpmn2:dataInputAssociation id="_BB885259-4535-4C99-A13A-37D0D22FFD54">
+        <bpmn2:targetRef>_71DCAAE6-1479-41B5-9096-197EF98661A0</bpmn2:targetRef>
+        <bpmn2:assignment id="_BA7C5EB1-C2DA-4B37-B616-4D0387572F3B">
+          <bpmn2:from id="_1CB7C77E-56CF-4735-A27B-40D6007DE764" xsi:type="tFormalExpression">Checker</bpmn2:from>
+          <bpmn2:to id="_75720E4C-E7E9-4F09-8EE8-DC9067FBB9F3">_71DCAAE6-1479-41B5-9096-197EF98661A0</bpmn2:to>
+        </bpmn2:assignment>
+      </bpmn2:dataInputAssociation>
+      <bpmn2:dataInputAssociation id="_6C639544-7052-4625-881F-522FBD3447C5">
+        <bpmn2:sourceRef>request</bpmn2:sourceRef>
+        <bpmn2:targetRef>_68AACD52-EF0A-4FE3-9828-37F8F5EF9852</bpmn2:targetRef>
+      </bpmn2:dataInputAssociation>
+      <bpmn2:dataInputAssociation id="_D2F3404A-BFA9-4EB5-88C8-FCA6DCAF3F5C">
+        <bpmn2:sourceRef>makerComment</bpmn2:sourceRef>
+        <bpmn2:targetRef>_35798ED0-D9F3-4F9D-BD7B-31A5B7964E70</bpmn2:targetRef>
+      </bpmn2:dataInputAssociation>
+      <bpmn2:dataInputAssociation id="_1483DF0D-420A-4BA0-8961-B382ED14BC1E">
+        <bpmn2:sourceRef>_989BE3C4-392A-4179-B9F0-AFEB818A0643</bpmn2:sourceRef>
+        <bpmn2:targetRef>_BBD20EC1-E0AA-4BC8-A716-7B7FC52835D6</bpmn2:targetRef>
+      </bpmn2:dataInputAssociation>
+      <bpmn2:dataOutputAssociation id="_7F961065-0607-4853-BF96-241C6540025F">
+        <bpmn2:sourceRef>_9FA35C4D-178B-44D6-9F29-D8139431833C</bpmn2:sourceRef>
+        <bpmn2:targetRef>checkerDecision</bpmn2:targetRef>
+      </bpmn2:dataOutputAssociation>
+      <bpmn2:dataOutputAssociation id="_F71E2D25-5990-4935-BABD-138AF807CDD9">
+        <bpmn2:sourceRef>_815EF01D-5673-4204-BD94-E3754C19EC43</bpmn2:sourceRef>
+        <bpmn2:targetRef>checkerComment</bpmn2:targetRef>
+      </bpmn2:dataOutputAssociation>
+      <bpmn2:potentialOwner id="_CBFE1474-4FE0-463F-A016-E17B779F0A0E">
+        <bpmn2:resourceAssignmentExpression id="_11CBF840-CCBB-4E35-9225-4782838F5A39">
+          <bpmn2:formalExpression id="_F31F0608-7E29-4D72-B7AE-8CF42397D843">#{checkerActors}</bpmn2:formalExpression>
+        </bpmn2:resourceAssignmentExpression>
+      </bpmn2:potentialOwner>
+    </bpmn2:userTask>
+    <bpmn2:sequenceFlow id="flow_start_merge" sourceRef="start" targetRef="mergeGateway" />
+    <bpmn2:sequenceFlow id="flow_merge_maker" sourceRef="mergeGateway" targetRef="makerTask" />
+    <bpmn2:sequenceFlow id="flow_maker_checker" sourceRef="makerTask" targetRef="checkerTask" />
+    <bpmn2:sequenceFlow id="flow_checker_gw" sourceRef="checkerTask" targetRef="decisionGateway" />
+    <bpmn2:sequenceFlow id="flow_approve" sourceRef="decisionGateway" targetRef="approvedEnd">
+      <bpmn2:conditionExpression xsi:type="bpmn2:tFormalExpression" language="http://www.java.com/java">return checkerDecision != null &amp;&amp; checkerDecision.equalsIgnoreCase(&quot;APPROVE&quot;);</bpmn2:conditionExpression>
+    </bpmn2:sequenceFlow>
+    <bpmn2:sequenceFlow id="flow_reject" sourceRef="decisionGateway" targetRef="rejectedEnd">
+      <bpmn2:conditionExpression xsi:type="bpmn2:tFormalExpression" language="http://www.java.com/java">return checkerDecision != null &amp;&amp; checkerDecision.equalsIgnoreCase(&quot;REJECT&quot;);</bpmn2:conditionExpression>
+    </bpmn2:sequenceFlow>
+    <bpmn2:sequenceFlow id="flow_sendback" sourceRef="decisionGateway" targetRef="mergeGateway" />
+  </bpmn2:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_approval">
+    <bpmndi:BPMNPlane id="BPMNPlane_approval" bpmnElement="approval">
+      <bpmndi:BPMNShape id="shape_start" bpmnElement="start">
+        <dc:Bounds x="100" y="106" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_mergeGateway" bpmnElement="mergeGateway" isMarkerVisible="true">
+        <dc:Bounds x="190" y="99" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_makerTask" bpmnElement="makerTask">
+        <dc:Bounds x="300" y="80" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_checkerTask" bpmnElement="checkerTask">
+        <dc:Bounds x="440" y="84" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_decisionGateway" bpmnElement="decisionGateway" isMarkerVisible="true">
+        <dc:Bounds x="590" y="99" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_approvedEnd" bpmnElement="approvedEnd">
+        <dc:Bounds x="720" y="100" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_rejectedEnd" bpmnElement="rejectedEnd">
+        <dc:Bounds x="720" y="220" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="edge_flow_start_merge" bpmnElement="flow_start_merge">
+        <di:waypoint x="136" y="124" />
+        <di:waypoint x="190" y="124" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_merge_maker" bpmnElement="flow_merge_maker">
+        <di:waypoint x="240" y="124" />
+        <di:waypoint x="300" y="120" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_maker_checker" bpmnElement="flow_maker_checker">
+        <di:waypoint x="400" y="120" />
+        <di:waypoint x="440" y="124" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_checker_gw" bpmnElement="flow_checker_gw">
+        <di:waypoint x="540" y="124" />
+        <di:waypoint x="590" y="124" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_approve" bpmnElement="flow_approve">
+        <di:waypoint x="640" y="124" />
+        <di:waypoint x="720" y="118" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_reject" bpmnElement="flow_reject">
+        <di:waypoint x="615" y="149" />
+        <di:waypoint x="630" y="220" />
+        <di:waypoint x="630" y="250" />
+        <di:waypoint x="720" y="238" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_sendback" bpmnElement="flow_sendback">
+        <di:waypoint x="615" y="99" />
+        <di:waypoint x="630" y="40" />
+        <di:waypoint x="230" y="40" />
+        <di:waypoint x="215" y="99" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn2:definitions>
