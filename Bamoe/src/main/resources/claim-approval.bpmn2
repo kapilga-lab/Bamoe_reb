@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<bpmn2:definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bpmn2="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:drools="http://www.jboss.org/drools" id="_claim-approval-definitions" targetNamespace="http://www.omg.org/bpmn20" exporter="jBPM" exporterVersion="9.4">
+  <bpmn2:itemDefinition id="_StringItem" structureRef="String" />
+  <bpmn2:process id="claimApproval" name="Claim Based Approval" isExecutable="true" processType="Public">
+    <bpmn2:property id="reviewerActors" name="reviewerActors" itemSubjectRef="_StringItem" />
+    <bpmn2:property id="request" name="request" itemSubjectRef="_StringItem" />
+    <bpmn2:property id="reviewComment" name="reviewComment" itemSubjectRef="_StringItem" />
+    <bpmn2:startEvent id="start" name="Start">
+      <bpmn2:outgoing>flow_start_review</bpmn2:outgoing>
+    </bpmn2:startEvent>
+    <bpmn2:endEvent id="end" name="Done">
+      <bpmn2:incoming>flow_review_end</bpmn2:incoming>
+    </bpmn2:endEvent>
+    <bpmn2:userTask id="reviewTask" name="Review">
+      <bpmn2:extensionElements>
+        <drools:metaData name="elementname">
+          <drools:metaValue>Review</drools:metaValue>
+        </drools:metaData>
+      </bpmn2:extensionElements>
+      <bpmn2:incoming>flow_start_review</bpmn2:incoming>
+      <bpmn2:outgoing>flow_review_end</bpmn2:outgoing>
+      <bpmn2:ioSpecification id="io_review">
+        <bpmn2:dataInput id="r_in_taskname" name="TaskName" drools:dtype="" />
+        <bpmn2:dataInput id="r_in_request" name="request" drools:dtype="" />
+        <bpmn2:dataOutput id="r_out_comment" name="reviewComment" drools:dtype="" />
+        <bpmn2:inputSet id="r_inset">
+          <bpmn2:dataInputRefs>r_in_taskname</bpmn2:dataInputRefs>
+          <bpmn2:dataInputRefs>r_in_request</bpmn2:dataInputRefs>
+        </bpmn2:inputSet>
+        <bpmn2:outputSet id="r_outset">
+          <bpmn2:dataOutputRefs>r_out_comment</bpmn2:dataOutputRefs>
+        </bpmn2:outputSet>
+      </bpmn2:ioSpecification>
+      <bpmn2:dataInputAssociation id="r_dia_taskname">
+        <bpmn2:targetRef>r_in_taskname</bpmn2:targetRef>
+        <bpmn2:assignment id="r_asg_taskname">
+          <bpmn2:from id="r_from_taskname" xsi:type="tFormalExpression">Review</bpmn2:from>
+          <bpmn2:to id="r_to_taskname">r_in_taskname</bpmn2:to>
+        </bpmn2:assignment>
+      </bpmn2:dataInputAssociation>
+      <bpmn2:dataInputAssociation id="r_dia_request">
+        <bpmn2:sourceRef>request</bpmn2:sourceRef>
+        <bpmn2:targetRef>r_in_request</bpmn2:targetRef>
+      </bpmn2:dataInputAssociation>
+      <bpmn2:dataOutputAssociation id="r_doa_comment">
+        <bpmn2:sourceRef>r_out_comment</bpmn2:sourceRef>
+        <bpmn2:targetRef>reviewComment</bpmn2:targetRef>
+      </bpmn2:dataOutputAssociation>
+      <bpmn2:potentialOwner id="r_po">
+        <bpmn2:resourceAssignmentExpression id="r_rae">
+          <bpmn2:formalExpression id="r_fe">#{reviewerActors}</bpmn2:formalExpression>
+        </bpmn2:resourceAssignmentExpression>
+      </bpmn2:potentialOwner>
+    </bpmn2:userTask>
+    <bpmn2:sequenceFlow id="flow_start_review" sourceRef="start" targetRef="reviewTask" />
+    <bpmn2:sequenceFlow id="flow_review_end" sourceRef="reviewTask" targetRef="end" />
+  </bpmn2:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_claimApproval">
+    <bpmndi:BPMNPlane id="BPMNPlane_claimApproval" bpmnElement="claimApproval">
+      <bpmndi:BPMNShape id="shape_start" bpmnElement="start">
+        <dc:Bounds x="100" y="100" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_reviewTask" bpmnElement="reviewTask">
+        <dc:Bounds x="220" y="78" width="140" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_end" bpmnElement="end">
+        <dc:Bounds x="440" y="100" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="edge_flow_start_review" bpmnElement="flow_start_review">
+        <di:waypoint x="136" y="118" />
+        <di:waypoint x="220" y="118" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_flow_review_end" bpmnElement="flow_review_end">
+        <di:waypoint x="360" y="118" />
+        <di:waypoint x="440" y="118" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn2:definitions>

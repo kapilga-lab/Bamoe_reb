@@ -1,0 +1,610 @@
+2026-07-06T10:13:43.204360200Z main ERROR Log4j API could not find a logging provider.
+SLF4J: A SLF4J service provider failed to instantiate:
+org.slf4j.spi.SLF4JServiceProvider: Provider org.slf4j.impl.JBossSlf4jServiceProvider could not be instantiated
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+
+ :: Spring Boot ::               (v3.5.14)
+
+2026-07-06T15:44:04.912+05:30  INFO 40628 --- [  restartedMain] org.acme.BamoeSpringBootApplication      : Starting BamoeSpringBootApplication using Java 21.0.7 with PID 40628 (D:\SAMADHAN_AI\Bamoe\Bamoe\target\classes started by kapil in D:\SAMADHAN_AI\Bamoe\Bamoe)
+2026-07-06T15:44:04.914+05:30  INFO 40628 --- [  restartedMain] org.acme.BamoeSpringBootApplication      : The following 1 profile is active: "dev"
+2026-07-06T15:44:04.976+05:30  INFO 40628 --- [  restartedMain] o.s.b.devtools.restart.ChangeableUrls    : The Class-Path manifest attribute in C:\Users\kapil\.m2\repository\org\apache\opennlp\opennlp-tools\2.5.4\opennlp-tools-2.5.4.jar referenced one or more files that do not exist: file:/C:/Users/kapil/.m2/repository/org/apache/opennlp/opennlp-tools/2.5.4/slf4j-api-2.0.17.jar
+2026-07-06T15:44:04.976+05:30  INFO 40628 --- [  restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2026-07-06T15:44:04.976+05:30  INFO 40628 --- [  restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2026-07-06T15:44:08.370+05:30  INFO 40628 --- [  restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-07-06T15:44:08.415+05:30  INFO 40628 --- [  restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 33 ms. Found 0 JPA repository interfaces.
+2026-07-06T15:44:10.410+05:30  INFO 40628 --- [  restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2026-07-06T15:44:10.429+05:30  INFO 40628 --- [  restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-07-06T15:44:10.429+05:30  INFO 40628 --- [  restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.54]
+2026-07-06T15:44:10.569+05:30  INFO 40628 --- [  restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2026-07-06T15:44:10.570+05:30  INFO 40628 --- [  restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 5592 ms
+2026-07-06T15:44:11.205+05:30  INFO 40628 --- [  restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-07-06T15:44:11.446+05:30  INFO 40628 --- [  restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection conn0: url=jdbc:h2:mem:kogito user=KOGITO
+2026-07-06T15:44:11.448+05:30  INFO 40628 --- [  restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-07-06T15:44:11.456+05:30  INFO 40628 --- [  restartedMain] o.k.f.i.db.KieFlywayDataBaseHelper       : Reading DataBase Product: 'H2' Version: '2.3.232 (2024-08-11)'
+2026-07-06T15:44:11.728+05:30  INFO 40628 --- [  restartedMain] org.flywaydb.core.FlywayExecutor         : Database: jdbc:h2:mem:kogito (H2 2.3)
+2026-07-06T15:44:11.772+05:30  INFO 40628 --- [  restartedMain] o.f.c.i.s.JdbcTableSchemaHistory         : Schema history table "PUBLIC"."kie_flyway_history_runtime_persistence" does not exist yet
+2026-07-06T15:44:11.775+05:30  INFO 40628 --- [  restartedMain] o.f.core.internal.command.DbValidate     : Successfully validated 4 migrations (execution time 00:00.018s)
+2026-07-06T15:44:11.782+05:30  INFO 40628 --- [  restartedMain] org.flywaydb.core.Flyway                 : All configured schemas are empty; baseline operation skipped. A baseline or migration script with a lower version than the baseline version may execute if available. Check the Schemas parameter if this is not intended.
+2026-07-06T15:44:11.783+05:30  INFO 40628 --- [  restartedMain] o.f.c.i.s.JdbcTableSchemaHistory         : Creating Schema History table "PUBLIC"."kie_flyway_history_runtime_persistence" ...
+2026-07-06T15:44:11.823+05:30  INFO 40628 --- [  restartedMain] o.f.core.internal.command.DbMigrate      : Current version of schema "PUBLIC": << Empty Schema >>
+2026-07-06T15:44:11.831+05:30  INFO 40628 --- [  restartedMain] o.f.core.internal.command.DbMigrate      : Migrating schema "PUBLIC" to version "1.35.0 - create runtime ansi"
+2026-07-06T15:44:11.847+05:30  INFO 40628 --- [  restartedMain] o.f.core.internal.command.DbMigrate      : Migrating schema "PUBLIC" to version "10.0.0 - add business key ansi"
+2026-07-06T15:44:11.860+05:30  INFO 40628 --- [  restartedMain] o.f.core.internal.command.DbMigrate      : Migrating schema "PUBLIC" to version "10.0.1 - create correlation ansi"
+2026-07-06T15:44:11.865+05:30  INFO 40628 --- [  restartedMain] o.f.core.internal.command.DbMigrate      : Migrating schema "PUBLIC" to version "10.0.2 - create event table"
+2026-07-06T15:44:11.878+05:30  INFO 40628 --- [  restartedMain] o.f.core.internal.command.DbMigrate      : Successfully applied 4 migrations to schema "PUBLIC", now at version v10.0.2 (execution time 00:00.016s)
+2026-07-06T15:44:11.905+05:30  INFO 40628 --- [  restartedMain] org.flywaydb.core.FlywayExecutor         : Database: jdbc:h2:mem:kogito (H2 2.3)
+2026-07-06T15:44:11.926+05:30  INFO 40628 --- [  restartedMain] o.f.c.i.s.JdbcTableSchemaHistory         : Schema history table "PUBLIC"."kie_flyway_history_data_index" does not exist yet
+2026-07-06T15:44:11.927+05:30  INFO 40628 --- [  restartedMain] o.f.core.internal.command.DbValidate     : Successfully validated 21 migrations (execution time 00:00.015s)
+2026-07-06T15:44:11.929+05:30  INFO 40628 --- [  restartedMain] o.f.c.i.s.JdbcTableSchemaHistory         : Creating Schema History table "PUBLIC"."kie_flyway_history_data_index" with baseline ...
+2026-07-06T15:44:11.934+05:30  INFO 40628 --- [  restartedMain] o.f.core.internal.command.DbBaseline     : Successfully baselined schema with version: 0.0
+2026-07-06T15:44:11.936+05:30  INFO 40628 --- [  restartedMain] o.f.core.internal.command.DbMigrate      : Current version of schema "PUBLIC": 0.0
+2026-07-06T15:44:11.943+05:30  INFO 40628 --- [  restartedMain] o.f.core.internal.command.DbMigrate      : Migrating schema "PUBLIC" to version "1.33.0 - data index create"
+2026-07-06T15:44:11.978+05:30  INFO 40628 --- [  restartedMain] o.f.core.internal.command.DbMigrate      : Migrating schema "PUBLIC" to version "1.44.0 - data index definitions"
+2026-07-06T15:44:11.996+05:30  INFO 40628 --- [  restartedMain] o.f.core.internal.command.DbMigrate      : Migrating schema "PUBLIC" to version "1.45.0.0 - data index node definitions"
+2026-07-06T15:44:12.004+05:30  INFO 40628 --- [  restartedMain] o.f.core.internal.command.DbMigrate      : Migrating schema "PUBLIC" to version "1.45.0.1 - add identity to process instance"
+2026-07-06T15:44:12.014+05:30  INFO 40628 --- [  restartedMain] o.f.core.internal.command.DbMigrate      : Migrating schema "PUBLIC" to version "1.45.0.2 - data index definitions add colums"
+2026-07-06T15:44:12.030+05:30  INFO 40628 --- [  restartedMain] o.f.core.internal.command.DbMigrate      : Migrating schema "PUBLIC" to version "1.45.0.3 - add fk index"
+2026-07-06T15:44:12.037+05:30  INFO 40628 --- [  restartedMain] o.f.core.internal.command.DbMigrate      : Migrating schema "PUBLIC" to version "1.45.0.4 - increase varchar length"
+2026-07-06T15:44:12.042+05:30  INFO 40628 --- [  restartedMain] o.f.core.internal.command.DbMigrate      : Migrating schema "PUBLIC" to version "1.45.0.5 - add external reference id"
+2026-07-06T15:44:12.052+05:30  INFO 40628 --- [  restartedMain] o.f.core.internal.command.DbMigrate      : Migrating schema "PUBLIC" to version "1.45.0.6 - add sla due date columns"
+2026-07-06T15:44:12.063+05:30  INFO 40628 --- [  restartedMain] o.f.core.internal.command.DbMigrate      : Migrating schema "PUBLIC" to version "1.45.0.7 - add sla due date tasks"
+2026-07-06T15:44:12.074+05:30  INFO 40628 --- [  restartedMain] o.f.core.internal.command.DbMigrate      : Migrating schema "PUBLIC" to version "1.45.0.8 - modify columns with reserved words"
+2026-07-06T15:44:12.079+05:30  INFO 40628 --- [  restartedMain] o.f.core.internal.command.DbMigrate      : Migrating schema "PUBLIC" to version "1.45.0.9 - increase comments content size"
+2026-07-06T15:44:12.083+05:30  INFO 40628 --- [  restartedMain] o.f.core.internal.command.DbMigrate      : Migrating schema "PUBLIC" to version "1.45.1.0 - metadata as column"
+2026-07-06T15:44:12.090+05:30  INFO 40628 --- [  restartedMain] o.f.core.internal.command.DbMigrate      : Migrating schema "PUBLIC" to version "1.45.1.1 - retrigger"
+2026-07-06T15:44:12.099+05:30  INFO 40628 --- [  restartedMain] o.f.core.internal.command.DbMigrate      : Migrating schema "PUBLIC" to version "1.45.1.2 - cloudevent"
+2026-07-06T15:44:12.110+05:30  INFO 40628 --- [  restartedMain] o.f.core.internal.command.DbMigrate      : Migrating schema "PUBLIC" to version "1.45.1.3 - add cancelled type nodes"
+2026-07-06T15:44:12.116+05:30  INFO 40628 --- [  restartedMain] o.f.core.internal.command.DbMigrate      : Migrating schema "PUBLIC" to version "1.45.1.4 - add indexes for jobs and tasks"
+2026-07-06T15:44:12.120+05:30  INFO 40628 --- [  restartedMain] o.f.core.internal.command.DbMigrate      : Migrating schema "PUBLIC" to version "1.46.0 - add task id column"
+2026-07-06T15:44:12.127+05:30  INFO 40628 --- [  restartedMain] o.f.core.internal.command.DbMigrate      : Migrating schema "PUBLIC" to version "1.47.0 - adjust column sizes in tables updated by hibernate"
+2026-07-06T15:44:12.131+05:30  INFO 40628 --- [  restartedMain] o.f.core.internal.command.DbMigrate      : Migrating schema "PUBLIC" to version "1.48.0 - add input output args"
+2026-07-06T15:44:12.137+05:30  INFO 40628 --- [  restartedMain] o.f.core.internal.command.DbMigrate      : Migrating schema "PUBLIC" to version "1.49.0 - add job exception details"
+2026-07-06T15:44:12.141+05:30  INFO 40628 --- [  restartedMain] o.f.core.internal.command.DbMigrate      : Successfully applied 21 migrations to schema "PUBLIC", now at version v1.49.0 (execution time 00:00.117s)
+2026-07-06T15:44:12.162+05:30  INFO 40628 --- [  restartedMain] org.flywaydb.core.FlywayExecutor         : Database: jdbc:h2:mem:kogito (H2 2.3)
+2026-07-06T15:44:12.172+05:30  INFO 40628 --- [  restartedMain] o.f.c.i.s.JdbcTableSchemaHistory         : Schema history table "PUBLIC"."kie_flyway_history_data_audit" does not exist yet
+2026-07-06T15:44:12.173+05:30  INFO 40628 --- [  restartedMain] o.f.core.internal.command.DbValidate     : Successfully validated 10 migrations (execution time 00:00.007s)
+2026-07-06T15:44:12.173+05:30  INFO 40628 --- [  restartedMain] o.f.c.i.s.JdbcTableSchemaHistory         : Creating Schema History table "PUBLIC"."kie_flyway_history_data_audit" with baseline ...
+2026-07-06T15:44:12.175+05:30  INFO 40628 --- [  restartedMain] o.f.core.internal.command.DbBaseline     : Successfully baselined schema with version: 0.0
+2026-07-06T15:44:12.176+05:30  INFO 40628 --- [  restartedMain] o.f.core.internal.command.DbMigrate      : Current version of schema "PUBLIC": 0.0
+2026-07-06T15:44:12.184+05:30  INFO 40628 --- [  restartedMain] o.f.core.internal.command.DbMigrate      : Migrating schema "PUBLIC" to version "1.0.0 - CREATE DATA AUDIT SCHEMA"
+2026-07-06T15:44:12.201+05:30  INFO 40628 --- [  restartedMain] o.f.core.internal.command.DbMigrate      : Migrating schema "PUBLIC" to version "1.1.0 - Add Query audit dynamic registering"
+2026-07-06T15:44:12.205+05:30  INFO 40628 --- [  restartedMain] o.f.core.internal.command.DbMigrate      : Migrating schema "PUBLIC" to version "1.2.0 - Add migration event type"
+2026-07-06T15:44:12.208+05:30  INFO 40628 --- [  restartedMain] o.f.core.internal.command.DbMigrate      : Migrating schema "PUBLIC" to version "1.3.0 - Increase Task Instance Comment Log comment size"
+2026-07-06T15:44:12.211+05:30  INFO 40628 --- [  restartedMain] o.f.core.internal.command.DbMigrate      : Migrating schema "PUBLIC" to version "1.4.0 - Increase variable value column size"
+2026-07-06T15:44:12.214+05:30  INFO 40628 --- [  restartedMain] o.f.core.internal.command.DbMigrate      : Migrating schema "PUBLIC" to version "1.4.1 - Add state update event type check"
+2026-07-06T15:44:12.218+05:30  INFO 40628 --- [  restartedMain] o.f.core.internal.command.DbMigrate      : Migrating schema "PUBLIC" to version "1.4.2 - Add user information to process instance logs"
+2026-07-06T15:44:12.231+05:30  INFO 40628 --- [  restartedMain] o.f.core.internal.command.DbMigrate      : Migrating schema "PUBLIC" to version "1.4.3 - Add process instance state retriggered event type check"
+2026-07-06T15:44:12.234+05:30  INFO 40628 --- [  restartedMain] o.f.core.internal.command.DbMigrate      : Migrating schema "PUBLIC" to version "1.4.4 - Add on cascade delete"
+2026-07-06T15:44:12.238+05:30  INFO 40628 --- [  restartedMain] o.f.core.internal.command.DbMigrate      : Migrating schema "PUBLIC" to version "1.5.0 - Add job exception columns"
+2026-07-06T15:44:12.243+05:30  INFO 40628 --- [  restartedMain] o.f.core.internal.command.DbMigrate      : Successfully applied 10 migrations to schema "PUBLIC", now at version v1.5.0 (execution time 00:00.030s)
+2026-07-06T15:44:12.263+05:30  INFO 40628 --- [  restartedMain] org.flywaydb.core.FlywayExecutor         : Database: jdbc:h2:mem:kogito (H2 2.3)
+2026-07-06T15:44:12.270+05:30  INFO 40628 --- [  restartedMain] o.f.c.i.s.JdbcTableSchemaHistory         : Schema history table "PUBLIC"."kie_flyway_history_jobs_service" does not exist yet
+2026-07-06T15:44:12.270+05:30  INFO 40628 --- [  restartedMain] o.f.core.internal.command.DbValidate     : Successfully validated 2 migrations (execution time 00:00.003s)
+2026-07-06T15:44:12.271+05:30  INFO 40628 --- [  restartedMain] o.f.c.i.s.JdbcTableSchemaHistory         : Creating Schema History table "PUBLIC"."kie_flyway_history_jobs_service" with baseline ...
+2026-07-06T15:44:12.274+05:30  INFO 40628 --- [  restartedMain] o.f.core.internal.command.DbBaseline     : Successfully baselined schema with version: 0.0
+2026-07-06T15:44:12.275+05:30  INFO 40628 --- [  restartedMain] o.f.core.internal.command.DbMigrate      : Current version of schema "PUBLIC": 0.0
+2026-07-06T15:44:12.278+05:30  INFO 40628 --- [  restartedMain] o.f.core.internal.command.DbMigrate      : Migrating schema "PUBLIC" to version "2.0.0 - Create Tables"
+2026-07-06T15:44:12.282+05:30  INFO 40628 --- [  restartedMain] o.f.core.internal.command.DbMigrate      : Migrating schema "PUBLIC" to version "3.0.4 - Add Exception Details"
+2026-07-06T15:44:12.286+05:30  INFO 40628 --- [  restartedMain] o.f.core.internal.command.DbMigrate      : Successfully applied 2 migrations to schema "PUBLIC", now at version v3.0.4 (execution time 00:00.004s)
+2026-07-06T15:44:12.302+05:30  INFO 40628 --- [  restartedMain] org.flywaydb.core.FlywayExecutor         : Database: jdbc:h2:mem:kogito (H2 2.3)
+2026-07-06T15:44:12.315+05:30  INFO 40628 --- [  restartedMain] o.f.c.i.s.JdbcTableSchemaHistory         : Schema history table "PUBLIC"."kie_flyway_history_jbpm_user_task_storage" does not exist yet
+2026-07-06T15:44:12.316+05:30  INFO 40628 --- [  restartedMain] o.f.core.internal.command.DbValidate     : Successfully validated 6 migrations (execution time 00:00.011s)
+2026-07-06T15:44:12.317+05:30  INFO 40628 --- [  restartedMain] o.f.c.i.s.JdbcTableSchemaHistory         : Creating Schema History table "PUBLIC"."kie_flyway_history_jbpm_user_task_storage" with baseline ...
+2026-07-06T15:44:12.319+05:30  INFO 40628 --- [  restartedMain] o.f.core.internal.command.DbBaseline     : Successfully baselined schema with version: 0.0
+2026-07-06T15:44:12.321+05:30  INFO 40628 --- [  restartedMain] o.f.core.internal.command.DbMigrate      : Current version of schema "PUBLIC": 0.0
+2026-07-06T15:44:12.327+05:30  INFO 40628 --- [  restartedMain] o.f.core.internal.command.DbMigrate      : Migrating schema "PUBLIC" to version "1.0.0 - jBPM user task create"
+2026-07-06T15:44:12.337+05:30  INFO 40628 --- [  restartedMain] o.f.core.internal.command.DbMigrate      : Migrating schema "PUBLIC" to version "1.0.1 - jBPM user task timers"
+2026-07-06T15:44:12.344+05:30  INFO 40628 --- [  restartedMain] o.f.core.internal.command.DbMigrate      : Migrating schema "PUBLIC" to version "1.0.2 - jBPM user tasks comments increase comment size"
+2026-07-06T15:44:12.348+05:30  INFO 40628 --- [  restartedMain] o.f.core.internal.command.DbMigrate      : Migrating schema "PUBLIC" to version "1.0.3 - jBPM user tasks additional indexes"
+2026-07-06T15:44:12.354+05:30  INFO 40628 --- [  restartedMain] o.f.core.internal.command.DbMigrate      : Migrating schema "PUBLIC" to version "1.0.4 - jBPM user tasks add missing indexes"
+2026-07-06T15:44:12.360+05:30  INFO 40628 --- [  restartedMain] o.f.core.internal.command.DbMigrate      : Migrating schema "PUBLIC" to version "1.0.5 - jBPM usertasks add process info"
+2026-07-06T15:44:12.387+05:30  INFO 40628 --- [  restartedMain] o.f.core.internal.command.DbMigrate      : Successfully applied 6 migrations to schema "PUBLIC", now at version v1.0.5 (execution time 00:00.040s)
+2026-07-06T15:44:12.408+05:30  INFO 40628 --- [  restartedMain] org.flywaydb.core.FlywayExecutor         : Database: jdbc:h2:mem:kogito (H2 2.3)
+2026-07-06T15:44:12.411+05:30  INFO 40628 --- [  restartedMain] o.f.c.i.s.JdbcTableSchemaHistory         : Schema history table "PUBLIC"."kie_flyway_history_pim" does not exist yet
+2026-07-06T15:44:12.411+05:30  INFO 40628 --- [  restartedMain] o.f.core.internal.command.DbValidate     : Successfully validated 2 migrations (execution time 00:00.001s)
+2026-07-06T15:44:12.412+05:30  INFO 40628 --- [  restartedMain] o.f.c.i.s.JdbcTableSchemaHistory         : Creating Schema History table "PUBLIC"."kie_flyway_history_pim" with baseline ...
+2026-07-06T15:44:12.414+05:30  INFO 40628 --- [  restartedMain] o.f.core.internal.command.DbBaseline     : Successfully baselined schema with version: 0.0
+2026-07-06T15:44:12.414+05:30  INFO 40628 --- [  restartedMain] o.f.core.internal.command.DbMigrate      : Current version of schema "PUBLIC": 0.0
+2026-07-06T15:44:12.421+05:30  INFO 40628 --- [  restartedMain] o.f.core.internal.command.DbMigrate      : Migrating schema "PUBLIC" to version "1.0.0 - BAMOE pim"
+2026-07-06T15:44:12.425+05:30  INFO 40628 --- [  restartedMain] o.f.core.internal.command.DbMigrate      : Migrating schema "PUBLIC" to version "1.0.1 - add missing indexes"
+2026-07-06T15:44:12.427+05:30  INFO 40628 --- [  restartedMain] o.f.core.internal.command.DbMigrate      : Successfully applied 2 migrations to schema "PUBLIC", now at version v1.0.1 (execution time 00:00.002s)
+2026-07-06T15:44:12.591+05:30  INFO 40628 --- [  restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-07-06T15:44:12.664+05:30  INFO 40628 --- [  restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 7.1.14.Final
+2026-07-06T15:44:13.278+05:30  INFO 40628 --- [  restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-07-06T15:44:13.382+05:30  INFO 40628 --- [  restartedMain] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [jdbc:h2:mem:kogito]
+	Database driver: H2 JDBC Driver
+	Database dialect: H2Dialect
+	Database version: 2.3.232
+	Default catalog/schema: KOGITO/PUBLIC
+	Autocommit mode: undefined/unknown
+	Isolation level: READ_COMMITTED [default READ_COMMITTED]
+	JDBC fetch size: 100
+	Pool: DatasourceConnectionProviderImpl
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-07-06T15:44:13.723+05:30  WARN 40628 --- [  restartedMain] org.hibernate.orm.deprecation            : HHH90000033: Encountered use of deprecated annotation [interface jakarta.persistence.Temporal] at org.kie.kogito.app.audit.jpa.model.JobExecutionLog.eventDate.
+2026-07-06T15:44:13.724+05:30  WARN 40628 --- [  restartedMain] org.hibernate.orm.deprecation            : HHH90000033: Encountered use of deprecated annotation [interface jakarta.persistence.Temporal] at org.kie.kogito.app.audit.jpa.model.JobExecutionLog.expirationTime.
+2026-07-06T15:44:13.732+05:30  WARN 40628 --- [  restartedMain] org.hibernate.orm.deprecation            : HHH90000033: Encountered use of deprecated annotation [interface jakarta.persistence.Temporal] at org.kie.kogito.app.audit.jpa.model.ProcessInstanceErrorLog.eventDate.
+2026-07-06T15:44:13.752+05:30  WARN 40628 --- [  restartedMain] org.hibernate.orm.deprecation            : HHH90000033: Encountered use of deprecated annotation [interface jakarta.persistence.Temporal] at org.kie.kogito.app.audit.jpa.model.ProcessInstanceNodeLog.eventDate.
+2026-07-06T15:44:13.755+05:30  WARN 40628 --- [  restartedMain] org.hibernate.orm.deprecation            : HHH90000033: Encountered use of deprecated annotation [interface jakarta.persistence.Temporal] at org.kie.kogito.app.audit.jpa.model.ProcessInstanceNodeLog.slaDueDate.
+2026-07-06T15:44:13.761+05:30  WARN 40628 --- [  restartedMain] org.hibernate.orm.deprecation            : HHH90000033: Encountered use of deprecated annotation [interface jakarta.persistence.Temporal] at org.kie.kogito.app.audit.jpa.model.ProcessInstanceStateLog.eventDate.
+2026-07-06T15:44:13.763+05:30  WARN 40628 --- [  restartedMain] org.hibernate.orm.deprecation            : HHH90000033: Encountered use of deprecated annotation [interface jakarta.persistence.Temporal] at org.kie.kogito.app.audit.jpa.model.ProcessInstanceStateLog.slaDueDate.
+2026-07-06T15:44:13.768+05:30  WARN 40628 --- [  restartedMain] org.hibernate.orm.deprecation            : HHH90000033: Encountered use of deprecated annotation [interface jakarta.persistence.Temporal] at org.kie.kogito.app.audit.jpa.model.ProcessInstanceVariableLog.eventDate.
+2026-07-06T15:44:13.773+05:30  WARN 40628 --- [  restartedMain] org.hibernate.orm.deprecation            : HHH90000033: Encountered use of deprecated annotation [interface jakarta.persistence.Temporal] at org.kie.kogito.app.audit.jpa.model.UserTaskInstanceAssignmentLog.eventDate.
+2026-07-06T15:44:13.777+05:30  WARN 40628 --- [  restartedMain] org.hibernate.orm.deprecation            : HHH90000033: Encountered use of deprecated annotation [interface jakarta.persistence.Temporal] at org.kie.kogito.app.audit.jpa.model.UserTaskInstanceAttachmentLog.eventDate.
+2026-07-06T15:44:13.780+05:30  WARN 40628 --- [  restartedMain] org.hibernate.orm.deprecation            : HHH90000033: Encountered use of deprecated annotation [interface jakarta.persistence.Temporal] at org.kie.kogito.app.audit.jpa.model.UserTaskInstanceCommentLog.eventDate.
+2026-07-06T15:44:13.782+05:30  WARN 40628 --- [  restartedMain] org.hibernate.orm.deprecation            : HHH90000033: Encountered use of deprecated annotation [interface jakarta.persistence.Temporal] at org.kie.kogito.app.audit.jpa.model.UserTaskInstanceDeadlineLog.eventDate.
+2026-07-06T15:44:13.786+05:30  WARN 40628 --- [  restartedMain] org.hibernate.orm.deprecation            : HHH90000033: Encountered use of deprecated annotation [interface jakarta.persistence.Temporal] at org.kie.kogito.app.audit.jpa.model.UserTaskInstanceStateLog.eventDate.
+2026-07-06T15:44:13.789+05:30  WARN 40628 --- [  restartedMain] org.hibernate.orm.deprecation            : HHH90000033: Encountered use of deprecated annotation [interface jakarta.persistence.Temporal] at org.kie.kogito.app.audit.jpa.model.UserTaskInstanceVariableLog.eventDate.
+2026-07-06T15:44:13.793+05:30  WARN 40628 --- [  restartedMain] org.hibernate.orm.deprecation            : HHH90000033: Encountered use of deprecated annotation [interface jakarta.persistence.Temporal] at org.kie.kogito.app.jobs.jpa.model.JobDetailsEntity.created.
+2026-07-06T15:44:13.794+05:30  WARN 40628 --- [  restartedMain] org.hibernate.orm.deprecation            : HHH90000033: Encountered use of deprecated annotation [interface jakarta.persistence.Temporal] at org.kie.kogito.app.jobs.jpa.model.JobDetailsEntity.fireTime.
+2026-07-06T15:44:13.794+05:30  WARN 40628 --- [  restartedMain] org.hibernate.orm.deprecation            : HHH90000033: Encountered use of deprecated annotation [interface jakarta.persistence.Temporal] at org.kie.kogito.app.jobs.jpa.model.JobDetailsEntity.lastUpdate.
+2026-07-06T15:44:13.798+05:30  WARN 40628 --- [  restartedMain] org.hibernate.orm.deprecation            : HHH90000033: Encountered use of deprecated annotation [interface jakarta.persistence.Temporal] at org.jbpm.usertask.jpa.model.AttachmentEntity.updatedAt.
+2026-07-06T15:44:13.800+05:30  WARN 40628 --- [  restartedMain] org.hibernate.orm.deprecation            : HHH90000033: Encountered use of deprecated annotation [interface jakarta.persistence.Temporal] at org.jbpm.usertask.jpa.model.CommentEntity.updatedAt.
+2026-07-06T15:44:15.874+05:30  INFO 40628 --- [  restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-07-06T15:44:16.386+05:30  INFO 40628 --- [  restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-07-06T15:44:17.243+05:30  INFO 40628 --- [  restartedMain] o.k.k.app.jobs.impl.VertxJobScheduler    : Initializing Job Service Logic 
+	MaxRefreshJobsIntervalWindow: 600000 (millis)
+	MaxIntervalLimitToRetryMillis: 100 (millis)
+	MaxNumberOfRetries: 3
+	RefreshJobsInterval: 600000 (millis)
+	Number of worker threads 10
+	Store: org.kie.kogito.app.jobs.springboot.jpa.SpringbootJPAJobStore@2cf2c6de
+2026-07-06T15:44:17.339+05:30  INFO 40628 --- [  restartedMain] o.k.k.u.i.l.DefaultUserTaskLifeCycles    : Registered UserTaskLifeCycles {ws-human-task=org.kie.kogito.usertask.impl.lifecycle.WsHumanTaskLifeCycle@20da4065, kogito=org.kie.kogito.usertask.impl.lifecycle.DefaultUserTaskLifeCycle@4254d23b} with default lifecycle: kogito
+2026-07-06T15:44:18.062+05:30  WARN 40628 --- [  restartedMain] o.k.k.s.r.ProcessDefinitionEventRegistry : Not source found for process id approval
+2026-07-06T15:44:18.063+05:30  WARN 40628 --- [  restartedMain] o.k.k.s.r.ProcessDefinitionEventRegistry : Not source found for process id parallelApproval
+2026-07-06T15:44:19.567+05:30  INFO 40628 --- [  restartedMain] o.a.w.assignment.LastAssignmentStore     : Created table last_assignment
+2026-07-06T15:44:20.135+05:30  INFO 40628 --- [  restartedMain] o.a.wrapper.graph.ProcessGraphService    : Loaded process graphs for: [approval, parallelApproval]
+2026-07-06T15:44:21.147+05:30  INFO 40628 --- [  restartedMain] o.k.k.i.g.AbstractGraphQLSchemaManager   : Custom mutations are {}
+2026-07-06T15:44:21.586+05:30  WARN 40628 --- [  restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-07-06T15:44:22.150+05:30  INFO 40628 --- [  restartedMain] s.b.a.g.s.GraphQlWebMvcAutoConfiguration : GraphQL endpoint HTTP POST /graphql
+2026-07-06T15:44:24.152+05:30  INFO 40628 --- [  restartedMain] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:h2:mem:kogito'
+2026-07-06T15:44:24.286+05:30  INFO 40628 --- [  restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2026-07-06T15:44:24.310+05:30  INFO 40628 --- [  restartedMain] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint beneath base path '/actuator'
+2026-07-06T15:44:24.537+05:30  INFO 40628 --- [  restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2026-07-06T15:44:24.558+05:30  INFO 40628 --- [  restartedMain] org.acme.BamoeSpringBootApplication      : Started BamoeSpringBootApplication in 20.231 seconds (process running for 21.29)
+2026-07-06T15:44:50.590+05:30  INFO 40628 --- [0.1-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-07-06T15:44:50.590+05:30  INFO 40628 --- [0.1-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2026-07-06T15:44:50.594+05:30  INFO 40628 --- [0.1-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 3 ms
+2026-07-06T15:44:53.579+05:30  WARN 40628 --- [0.1-8080-exec-8] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.kie.kogito.internal.process.workitem.NotAuthorizedException: this work item c5d8af1c-6553-4766-b81f-d5ba1fab5966 is not allows by this owner carol or null]
+2026-07-06T15:44:53.584+05:30 ERROR 40628 --- [0.1-8080-exec-6] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed: org.springframework.web.client.HttpClientErrorException$Forbidden: 403 Forbidden: "{"message":"this work item c5d8af1c-6553-4766-b81f-d5ba1fab5966 is not allows by this owner carol or null"}"] with root cause
+
+org.springframework.web.client.HttpClientErrorException$Forbidden: 403 Forbidden: "{"message":"this work item c5d8af1c-6553-4766-b81f-d5ba1fab5966 is not allows by this owner carol or null"}"
+	at org.springframework.web.client.HttpClientErrorException.create(HttpClientErrorException.java:109) ~[spring-web-6.2.18.jar:6.2.18]
+	at org.springframework.web.client.StatusHandler.lambda$defaultHandler$3(StatusHandler.java:86) ~[spring-web-6.2.18.jar:6.2.18]
+	at org.springframework.web.client.StatusHandler.handle(StatusHandler.java:146) ~[spring-web-6.2.18.jar:6.2.18]
+	at org.springframework.web.client.DefaultRestClient$DefaultResponseSpec.applyStatusHandlers(DefaultRestClient.java:838) ~[spring-web-6.2.18.jar:6.2.18]
+	at org.springframework.web.client.DefaultRestClient$DefaultResponseSpec.lambda$readBody$4(DefaultRestClient.java:827) ~[spring-web-6.2.18.jar:6.2.18]
+	at org.springframework.web.client.DefaultRestClient.readWithMessageConverters(DefaultRestClient.java:216) ~[spring-web-6.2.18.jar:6.2.18]
+	at org.springframework.web.client.DefaultRestClient$DefaultResponseSpec.readBody(DefaultRestClient.java:826) ~[spring-web-6.2.18.jar:6.2.18]
+	at org.springframework.web.client.DefaultRestClient$DefaultResponseSpec.lambda$body$1(DefaultRestClient.java:765) ~[spring-web-6.2.18.jar:6.2.18]
+	at org.springframework.web.client.DefaultRestClient$DefaultRequestBodyUriSpec.exchangeInternal(DefaultRestClient.java:586) ~[spring-web-6.2.18.jar:6.2.18]
+	at org.springframework.web.client.DefaultRestClient$DefaultRequestBodyUriSpec.exchange(DefaultRestClient.java:540) ~[spring-web-6.2.18.jar:6.2.18]
+	at org.springframework.web.client.RestClient$RequestHeadersSpec.exchange(RestClient.java:677) ~[spring-web-6.2.18.jar:6.2.18]
+	at org.springframework.web.client.DefaultRestClient$DefaultResponseSpec.executeAndExtract(DefaultRestClient.java:821) ~[spring-web-6.2.18.jar:6.2.18]
+	at org.springframework.web.client.DefaultRestClient$DefaultResponseSpec.body(DefaultRestClient.java:765) ~[spring-web-6.2.18.jar:6.2.18]
+	at org.acme.wrapper.service.impl.TaskExecutionServiceImpl.fetchTaskResults(TaskExecutionServiceImpl.java:634) ~[bamoe-wrapper-1.0.0.jar:na]
+	at org.acme.wrapper.service.impl.TaskExecutionServiceImpl.completeTaskFlow(TaskExecutionServiceImpl.java:292) ~[bamoe-wrapper-1.0.0.jar:na]
+	at org.acme.wrapper.service.impl.TaskExecutionServiceImpl.executeTask(TaskExecutionServiceImpl.java:84) ~[bamoe-wrapper-1.0.0.jar:na]
+	at org.acme.wrapper.WorkflowController.executeTask(WorkflowController.java:60) ~[bamoe-wrapper-1.0.0.jar:na]
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580) ~[na:na]
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:258) ~[spring-web-6.2.18.jar:6.2.18]
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:191) ~[spring-web-6.2.18.jar:6.2.18]
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:118) ~[spring-webmvc-6.2.18.jar:6.2.18]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:991) ~[spring-webmvc-6.2.18.jar:6.2.18]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:896) ~[spring-webmvc-6.2.18.jar:6.2.18]
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87) ~[spring-webmvc-6.2.18.jar:6.2.18]
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1089) ~[spring-webmvc-6.2.18.jar:6.2.18]
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:979) ~[spring-webmvc-6.2.18.jar:6.2.18]
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1014) ~[spring-webmvc-6.2.18.jar:6.2.18]
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:914) ~[spring-webmvc-6.2.18.jar:6.2.18]
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:590) ~[tomcat-embed-core-10.1.54.jar:6.0]
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885) ~[spring-webmvc-6.2.18.jar:6.2.18]
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658) ~[tomcat-embed-core-10.1.54.jar:6.0]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-10.1.54.jar:10.1.54]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:138) ~[tomcat-embed-core-10.1.54.jar:10.1.54]
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51) ~[tomcat-embed-websocket-10.1.54.jar:10.1.54]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:162) ~[tomcat-embed-core-10.1.54.jar:10.1.54]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:138) ~[tomcat-embed-core-10.1.54.jar:10.1.54]
+	at org.springframework.web.filter.CorsFilter.doFilterInternal(CorsFilter.java:91) ~[spring-web-6.2.18.jar:6.2.18]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.2.18.jar:6.2.18]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:162) ~[tomcat-embed-core-10.1.54.jar:10.1.54]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:138) ~[tomcat-embed-core-10.1.54.jar:10.1.54]
+	at org.springframework.web.servlet.resource.ResourceUrlEncodingFilter.doFilter(ResourceUrlEncodingFilter.java:66) ~[spring-webmvc-6.2.18.jar:6.2.18]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:162) ~[tomcat-embed-core-10.1.54.jar:10.1.54]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:138) ~[tomcat-embed-core-10.1.54.jar:10.1.54]
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100) ~[spring-web-6.2.18.jar:6.2.18]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.2.18.jar:6.2.18]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:162) ~[tomcat-embed-core-10.1.54.jar:10.1.54]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:138) ~[tomcat-embed-core-10.1.54.jar:10.1.54]
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93) ~[spring-web-6.2.18.jar:6.2.18]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.2.18.jar:6.2.18]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:162) ~[tomcat-embed-core-10.1.54.jar:10.1.54]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:138) ~[tomcat-embed-core-10.1.54.jar:10.1.54]
+	at org.springframework.web.filter.ServerHttpObservationFilter.doFilterInternal(ServerHttpObservationFilter.java:110) ~[spring-web-6.2.18.jar:6.2.18]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.2.18.jar:6.2.18]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:162) ~[tomcat-embed-core-10.1.54.jar:10.1.54]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:138) ~[tomcat-embed-core-10.1.54.jar:10.1.54]
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201) ~[spring-web-6.2.18.jar:6.2.18]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.2.18.jar:6.2.18]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:162) ~[tomcat-embed-core-10.1.54.jar:10.1.54]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:138) ~[tomcat-embed-core-10.1.54.jar:10.1.54]
+	at org.acme.security.jwt.JwtFilter.doFilter(JwtFilter.java:58) ~[bamoe-wrapper-1.0.0.jar:na]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:162) ~[tomcat-embed-core-10.1.54.jar:10.1.54]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:138) ~[tomcat-embed-core-10.1.54.jar:10.1.54]
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:165) ~[tomcat-embed-core-10.1.54.jar:10.1.54]
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:88) ~[tomcat-embed-core-10.1.54.jar:10.1.54]
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:492) ~[tomcat-embed-core-10.1.54.jar:10.1.54]
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:113) ~[tomcat-embed-core-10.1.54.jar:10.1.54]
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:83) ~[tomcat-embed-core-10.1.54.jar:10.1.54]
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:72) ~[tomcat-embed-core-10.1.54.jar:10.1.54]
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:342) ~[tomcat-embed-core-10.1.54.jar:10.1.54]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:399) ~[tomcat-embed-core-10.1.54.jar:10.1.54]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63) ~[tomcat-embed-core-10.1.54.jar:10.1.54]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:903) ~[tomcat-embed-core-10.1.54.jar:10.1.54]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1797) ~[tomcat-embed-core-10.1.54.jar:10.1.54]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52) ~[tomcat-embed-core-10.1.54.jar:10.1.54]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:973) ~[tomcat-embed-core-10.1.54.jar:10.1.54]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:491) ~[tomcat-embed-core-10.1.54.jar:10.1.54]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63) ~[tomcat-embed-core-10.1.54.jar:10.1.54]
+	at java.base/java.lang.Thread.run(Thread.java:1583) ~[na:na]
+
+2026-07-06T15:44:55.590+05:30  WARN 40628 --- [0.1-8080-exec-3] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.kie.kogito.internal.process.workitem.NotAuthorizedException: this work item c5d8af1c-6553-4766-b81f-d5ba1fab5966 is not allows by this owner carol or null]
+2026-07-06T15:44:55.592+05:30 ERROR 40628 --- [0.1-8080-exec-2] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed: org.springframework.web.client.HttpClientErrorException$Forbidden: 403 Forbidden: "{"message":"this work item c5d8af1c-6553-4766-b81f-d5ba1fab5966 is not allows by this owner carol or null"}"] with root cause
+
+org.springframework.web.client.HttpClientErrorException$Forbidden: 403 Forbidden: "{"message":"this work item c5d8af1c-6553-4766-b81f-d5ba1fab5966 is not allows by this owner carol or null"}"
+	at org.springframework.web.client.HttpClientErrorException.create(HttpClientErrorException.java:109) ~[spring-web-6.2.18.jar:6.2.18]
+	at org.springframework.web.client.StatusHandler.lambda$defaultHandler$3(StatusHandler.java:86) ~[spring-web-6.2.18.jar:6.2.18]
+	at org.springframework.web.client.StatusHandler.handle(StatusHandler.java:146) ~[spring-web-6.2.18.jar:6.2.18]
+	at org.springframework.web.client.DefaultRestClient$DefaultResponseSpec.applyStatusHandlers(DefaultRestClient.java:838) ~[spring-web-6.2.18.jar:6.2.18]
+	at org.springframework.web.client.DefaultRestClient$DefaultResponseSpec.lambda$readBody$4(DefaultRestClient.java:827) ~[spring-web-6.2.18.jar:6.2.18]
+	at org.springframework.web.client.DefaultRestClient.readWithMessageConverters(DefaultRestClient.java:216) ~[spring-web-6.2.18.jar:6.2.18]
+	at org.springframework.web.client.DefaultRestClient$DefaultResponseSpec.readBody(DefaultRestClient.java:826) ~[spring-web-6.2.18.jar:6.2.18]
+	at org.springframework.web.client.DefaultRestClient$DefaultResponseSpec.lambda$body$1(DefaultRestClient.java:765) ~[spring-web-6.2.18.jar:6.2.18]
+	at org.springframework.web.client.DefaultRestClient$DefaultRequestBodyUriSpec.exchangeInternal(DefaultRestClient.java:586) ~[spring-web-6.2.18.jar:6.2.18]
+	at org.springframework.web.client.DefaultRestClient$DefaultRequestBodyUriSpec.exchange(DefaultRestClient.java:540) ~[spring-web-6.2.18.jar:6.2.18]
+	at org.springframework.web.client.RestClient$RequestHeadersSpec.exchange(RestClient.java:677) ~[spring-web-6.2.18.jar:6.2.18]
+	at org.springframework.web.client.DefaultRestClient$DefaultResponseSpec.executeAndExtract(DefaultRestClient.java:821) ~[spring-web-6.2.18.jar:6.2.18]
+	at org.springframework.web.client.DefaultRestClient$DefaultResponseSpec.body(DefaultRestClient.java:765) ~[spring-web-6.2.18.jar:6.2.18]
+	at org.acme.wrapper.service.impl.TaskExecutionServiceImpl.fetchTaskResults(TaskExecutionServiceImpl.java:634) ~[bamoe-wrapper-1.0.0.jar:na]
+	at org.acme.wrapper.service.impl.TaskExecutionServiceImpl.completeTaskFlow(TaskExecutionServiceImpl.java:292) ~[bamoe-wrapper-1.0.0.jar:na]
+	at org.acme.wrapper.service.impl.TaskExecutionServiceImpl.executeTask(TaskExecutionServiceImpl.java:84) ~[bamoe-wrapper-1.0.0.jar:na]
+	at org.acme.wrapper.WorkflowController.executeTask(WorkflowController.java:60) ~[bamoe-wrapper-1.0.0.jar:na]
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580) ~[na:na]
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:258) ~[spring-web-6.2.18.jar:6.2.18]
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:191) ~[spring-web-6.2.18.jar:6.2.18]
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:118) ~[spring-webmvc-6.2.18.jar:6.2.18]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:991) ~[spring-webmvc-6.2.18.jar:6.2.18]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:896) ~[spring-webmvc-6.2.18.jar:6.2.18]
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87) ~[spring-webmvc-6.2.18.jar:6.2.18]
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1089) ~[spring-webmvc-6.2.18.jar:6.2.18]
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:979) ~[spring-webmvc-6.2.18.jar:6.2.18]
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1014) ~[spring-webmvc-6.2.18.jar:6.2.18]
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:914) ~[spring-webmvc-6.2.18.jar:6.2.18]
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:590) ~[tomcat-embed-core-10.1.54.jar:6.0]
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885) ~[spring-webmvc-6.2.18.jar:6.2.18]
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658) ~[tomcat-embed-core-10.1.54.jar:6.0]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-10.1.54.jar:10.1.54]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:138) ~[tomcat-embed-core-10.1.54.jar:10.1.54]
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51) ~[tomcat-embed-websocket-10.1.54.jar:10.1.54]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:162) ~[tomcat-embed-core-10.1.54.jar:10.1.54]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:138) ~[tomcat-embed-core-10.1.54.jar:10.1.54]
+	at org.springframework.web.filter.CorsFilter.doFilterInternal(CorsFilter.java:91) ~[spring-web-6.2.18.jar:6.2.18]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.2.18.jar:6.2.18]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:162) ~[tomcat-embed-core-10.1.54.jar:10.1.54]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:138) ~[tomcat-embed-core-10.1.54.jar:10.1.54]
+	at org.springframework.web.servlet.resource.ResourceUrlEncodingFilter.doFilter(ResourceUrlEncodingFilter.java:66) ~[spring-webmvc-6.2.18.jar:6.2.18]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:162) ~[tomcat-embed-core-10.1.54.jar:10.1.54]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:138) ~[tomcat-embed-core-10.1.54.jar:10.1.54]
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100) ~[spring-web-6.2.18.jar:6.2.18]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.2.18.jar:6.2.18]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:162) ~[tomcat-embed-core-10.1.54.jar:10.1.54]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:138) ~[tomcat-embed-core-10.1.54.jar:10.1.54]
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93) ~[spring-web-6.2.18.jar:6.2.18]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.2.18.jar:6.2.18]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:162) ~[tomcat-embed-core-10.1.54.jar:10.1.54]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:138) ~[tomcat-embed-core-10.1.54.jar:10.1.54]
+	at org.springframework.web.filter.ServerHttpObservationFilter.doFilterInternal(ServerHttpObservationFilter.java:110) ~[spring-web-6.2.18.jar:6.2.18]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.2.18.jar:6.2.18]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:162) ~[tomcat-embed-core-10.1.54.jar:10.1.54]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:138) ~[tomcat-embed-core-10.1.54.jar:10.1.54]
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201) ~[spring-web-6.2.18.jar:6.2.18]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.2.18.jar:6.2.18]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:162) ~[tomcat-embed-core-10.1.54.jar:10.1.54]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:138) ~[tomcat-embed-core-10.1.54.jar:10.1.54]
+	at org.acme.security.jwt.JwtFilter.doFilter(JwtFilter.java:58) ~[bamoe-wrapper-1.0.0.jar:na]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:162) ~[tomcat-embed-core-10.1.54.jar:10.1.54]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:138) ~[tomcat-embed-core-10.1.54.jar:10.1.54]
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:165) ~[tomcat-embed-core-10.1.54.jar:10.1.54]
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:88) ~[tomcat-embed-core-10.1.54.jar:10.1.54]
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:492) ~[tomcat-embed-core-10.1.54.jar:10.1.54]
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:113) ~[tomcat-embed-core-10.1.54.jar:10.1.54]
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:83) ~[tomcat-embed-core-10.1.54.jar:10.1.54]
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:72) ~[tomcat-embed-core-10.1.54.jar:10.1.54]
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:342) ~[tomcat-embed-core-10.1.54.jar:10.1.54]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:399) ~[tomcat-embed-core-10.1.54.jar:10.1.54]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63) ~[tomcat-embed-core-10.1.54.jar:10.1.54]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:903) ~[tomcat-embed-core-10.1.54.jar:10.1.54]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1797) ~[tomcat-embed-core-10.1.54.jar:10.1.54]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52) ~[tomcat-embed-core-10.1.54.jar:10.1.54]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:973) ~[tomcat-embed-core-10.1.54.jar:10.1.54]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:491) ~[tomcat-embed-core-10.1.54.jar:10.1.54]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63) ~[tomcat-embed-core-10.1.54.jar:10.1.54]
+	at java.base/java.lang.Thread.run(Thread.java:1583) ~[na:na]
+
+2026-07-06T15:44:56.648+05:30  INFO 40628 --- [0.1-8080-exec-1] o.j.f.s.i.m.s.JoinNodeInstanceWriter     : marshalling join reviewerCTask
+2026-07-06T15:44:56.940+05:30  WARN 40628 --- [0.1-8080-exec-2] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.acme.wrapper.exception.WorkflowEngineException: Task not found for taskId 'c5d8af1c-6553-4766-b81f-d5ba1fab5966' among the active tasks of instance 'dd11ca6b-05ee-493b-bae8-ed07aa295657']
+2026-07-06T15:47:19.295+05:30  INFO 40628 --- [0.1-8080-exec-3] o.j.f.s.i.m.s.JoinNodeInstanceWriter     : marshalling join reviewerATask
+2026-07-06T15:47:19.295+05:30  INFO 40628 --- [0.1-8080-exec-3] o.j.f.s.i.m.s.JoinNodeInstanceWriter     : marshalling join reviewerCTask
+2026-07-06T15:48:21.506+05:30  WARN 40628 --- [0.1-8080-exec-5] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.acme.wrapper.exception.AssignmentValidationException: Task 'Reviewer D' has a dynamic assignee; assignmentStrategy is required.]
+2026-07-06T15:48:21.829+05:30  INFO 40628 --- [0.1-8080-exec-8] o.j.f.s.i.m.s.JoinNodeInstanceWriter     : marshalling join reviewerATask
+2026-07-06T15:48:21.829+05:30  INFO 40628 --- [0.1-8080-exec-8] o.j.f.s.i.m.s.JoinNodeInstanceWriter     : marshalling join reviewerCTask
+2026-07-06T15:48:55.899+05:30  WARN 40628 --- [0.1-8080-exec-8] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.kie.kogito.internal.process.workitem.NotAuthorizedException: this work item db948dad-1d77-476f-933b-6a936730be4d is not allows by this owner bob or null]
+2026-07-06T15:48:55.901+05:30 ERROR 40628 --- [0.1-8080-exec-4] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed: org.springframework.web.client.HttpClientErrorException$Forbidden: 403 Forbidden: "{"message":"this work item db948dad-1d77-476f-933b-6a936730be4d is not allows by this owner bob or null"}"] with root cause
+
+org.springframework.web.client.HttpClientErrorException$Forbidden: 403 Forbidden: "{"message":"this work item db948dad-1d77-476f-933b-6a936730be4d is not allows by this owner bob or null"}"
+	at org.springframework.web.client.HttpClientErrorException.create(HttpClientErrorException.java:109) ~[spring-web-6.2.18.jar:6.2.18]
+	at org.springframework.web.client.StatusHandler.lambda$defaultHandler$3(StatusHandler.java:86) ~[spring-web-6.2.18.jar:6.2.18]
+	at org.springframework.web.client.StatusHandler.handle(StatusHandler.java:146) ~[spring-web-6.2.18.jar:6.2.18]
+	at org.springframework.web.client.DefaultRestClient$DefaultResponseSpec.applyStatusHandlers(DefaultRestClient.java:838) ~[spring-web-6.2.18.jar:6.2.18]
+	at org.springframework.web.client.DefaultRestClient$DefaultResponseSpec.lambda$readBody$4(DefaultRestClient.java:827) ~[spring-web-6.2.18.jar:6.2.18]
+	at org.springframework.web.client.DefaultRestClient.readWithMessageConverters(DefaultRestClient.java:216) ~[spring-web-6.2.18.jar:6.2.18]
+	at org.springframework.web.client.DefaultRestClient$DefaultResponseSpec.readBody(DefaultRestClient.java:826) ~[spring-web-6.2.18.jar:6.2.18]
+	at org.springframework.web.client.DefaultRestClient$DefaultResponseSpec.lambda$body$1(DefaultRestClient.java:765) ~[spring-web-6.2.18.jar:6.2.18]
+	at org.springframework.web.client.DefaultRestClient$DefaultRequestBodyUriSpec.exchangeInternal(DefaultRestClient.java:586) ~[spring-web-6.2.18.jar:6.2.18]
+	at org.springframework.web.client.DefaultRestClient$DefaultRequestBodyUriSpec.exchange(DefaultRestClient.java:540) ~[spring-web-6.2.18.jar:6.2.18]
+	at org.springframework.web.client.RestClient$RequestHeadersSpec.exchange(RestClient.java:677) ~[spring-web-6.2.18.jar:6.2.18]
+	at org.springframework.web.client.DefaultRestClient$DefaultResponseSpec.executeAndExtract(DefaultRestClient.java:821) ~[spring-web-6.2.18.jar:6.2.18]
+	at org.springframework.web.client.DefaultRestClient$DefaultResponseSpec.body(DefaultRestClient.java:765) ~[spring-web-6.2.18.jar:6.2.18]
+	at org.acme.wrapper.service.impl.TaskExecutionServiceImpl.fetchTaskResults(TaskExecutionServiceImpl.java:634) ~[bamoe-wrapper-1.0.0.jar:na]
+	at org.acme.wrapper.service.impl.TaskExecutionServiceImpl.completeTaskFlow(TaskExecutionServiceImpl.java:292) ~[bamoe-wrapper-1.0.0.jar:na]
+	at org.acme.wrapper.service.impl.TaskExecutionServiceImpl.executeTask(TaskExecutionServiceImpl.java:84) ~[bamoe-wrapper-1.0.0.jar:na]
+	at org.acme.wrapper.WorkflowController.executeTask(WorkflowController.java:60) ~[bamoe-wrapper-1.0.0.jar:na]
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580) ~[na:na]
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:258) ~[spring-web-6.2.18.jar:6.2.18]
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:191) ~[spring-web-6.2.18.jar:6.2.18]
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:118) ~[spring-webmvc-6.2.18.jar:6.2.18]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:991) ~[spring-webmvc-6.2.18.jar:6.2.18]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:896) ~[spring-webmvc-6.2.18.jar:6.2.18]
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87) ~[spring-webmvc-6.2.18.jar:6.2.18]
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1089) ~[spring-webmvc-6.2.18.jar:6.2.18]
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:979) ~[spring-webmvc-6.2.18.jar:6.2.18]
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1014) ~[spring-webmvc-6.2.18.jar:6.2.18]
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:914) ~[spring-webmvc-6.2.18.jar:6.2.18]
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:590) ~[tomcat-embed-core-10.1.54.jar:6.0]
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885) ~[spring-webmvc-6.2.18.jar:6.2.18]
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658) ~[tomcat-embed-core-10.1.54.jar:6.0]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-10.1.54.jar:10.1.54]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:138) ~[tomcat-embed-core-10.1.54.jar:10.1.54]
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51) ~[tomcat-embed-websocket-10.1.54.jar:10.1.54]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:162) ~[tomcat-embed-core-10.1.54.jar:10.1.54]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:138) ~[tomcat-embed-core-10.1.54.jar:10.1.54]
+	at org.springframework.web.filter.CorsFilter.doFilterInternal(CorsFilter.java:91) ~[spring-web-6.2.18.jar:6.2.18]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.2.18.jar:6.2.18]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:162) ~[tomcat-embed-core-10.1.54.jar:10.1.54]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:138) ~[tomcat-embed-core-10.1.54.jar:10.1.54]
+	at org.springframework.web.servlet.resource.ResourceUrlEncodingFilter.doFilter(ResourceUrlEncodingFilter.java:66) ~[spring-webmvc-6.2.18.jar:6.2.18]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:162) ~[tomcat-embed-core-10.1.54.jar:10.1.54]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:138) ~[tomcat-embed-core-10.1.54.jar:10.1.54]
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100) ~[spring-web-6.2.18.jar:6.2.18]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.2.18.jar:6.2.18]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:162) ~[tomcat-embed-core-10.1.54.jar:10.1.54]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:138) ~[tomcat-embed-core-10.1.54.jar:10.1.54]
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93) ~[spring-web-6.2.18.jar:6.2.18]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.2.18.jar:6.2.18]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:162) ~[tomcat-embed-core-10.1.54.jar:10.1.54]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:138) ~[tomcat-embed-core-10.1.54.jar:10.1.54]
+	at org.springframework.web.filter.ServerHttpObservationFilter.doFilterInternal(ServerHttpObservationFilter.java:110) ~[spring-web-6.2.18.jar:6.2.18]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.2.18.jar:6.2.18]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:162) ~[tomcat-embed-core-10.1.54.jar:10.1.54]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:138) ~[tomcat-embed-core-10.1.54.jar:10.1.54]
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201) ~[spring-web-6.2.18.jar:6.2.18]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.2.18.jar:6.2.18]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:162) ~[tomcat-embed-core-10.1.54.jar:10.1.54]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:138) ~[tomcat-embed-core-10.1.54.jar:10.1.54]
+	at org.acme.security.jwt.JwtFilter.doFilter(JwtFilter.java:58) ~[bamoe-wrapper-1.0.0.jar:na]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:162) ~[tomcat-embed-core-10.1.54.jar:10.1.54]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:138) ~[tomcat-embed-core-10.1.54.jar:10.1.54]
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:165) ~[tomcat-embed-core-10.1.54.jar:10.1.54]
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:88) ~[tomcat-embed-core-10.1.54.jar:10.1.54]
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:492) ~[tomcat-embed-core-10.1.54.jar:10.1.54]
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:113) ~[tomcat-embed-core-10.1.54.jar:10.1.54]
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:83) ~[tomcat-embed-core-10.1.54.jar:10.1.54]
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:72) ~[tomcat-embed-core-10.1.54.jar:10.1.54]
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:342) ~[tomcat-embed-core-10.1.54.jar:10.1.54]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:399) ~[tomcat-embed-core-10.1.54.jar:10.1.54]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63) ~[tomcat-embed-core-10.1.54.jar:10.1.54]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:903) ~[tomcat-embed-core-10.1.54.jar:10.1.54]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1797) ~[tomcat-embed-core-10.1.54.jar:10.1.54]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52) ~[tomcat-embed-core-10.1.54.jar:10.1.54]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:973) ~[tomcat-embed-core-10.1.54.jar:10.1.54]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:491) ~[tomcat-embed-core-10.1.54.jar:10.1.54]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63) ~[tomcat-embed-core-10.1.54.jar:10.1.54]
+	at java.base/java.lang.Thread.run(Thread.java:1583) ~[na:na]
+
+2026-07-06T15:48:58.104+05:30  INFO 40628 --- [0.1-8080-exec-2] o.j.f.s.i.m.s.JoinNodeInstanceWriter     : marshalling join reviewerBTask
+2026-07-06T15:49:00.067+05:30  WARN 40628 --- [0.1-8080-exec-1] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.kie.kogito.internal.process.workitem.NotAuthorizedException: this work item 4c6dc0f6-2f89-48af-b2cb-e7f2db66ab44 is not allows by this owner alice or null]
+2026-07-06T15:49:00.070+05:30 ERROR 40628 --- [0.1-8080-exec-9] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed: org.springframework.web.client.HttpClientErrorException$Forbidden: 403 Forbidden: "{"message":"this work item 4c6dc0f6-2f89-48af-b2cb-e7f2db66ab44 is not allows by this owner alice or null"}"] with root cause
+
+org.springframework.web.client.HttpClientErrorException$Forbidden: 403 Forbidden: "{"message":"this work item 4c6dc0f6-2f89-48af-b2cb-e7f2db66ab44 is not allows by this owner alice or null"}"
+	at org.springframework.web.client.HttpClientErrorException.create(HttpClientErrorException.java:109) ~[spring-web-6.2.18.jar:6.2.18]
+	at org.springframework.web.client.StatusHandler.lambda$defaultHandler$3(StatusHandler.java:86) ~[spring-web-6.2.18.jar:6.2.18]
+	at org.springframework.web.client.StatusHandler.handle(StatusHandler.java:146) ~[spring-web-6.2.18.jar:6.2.18]
+	at org.springframework.web.client.DefaultRestClient$DefaultResponseSpec.applyStatusHandlers(DefaultRestClient.java:838) ~[spring-web-6.2.18.jar:6.2.18]
+	at org.springframework.web.client.DefaultRestClient$DefaultResponseSpec.lambda$readBody$4(DefaultRestClient.java:827) ~[spring-web-6.2.18.jar:6.2.18]
+	at org.springframework.web.client.DefaultRestClient.readWithMessageConverters(DefaultRestClient.java:216) ~[spring-web-6.2.18.jar:6.2.18]
+	at org.springframework.web.client.DefaultRestClient$DefaultResponseSpec.readBody(DefaultRestClient.java:826) ~[spring-web-6.2.18.jar:6.2.18]
+	at org.springframework.web.client.DefaultRestClient$DefaultResponseSpec.lambda$body$1(DefaultRestClient.java:765) ~[spring-web-6.2.18.jar:6.2.18]
+	at org.springframework.web.client.DefaultRestClient$DefaultRequestBodyUriSpec.exchangeInternal(DefaultRestClient.java:586) ~[spring-web-6.2.18.jar:6.2.18]
+	at org.springframework.web.client.DefaultRestClient$DefaultRequestBodyUriSpec.exchange(DefaultRestClient.java:540) ~[spring-web-6.2.18.jar:6.2.18]
+	at org.springframework.web.client.RestClient$RequestHeadersSpec.exchange(RestClient.java:677) ~[spring-web-6.2.18.jar:6.2.18]
+	at org.springframework.web.client.DefaultRestClient$DefaultResponseSpec.executeAndExtract(DefaultRestClient.java:821) ~[spring-web-6.2.18.jar:6.2.18]
+	at org.springframework.web.client.DefaultRestClient$DefaultResponseSpec.body(DefaultRestClient.java:765) ~[spring-web-6.2.18.jar:6.2.18]
+	at org.acme.wrapper.service.impl.TaskExecutionServiceImpl.fetchTaskResults(TaskExecutionServiceImpl.java:634) ~[bamoe-wrapper-1.0.0.jar:na]
+	at org.acme.wrapper.service.impl.TaskExecutionServiceImpl.completeTaskFlow(TaskExecutionServiceImpl.java:292) ~[bamoe-wrapper-1.0.0.jar:na]
+	at org.acme.wrapper.service.impl.TaskExecutionServiceImpl.executeTask(TaskExecutionServiceImpl.java:84) ~[bamoe-wrapper-1.0.0.jar:na]
+	at org.acme.wrapper.WorkflowController.executeTask(WorkflowController.java:60) ~[bamoe-wrapper-1.0.0.jar:na]
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580) ~[na:na]
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:258) ~[spring-web-6.2.18.jar:6.2.18]
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:191) ~[spring-web-6.2.18.jar:6.2.18]
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:118) ~[spring-webmvc-6.2.18.jar:6.2.18]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:991) ~[spring-webmvc-6.2.18.jar:6.2.18]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:896) ~[spring-webmvc-6.2.18.jar:6.2.18]
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87) ~[spring-webmvc-6.2.18.jar:6.2.18]
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1089) ~[spring-webmvc-6.2.18.jar:6.2.18]
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:979) ~[spring-webmvc-6.2.18.jar:6.2.18]
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1014) ~[spring-webmvc-6.2.18.jar:6.2.18]
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:914) ~[spring-webmvc-6.2.18.jar:6.2.18]
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:590) ~[tomcat-embed-core-10.1.54.jar:6.0]
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885) ~[spring-webmvc-6.2.18.jar:6.2.18]
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658) ~[tomcat-embed-core-10.1.54.jar:6.0]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-10.1.54.jar:10.1.54]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:138) ~[tomcat-embed-core-10.1.54.jar:10.1.54]
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51) ~[tomcat-embed-websocket-10.1.54.jar:10.1.54]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:162) ~[tomcat-embed-core-10.1.54.jar:10.1.54]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:138) ~[tomcat-embed-core-10.1.54.jar:10.1.54]
+	at org.springframework.web.filter.CorsFilter.doFilterInternal(CorsFilter.java:91) ~[spring-web-6.2.18.jar:6.2.18]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.2.18.jar:6.2.18]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:162) ~[tomcat-embed-core-10.1.54.jar:10.1.54]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:138) ~[tomcat-embed-core-10.1.54.jar:10.1.54]
+	at org.springframework.web.servlet.resource.ResourceUrlEncodingFilter.doFilter(ResourceUrlEncodingFilter.java:66) ~[spring-webmvc-6.2.18.jar:6.2.18]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:162) ~[tomcat-embed-core-10.1.54.jar:10.1.54]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:138) ~[tomcat-embed-core-10.1.54.jar:10.1.54]
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100) ~[spring-web-6.2.18.jar:6.2.18]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.2.18.jar:6.2.18]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:162) ~[tomcat-embed-core-10.1.54.jar:10.1.54]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:138) ~[tomcat-embed-core-10.1.54.jar:10.1.54]
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93) ~[spring-web-6.2.18.jar:6.2.18]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.2.18.jar:6.2.18]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:162) ~[tomcat-embed-core-10.1.54.jar:10.1.54]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:138) ~[tomcat-embed-core-10.1.54.jar:10.1.54]
+	at org.springframework.web.filter.ServerHttpObservationFilter.doFilterInternal(ServerHttpObservationFilter.java:110) ~[spring-web-6.2.18.jar:6.2.18]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.2.18.jar:6.2.18]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:162) ~[tomcat-embed-core-10.1.54.jar:10.1.54]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:138) ~[tomcat-embed-core-10.1.54.jar:10.1.54]
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201) ~[spring-web-6.2.18.jar:6.2.18]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.2.18.jar:6.2.18]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:162) ~[tomcat-embed-core-10.1.54.jar:10.1.54]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:138) ~[tomcat-embed-core-10.1.54.jar:10.1.54]
+	at org.acme.security.jwt.JwtFilter.doFilter(JwtFilter.java:58) ~[bamoe-wrapper-1.0.0.jar:na]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:162) ~[tomcat-embed-core-10.1.54.jar:10.1.54]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:138) ~[tomcat-embed-core-10.1.54.jar:10.1.54]
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:165) ~[tomcat-embed-core-10.1.54.jar:10.1.54]
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:88) ~[tomcat-embed-core-10.1.54.jar:10.1.54]
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:492) ~[tomcat-embed-core-10.1.54.jar:10.1.54]
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:113) ~[tomcat-embed-core-10.1.54.jar:10.1.54]
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:83) ~[tomcat-embed-core-10.1.54.jar:10.1.54]
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:72) ~[tomcat-embed-core-10.1.54.jar:10.1.54]
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:342) ~[tomcat-embed-core-10.1.54.jar:10.1.54]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:399) ~[tomcat-embed-core-10.1.54.jar:10.1.54]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63) ~[tomcat-embed-core-10.1.54.jar:10.1.54]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:903) ~[tomcat-embed-core-10.1.54.jar:10.1.54]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1797) ~[tomcat-embed-core-10.1.54.jar:10.1.54]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52) ~[tomcat-embed-core-10.1.54.jar:10.1.54]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:973) ~[tomcat-embed-core-10.1.54.jar:10.1.54]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:491) ~[tomcat-embed-core-10.1.54.jar:10.1.54]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63) ~[tomcat-embed-core-10.1.54.jar:10.1.54]
+	at java.base/java.lang.Thread.run(Thread.java:1583) ~[na:na]
+
+2026-07-06T15:49:01.379+05:30  WARN 40628 --- [0.1-8080-exec-2] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.kie.kogito.internal.process.workitem.NotAuthorizedException: this work item 4c6dc0f6-2f89-48af-b2cb-e7f2db66ab44 is not allows by this owner alice or null]
+2026-07-06T15:49:01.380+05:30 ERROR 40628 --- [0.1-8080-exec-5] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed: org.springframework.web.client.HttpClientErrorException$Forbidden: 403 Forbidden: "{"message":"this work item 4c6dc0f6-2f89-48af-b2cb-e7f2db66ab44 is not allows by this owner alice or null"}"] with root cause
+
+org.springframework.web.client.HttpClientErrorException$Forbidden: 403 Forbidden: "{"message":"this work item 4c6dc0f6-2f89-48af-b2cb-e7f2db66ab44 is not allows by this owner alice or null"}"
+	at org.springframework.web.client.HttpClientErrorException.create(HttpClientErrorException.java:109) ~[spring-web-6.2.18.jar:6.2.18]
+	at org.springframework.web.client.StatusHandler.lambda$defaultHandler$3(StatusHandler.java:86) ~[spring-web-6.2.18.jar:6.2.18]
+	at org.springframework.web.client.StatusHandler.handle(StatusHandler.java:146) ~[spring-web-6.2.18.jar:6.2.18]
+	at org.springframework.web.client.DefaultRestClient$DefaultResponseSpec.applyStatusHandlers(DefaultRestClient.java:838) ~[spring-web-6.2.18.jar:6.2.18]
+	at org.springframework.web.client.DefaultRestClient$DefaultResponseSpec.lambda$readBody$4(DefaultRestClient.java:827) ~[spring-web-6.2.18.jar:6.2.18]
+	at org.springframework.web.client.DefaultRestClient.readWithMessageConverters(DefaultRestClient.java:216) ~[spring-web-6.2.18.jar:6.2.18]
+	at org.springframework.web.client.DefaultRestClient$DefaultResponseSpec.readBody(DefaultRestClient.java:826) ~[spring-web-6.2.18.jar:6.2.18]
+	at org.springframework.web.client.DefaultRestClient$DefaultResponseSpec.lambda$body$1(DefaultRestClient.java:765) ~[spring-web-6.2.18.jar:6.2.18]
+	at org.springframework.web.client.DefaultRestClient$DefaultRequestBodyUriSpec.exchangeInternal(DefaultRestClient.java:586) ~[spring-web-6.2.18.jar:6.2.18]
+	at org.springframework.web.client.DefaultRestClient$DefaultRequestBodyUriSpec.exchange(DefaultRestClient.java:540) ~[spring-web-6.2.18.jar:6.2.18]
+	at org.springframework.web.client.RestClient$RequestHeadersSpec.exchange(RestClient.java:677) ~[spring-web-6.2.18.jar:6.2.18]
+	at org.springframework.web.client.DefaultRestClient$DefaultResponseSpec.executeAndExtract(DefaultRestClient.java:821) ~[spring-web-6.2.18.jar:6.2.18]
+	at org.springframework.web.client.DefaultRestClient$DefaultResponseSpec.body(DefaultRestClient.java:765) ~[spring-web-6.2.18.jar:6.2.18]
+	at org.acme.wrapper.service.impl.TaskExecutionServiceImpl.fetchTaskResults(TaskExecutionServiceImpl.java:634) ~[bamoe-wrapper-1.0.0.jar:na]
+	at org.acme.wrapper.service.impl.TaskExecutionServiceImpl.completeTaskFlow(TaskExecutionServiceImpl.java:292) ~[bamoe-wrapper-1.0.0.jar:na]
+	at org.acme.wrapper.service.impl.TaskExecutionServiceImpl.executeTask(TaskExecutionServiceImpl.java:84) ~[bamoe-wrapper-1.0.0.jar:na]
+	at org.acme.wrapper.WorkflowController.executeTask(WorkflowController.java:60) ~[bamoe-wrapper-1.0.0.jar:na]
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580) ~[na:na]
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:258) ~[spring-web-6.2.18.jar:6.2.18]
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:191) ~[spring-web-6.2.18.jar:6.2.18]
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:118) ~[spring-webmvc-6.2.18.jar:6.2.18]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:991) ~[spring-webmvc-6.2.18.jar:6.2.18]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:896) ~[spring-webmvc-6.2.18.jar:6.2.18]
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87) ~[spring-webmvc-6.2.18.jar:6.2.18]
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1089) ~[spring-webmvc-6.2.18.jar:6.2.18]
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:979) ~[spring-webmvc-6.2.18.jar:6.2.18]
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1014) ~[spring-webmvc-6.2.18.jar:6.2.18]
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:914) ~[spring-webmvc-6.2.18.jar:6.2.18]
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:590) ~[tomcat-embed-core-10.1.54.jar:6.0]
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885) ~[spring-webmvc-6.2.18.jar:6.2.18]
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658) ~[tomcat-embed-core-10.1.54.jar:6.0]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-10.1.54.jar:10.1.54]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:138) ~[tomcat-embed-core-10.1.54.jar:10.1.54]
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51) ~[tomcat-embed-websocket-10.1.54.jar:10.1.54]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:162) ~[tomcat-embed-core-10.1.54.jar:10.1.54]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:138) ~[tomcat-embed-core-10.1.54.jar:10.1.54]
+	at org.springframework.web.filter.CorsFilter.doFilterInternal(CorsFilter.java:91) ~[spring-web-6.2.18.jar:6.2.18]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.2.18.jar:6.2.18]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:162) ~[tomcat-embed-core-10.1.54.jar:10.1.54]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:138) ~[tomcat-embed-core-10.1.54.jar:10.1.54]
+	at org.springframework.web.servlet.resource.ResourceUrlEncodingFilter.doFilter(ResourceUrlEncodingFilter.java:66) ~[spring-webmvc-6.2.18.jar:6.2.18]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:162) ~[tomcat-embed-core-10.1.54.jar:10.1.54]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:138) ~[tomcat-embed-core-10.1.54.jar:10.1.54]
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100) ~[spring-web-6.2.18.jar:6.2.18]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.2.18.jar:6.2.18]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:162) ~[tomcat-embed-core-10.1.54.jar:10.1.54]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:138) ~[tomcat-embed-core-10.1.54.jar:10.1.54]
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93) ~[spring-web-6.2.18.jar:6.2.18]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.2.18.jar:6.2.18]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:162) ~[tomcat-embed-core-10.1.54.jar:10.1.54]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:138) ~[tomcat-embed-core-10.1.54.jar:10.1.54]
+	at org.springframework.web.filter.ServerHttpObservationFilter.doFilterInternal(ServerHttpObservationFilter.java:110) ~[spring-web-6.2.18.jar:6.2.18]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.2.18.jar:6.2.18]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:162) ~[tomcat-embed-core-10.1.54.jar:10.1.54]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:138) ~[tomcat-embed-core-10.1.54.jar:10.1.54]
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201) ~[spring-web-6.2.18.jar:6.2.18]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.2.18.jar:6.2.18]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:162) ~[tomcat-embed-core-10.1.54.jar:10.1.54]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:138) ~[tomcat-embed-core-10.1.54.jar:10.1.54]
+	at org.acme.security.jwt.JwtFilter.doFilter(JwtFilter.java:58) ~[bamoe-wrapper-1.0.0.jar:na]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:162) ~[tomcat-embed-core-10.1.54.jar:10.1.54]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:138) ~[tomcat-embed-core-10.1.54.jar:10.1.54]
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:165) ~[tomcat-embed-core-10.1.54.jar:10.1.54]
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:88) ~[tomcat-embed-core-10.1.54.jar:10.1.54]
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:492) ~[tomcat-embed-core-10.1.54.jar:10.1.54]
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:113) ~[tomcat-embed-core-10.1.54.jar:10.1.54]
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:83) ~[tomcat-embed-core-10.1.54.jar:10.1.54]
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:72) ~[tomcat-embed-core-10.1.54.jar:10.1.54]
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:342) ~[tomcat-embed-core-10.1.54.jar:10.1.54]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:399) ~[tomcat-embed-core-10.1.54.jar:10.1.54]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63) ~[tomcat-embed-core-10.1.54.jar:10.1.54]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:903) ~[tomcat-embed-core-10.1.54.jar:10.1.54]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1797) ~[tomcat-embed-core-10.1.54.jar:10.1.54]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52) ~[tomcat-embed-core-10.1.54.jar:10.1.54]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:973) ~[tomcat-embed-core-10.1.54.jar:10.1.54]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:491) ~[tomcat-embed-core-10.1.54.jar:10.1.54]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63) ~[tomcat-embed-core-10.1.54.jar:10.1.54]
+	at java.base/java.lang.Thread.run(Thread.java:1583) ~[na:na]
+
+[ERROR] Failed to execute goal org.springframework.boot:spring-boot-maven-plugin:3.5.14:run (default-cli) on project your-bamoe-business-service: Process terminated with exit code: -1 -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoExecutionException

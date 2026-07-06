@@ -25,7 +25,9 @@ org\acme\wrapper\service\impl\TaskExecutionServiceImpl$2.class
 org\acme\wrapper\exception\InvalidAssignmentStrategyException.class
 org\acme\security\jwt\dto\UserDetailsJwt$UserDetailsJwtBuilder.class
 org\acme\wrapper\client\impl\UserDetailsClientImpl.class
+org\acme\wrapper\WorkflowController$1.class
 org\acme\wrapper\client\dto\UserProfileFilterRequestDto.class
+org\acme\wrapper\dto\TaskCandidates.class
 org\acme\security\jwt\dto\RoleDetailDTO.class
 org\acme\wrapper\client\UserDetailsClient.class
 org\acme\wrapper\service\TaskService.class

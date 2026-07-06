@@ -16,6 +16,13 @@ import lombok.Setter;
 @Setter
 public class ExecuteTaskRequest extends StartWorkflowRequest {
 
+    /**
+     * Start-array mode only: names the parallel first-task this item targets (e.g.
+     * {@code Reviewer A}). Ignored in complete mode, where the name is derived from
+     * {@code taskId}, and unused by single-object requests.
+     */
+    private String taskName;
+
     /** Mandatory (complete mode). The process instance id. */
     private String instanceId;
 

@@ -1,5 +1,7 @@
 package org.acme.wrapper;
 
+import java.util.List;
+
 import org.acme.wrapper.dto.ExecuteTaskRequest;
 import org.acme.wrapper.service.ExecOutcome;
 import org.acme.wrapper.service.TaskExecutionService;
@@ -12,6 +14,10 @@ import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 /**
  * Thin wrapper API on top of the BAMOE business service. A single endpoint both
  * <b>starts</b> a workflow (when task coordinates are absent) and <b>completes</b> a
@@ -22,23 +28,37 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api/workflows")
 public class WorkflowController {
 
-    private final TaskExecutionService taskExecutionService;
+    private static final TypeReference<List<ExecuteTaskRequest>> ITEM_LIST = new TypeReference<>() {
+    };
 
-    public WorkflowController(TaskExecutionService taskExecutionService) {
+    private final TaskExecutionService taskExecutionService;
+    private final ObjectMapper objectMapper;
+
+    public WorkflowController(TaskExecutionService taskExecutionService, ObjectMapper objectMapper) {
         this.taskExecutionService = taskExecutionService;
+        this.objectMapper = objectMapper;
     }
 
     /**
-     * Start (no {@code instanceId}/{@code taskId}) or complete (both present) a task. The task
-     * node name is derived server-side from {@code taskId}.
+     * Single object → start (no {@code instanceId}/{@code taskId}) or complete (both present) a
+     * task; the node name is derived from {@code taskId}. Array → parallel human tasks: assign
+     * each first-task at start, or list a CHOICE candidate set per active task at complete.
      *
-     * @return 201 started, 200 completed, or 200 with candidate users for an unresolved CHOICE.
+     * @return 201 started, 200 completed, or 200 with candidate users (single) / a per-task
+     *         candidate array (array) for an unresolved CHOICE.
      */
     @PostMapping(value = "/executeTask", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Object> executeTask(
             @RequestHeader(value = HttpHeaders.AUTHORIZATION, required = false) String authorization,
-            @RequestBody ExecuteTaskRequest request) {
-        ExecOutcome outcome = taskExecutionService.executeTask(authorization, request);
+            @RequestBody JsonNode body) {
+        ExecOutcome outcome;
+        if (body.isArray()) {
+            List<ExecuteTaskRequest> items = objectMapper.convertValue(body, ITEM_LIST);
+            outcome = taskExecutionService.executeTaskBatch(authorization, items);
+        } else {
+            ExecuteTaskRequest request = objectMapper.convertValue(body, ExecuteTaskRequest.class);
+            outcome = taskExecutionService.executeTask(authorization, request);
+        }
         return ResponseEntity.status(outcome.status()).body(outcome.body());
     }
 }

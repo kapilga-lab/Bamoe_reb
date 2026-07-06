@@ -67,6 +67,11 @@ public class AssignmentResolverImpl implements AssignmentResolver {
         return result;
     }
 
+    @Override
+    public List<UsersByGroupDto> listCandidates(StartWorkflowRequest request, String authorization) {
+        return fetchCandidates(request, authorization);
+    }
+
     private AssignmentResult resolveBase(AssignmentStrategy base, String field,
                                          Map<String, Object> variables, StartWorkflowRequest request, String auth) {
         switch (base) {

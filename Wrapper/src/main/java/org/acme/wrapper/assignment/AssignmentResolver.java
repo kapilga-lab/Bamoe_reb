@@ -1,5 +1,8 @@
 package org.acme.wrapper.assignment;
 
+import java.util.List;
+
+import org.acme.wrapper.client.dto.UsersByGroupDto;
 import org.acme.wrapper.dto.StartWorkflowRequest;
 
 /**
@@ -13,4 +16,13 @@ public interface AssignmentResolver {
      * @return resolved variables to start with, or the candidate list for CHOICE.
      */
     AssignmentResult resolve(StartWorkflowRequest request, String authorization);
+
+    /**
+     * Fetch the candidate users for a task straight from userDetails using the request's
+     * {@code groupName}/{@code roleNames} filter — the CHOICE candidate list, without any
+     * strategy resolution. Enforces the same filter/empty checks as CHOICE.
+     *
+     * @return the candidate users (never empty; throws if none match).
+     */
+    List<UsersByGroupDto> listCandidates(StartWorkflowRequest request, String authorization);
 }

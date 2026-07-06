@@ -101,6 +101,87 @@ public class ProcessGraphService {
         return traverseFrom(graph, start, vars);
     }
 
+    /**
+     * @return every human task reachable from the process's start event, fanning out at a
+     *         diverging {@code parallelGateway} so all parallel first-tasks are returned
+     *         (e.g. Reviewer A/B/C). Non-parallel processes return a single-element list.
+     *         Unknown process → empty list.
+     */
+    public List<NextNode> firstHumanTasks(String processId, Map<String, Object> vars) {
+        ProcessGraph graph = graphs.get(processId);
+        if (graph == null || graph.startEventId == null) {
+            return List.of();
+        }
+        List<NextNode> results = new ArrayList<>();
+        Set<String> seenTasks = new HashSet<>();
+        traverseAllFrom(graph, graph.startEventId, vars, new HashSet<>(), results, seenTasks, 0);
+        return results;
+    }
+
+    /**
+     * @return every human task reachable after completing {@code taskName}, fanning out at a
+     *         diverging {@code parallelGateway} — so a fork into N human tasks returns all N.
+     *         Unknown process or task → empty list.
+     */
+    public List<NextNode> nextHumanTasksAfter(String processId, String taskName, Map<String, Object> vars) {
+        ProcessGraph graph = graphs.get(processId);
+        if (graph == null) {
+            return List.of();
+        }
+        String current = graph.userTaskIdByName.get(taskName);
+        if (current == null) {
+            return List.of();
+        }
+        List<NextNode> results = new ArrayList<>();
+        traverseAllFrom(graph, current, vars, new HashSet<>(), results, new HashSet<>(), 0);
+        return results;
+    }
+
+    /**
+     * Multi-branch traversal: collects every reachable {@code userTask} (HUMAN), following
+     * ALL outgoing flows of a diverging {@code parallelGateway} and one branch of an
+     * {@code exclusiveGateway}. Human tasks are de-duplicated by name via {@code seenTasks}.
+     */
+    private void traverseAllFrom(ProcessGraph graph, String fromNodeId, Map<String, Object> vars,
+                                 Set<String> visited, List<NextNode> results, Set<String> seenTasks, int depth) {
+        if (depth > MAX_DEPTH || !visited.add(fromNodeId)) {
+            return;
+        }
+        GraphNode currentNode = graph.nodes.get(fromNodeId);
+        List<Flow> outs = graph.outgoing.getOrDefault(fromNodeId, List.of());
+
+        List<Flow> branches;
+        if (currentNode != null && "exclusiveGateway".equals(currentNode.type) && outs.size() > 1) {
+            Flow chosen = chooseExclusive(currentNode, outs, vars);
+            branches = (chosen == null) ? List.of() : List.of(chosen);
+        } else {
+            branches = outs; // parallelGateway diverging → all; single-out nodes → the one
+        }
+
+        for (Flow flow : branches) {
+            GraphNode target = graph.nodes.get(flow.target);
+            if (target == null) {
+                continue;
+            }
+            switch (target.type) {
+                case "userTask" -> {
+                    String name = (target.name != null) ? target.name : target.id;
+                    if (seenTasks.add(name)) {
+                        results.add(NextNode.human(name));
+                    }
+                }
+                case "endEvent" -> results.add(NextNode.end());
+                default -> {
+                    if (PASS_THROUGH_UNKNOWN.contains(target.type) && !"parallelGateway".equals(target.type)) {
+                        results.add(NextNode.unknown());
+                    } else {
+                        traverseAllFrom(graph, target.id, vars, visited, results, seenTasks, depth + 1);
+                    }
+                }
+            }
+        }
+    }
+
     /** The {@code #{var}} names in {@code taskName}'s Actors (potentialOwner) expression. */
     public Set<String> actorsVars(String processId, String taskName) {
         GraphNode node = userTaskNode(processId, taskName);
@@ -111,6 +192,26 @@ public class ProcessGraphService {
     public Set<String> groupsVars(String processId, String taskName) {
         GraphNode node = userTaskNode(processId, taskName);
         return (node == null || node.groupsVars == null) ? Set.of() : node.groupsVars;
+    }
+
+    /** The names of every human task declared in the process. */
+    public Set<String> humanTasks(String processId) {
+        ProcessGraph graph = graphs.get(processId);
+        return (graph == null) ? Set.of() : Set.copyOf(graph.userTaskIdByName.keySet());
+    }
+
+    /** The process-variable names {@code taskName} writes as outputs (property names). */
+    public Set<String> taskOutputVars(String processId, String taskName) {
+        ProcessGraph graph = graphs.get(processId);
+        GraphNode node = userTaskNode(processId, taskName);
+        if (graph == null || node == null || node.outputRefs == null) {
+            return Set.of();
+        }
+        Set<String> names = new LinkedHashSet<>();
+        for (String ref : node.outputRefs) {
+            names.add(graph.propertyNames.getOrDefault(ref, ref));
+        }
+        return names;
     }
 
     private GraphNode userTaskNode(String processId, String taskName) {
@@ -228,6 +329,9 @@ public class ProcessGraphService {
                 }
                 if ("sequenceFlow".equals(ln)) {
                     addFlow(graph, el);
+                } else if ("property".equals(ln)) {
+                    String pid = el.getAttribute("id");
+                    graph.propertyNames.put(pid, el.hasAttribute("name") ? el.getAttribute("name") : pid);
                 } else if (isFlowNode(ln)) {
                     addNode(graph, el, ln);
                 }
@@ -249,6 +353,7 @@ public class ProcessGraphService {
         if ("userTask".equals(type)) {
             node.actorsVars = extractActorsVars(el);
             node.groupsVars = extractGroupsVars(el);
+            node.outputRefs = extractOutputRefs(el);
             if (node.name != null) {
                 graph.userTaskIdByName.put(node.name, id);
             }
@@ -257,6 +362,18 @@ public class ProcessGraphService {
         if ("startEvent".equals(type) && graph.startEventId == null) {
             graph.startEventId = id;
         }
+    }
+
+    /** The process variables a task writes: its dataOutputAssociation targetRefs (raw ids). */
+    private Set<String> extractOutputRefs(Element userTask) {
+        Set<String> refs = new LinkedHashSet<>();
+        for (Element assoc : childElements(userTask, "dataOutputAssociation")) {
+            String targetRef = textOfChild(assoc, "targetRef");
+            if (targetRef != null && !targetRef.isBlank()) {
+                refs.add(targetRef);
+            }
+        }
+        return refs;
     }
 
     /** Actors: the {@code #{var}} names in potentialOwner/…/formalExpression. */
@@ -362,6 +479,7 @@ public class ProcessGraphService {
         final Map<String, GraphNode> nodes = new HashMap<>();
         final Map<String, List<Flow>> outgoing = new HashMap<>();
         final Map<String, String> userTaskIdByName = new HashMap<>();
+        final Map<String, String> propertyNames = new HashMap<>();
         String startEventId;
     }
 
@@ -372,6 +490,7 @@ public class ProcessGraphService {
         String defaultFlow;
         Set<String> actorsVars;
         Set<String> groupsVars;
+        Set<String> outputRefs;
     }
 
     private static final class Flow {
