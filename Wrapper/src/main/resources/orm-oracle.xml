@@ -1,11 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-  Oracle-only JPA mapping override for a BAMOE 9.4.2 bug: the Oracle kie-flyway script
-  (jbpm-addons-usertask-storage-jpa, V1.0.2__create_user_task_oracle_bamoe921.sql) creates
-  the comments column as TASK_COMMENT (COMMENT is an Oracle reserved word), but the shipped
-  CommentEntity maps the field to "comment" — every comment read fails with ORA-01747.
-  Activated via spring.jpa.mapping-resources=orm-oracle.xml. H2/PostgreSQL keep the
-  annotation mapping ("comment"), so this file must NOT be active there.
+  Oracle-only JPA mapping overrides for BAMOE 9.4.2 bugs where the Oracle kie-flyway
+  scripts rename columns that are Oracle reserved words, but the shipped entities keep
+  the H2/PostgreSQL column names — every read fails with ORA-01747.
+
+  1. jbpm-addons-usertask-storage-jpa: DDL column TASK_COMMENT vs entity "comment".
+  2. kogito-addons-common-embedded-jobs-jpa: DDL column JOB_TRIGGER vs entity "trigger"
+     (fails on every embedded Jobs Service poll).
+
+  Auto-activated by the wrapper's OracleOrmMappingPostProcessor when the datasource is
+  Oracle. H2/PostgreSQL keep the annotation mappings, so this file must NOT be active there.
 -->
 <entity-mappings xmlns="https://jakarta.ee/xml/ns/persistence/orm"
                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -16,6 +20,16 @@
     <attributes>
       <basic name="comment">
         <column name="task_comment"/>
+      </basic>
+    </attributes>
+  </entity>
+  <entity class="org.kie.kogito.app.jobs.jpa.model.JobDetailsEntity">
+    <!-- Re-state the converter so the column override cannot suppress the annotation. -->
+    <convert attribute-name="trigger"
+             converter="org.kie.kogito.app.jobs.jpa.converter.JsonBinaryConverter"/>
+    <attributes>
+      <basic name="trigger">
+        <column name="job_trigger"/>
       </basic>
     </attributes>
   </entity>
