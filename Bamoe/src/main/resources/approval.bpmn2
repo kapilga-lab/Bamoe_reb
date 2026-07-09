@@ -139,7 +139,9 @@
     <bpmn2:sequenceFlow id="flow_reject" sourceRef="decisionGateway" targetRef="rejectedEnd">
       <bpmn2:conditionExpression xsi:type="bpmn2:tFormalExpression" language="http://www.java.com/java">return checkerDecision != null &amp;&amp; checkerDecision.equalsIgnoreCase(&quot;REJECT&quot;);</bpmn2:conditionExpression>
     </bpmn2:sequenceFlow>
-    <bpmn2:sequenceFlow id="flow_sendback" sourceRef="decisionGateway" targetRef="mergeGateway" />
+    <bpmn2:sequenceFlow id="flow_sendback" sourceRef="decisionGateway" targetRef="mergeGateway">
+      <bpmn2:conditionExpression id="_1145DDB3-76A6-47FB-85DF-7C4AA50C62D6">return checkerDecision != null &amp;&amp; checkerDecision.equalsIgnoreCase(&quot;SENDBACK&quot;);</bpmn2:conditionExpression>
+    </bpmn2:sequenceFlow>
   </bpmn2:process>
   <bpmndi:BPMNDiagram id="BPMNDiagram_approval">
     <bpmndi:BPMNPlane id="BPMNPlane_approval" bpmnElement="approval">
@@ -153,7 +155,7 @@
         <dc:Bounds x="300" y="80" width="100" height="80" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="shape_checkerTask" bpmnElement="checkerTask">
-        <dc:Bounds x="440" y="84" width="100" height="80" />
+        <dc:Bounds x="440" y="80" width="100" height="80" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="shape_decisionGateway" bpmnElement="decisionGateway" isMarkerVisible="true">
         <dc:Bounds x="590" y="99" width="50" height="50" />
@@ -174,10 +176,10 @@
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="edge_flow_maker_checker" bpmnElement="flow_maker_checker">
         <di:waypoint x="400" y="120" />
-        <di:waypoint x="440" y="124" />
+        <di:waypoint x="440" y="120" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="edge_flow_checker_gw" bpmnElement="flow_checker_gw">
-        <di:waypoint x="540" y="124" />
+        <di:waypoint x="540" y="120" />
         <di:waypoint x="590" y="124" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="edge_flow_approve" bpmnElement="flow_approve">

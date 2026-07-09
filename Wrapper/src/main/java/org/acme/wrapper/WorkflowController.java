@@ -8,6 +8,8 @@ import org.acme.wrapper.service.TaskExecutionService;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
@@ -59,6 +61,31 @@ public class WorkflowController {
             ExecuteTaskRequest request = objectMapper.convertValue(body, ExecuteTaskRequest.class);
             outcome = taskExecutionService.executeTask(authorization, request);
         }
+        return ResponseEntity.status(outcome.status()).body(outcome.body());
+    }
+
+    /**
+     * Roll a workflow back to a human task: the last completed one (default) or an explicit
+     * {@code taskName}. Works on live instances (steered in place) and ended instances
+     * (re-created from their final variables under a new instanceId).
+     */
+    @PostMapping(value = "/rollback", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Object> rollback(
+            @RequestHeader(value = HttpHeaders.AUTHORIZATION, required = false) String authorization,
+            @RequestBody ExecuteTaskRequest request) {
+        ExecOutcome outcome = taskExecutionService.rollback(authorization, request);
+        return ResponseEntity.status(outcome.status()).body(outcome.body());
+    }
+
+    /**
+     * Full status of an instance by id alone: ACTIVE/COMPLETED/ABORTED, timestamps, the
+     * active human tasks (state, actual owner, candidates) and the completed task history.
+     */
+    @GetMapping(value = "/{instanceId}/status", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Object> instanceStatus(
+            @RequestHeader(value = HttpHeaders.AUTHORIZATION, required = false) String authorization,
+            @PathVariable("instanceId") String instanceId) {
+        ExecOutcome outcome = taskExecutionService.instanceStatus(authorization, instanceId);
         return ResponseEntity.status(outcome.status()).body(outcome.body());
     }
 }

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Oracle-only JPA mapping override for a BAMOE 9.4.2 bug: the Oracle kie-flyway script
+  (jbpm-addons-usertask-storage-jpa, V1.0.2__create_user_task_oracle_bamoe921.sql) creates
+  the comments column as TASK_COMMENT (COMMENT is an Oracle reserved word), but the shipped
+  CommentEntity maps the field to "comment" — every comment read fails with ORA-01747.
+  Activated via spring.jpa.mapping-resources=orm-oracle.xml. H2/PostgreSQL keep the
+  annotation mapping ("comment"), so this file must NOT be active there.
+-->
+<entity-mappings xmlns="https://jakarta.ee/xml/ns/persistence/orm"
+                 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                 xsi:schemaLocation="https://jakarta.ee/xml/ns/persistence/orm
+                                     https://jakarta.ee/xml/ns/persistence/orm/orm_3_1.xsd"
+                 version="3.1">
+  <entity class="org.jbpm.usertask.jpa.model.CommentEntity">
+    <attributes>
+      <basic name="comment">
+        <column name="task_comment"/>
+      </basic>
+    </attributes>
+  </entity>
+</entity-mappings>

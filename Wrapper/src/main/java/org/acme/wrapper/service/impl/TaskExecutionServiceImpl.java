@@ -300,6 +300,15 @@ public class TaskExecutionServiceImpl implements TaskExecutionService {
             return new ExecOutcome(HttpStatus.OK, body);
         }
 
+        // The engine only allows complete from Reserved — auto-claim a Ready task so a
+        // candidate can complete it in one call.
+        Object status = task.get("status");
+        String statusName = (status instanceof Map<?, ?> map && map.get("name") != null)
+                ? map.get("name").toString() : null;
+        if ("Ready".equalsIgnoreCase(statusName)) {
+            completeTask(workflowName, usertaskId, "claim", user, groups, auth, Map.of());
+        }
+
         // Required completion data = the task's BPMN-declared outputs.
         Set<String> outputKeys = processGraphService.taskOutputVars(workflowName, taskName);
         Map<String, Object> resultsTemplate = new LinkedHashMap<>();
@@ -317,13 +326,21 @@ public class TaskExecutionServiceImpl implements TaskExecutionService {
                     user, groups, resultsTemplate, mergedVars, nextTasks);
         }
 
-        // The next human task's Actors/Groups vars that this task can actually set
-        // (must be an output of the task being completed).
+        // The next human task's Actors/Groups vars split into: settable via this task's
+        // outputs (written in the completion body) vs. process-variable-only (e.g. a
+        // sendback loop re-activating an earlier task) — those must be re-assigned
+        // explicitly and patched into the instance before completing.
         Set<String> settableActors = Set.of();
         Set<String> settableGroups = Set.of();
+        Set<String> reassignActors = Set.of();
+        Set<String> reassignGroups = Set.of();
         if (next.type() == NextNodeType.HUMAN && next.nodeName() != null) {
-            settableActors = intersect(processGraphService.actorsVars(workflowName, next.nodeName()), resultsTemplate.keySet());
-            settableGroups = intersect(processGraphService.groupsVars(workflowName, next.nodeName()), resultsTemplate.keySet());
+            Set<String> actorVars = processGraphService.actorsVars(workflowName, next.nodeName());
+            Set<String> groupVars = processGraphService.groupsVars(workflowName, next.nodeName());
+            settableActors = intersect(actorVars, resultsTemplate.keySet());
+            settableGroups = intersect(groupVars, resultsTemplate.keySet());
+            reassignActors = minus(actorVars, resultsTemplate.keySet());
+            reassignGroups = minus(groupVars, resultsTemplate.keySet());
         }
         requirePresent(resultsTemplate.keySet(), union(settableActors, settableGroups), request);
 
@@ -332,9 +349,30 @@ public class TaskExecutionServiceImpl implements TaskExecutionService {
         if (choice != null) {
             return choice;
         }
+
+        // No task may re-activate silently with a stale assignee: resolve the
+        // non-output vars with the caller's strategy and patch them in first.
+        if (!reassignActors.isEmpty() || !reassignGroups.isEmpty()) {
+            Map<String, Object> reassigned = new LinkedHashMap<>();
+            List<TaskCandidates> pending =
+                    resolveVars(next.nodeName(), reassignActors, reassignGroups, request, auth, reassigned);
+            if (!pending.isEmpty()) {
+                return new ExecOutcome(HttpStatus.OK, pending);
+            }
+            if (!reassigned.isEmpty()) {
+                patchProcessVariables(workflowName, instanceId, auth, reassigned);
+            }
+        }
+
         Map<String, Object> output = pick(resultsTemplate.keySet(), accumulated);
         Object body = completeTask(workflowName, usertaskId, DEFAULT_PHASE, user, groups, auth, output);
         return new ExecOutcome(HttpStatus.OK, body);
+    }
+
+    private static Set<String> minus(Set<String> a, Set<String> b) {
+        Set<String> out = new LinkedHashSet<>(a);
+        out.removeAll(b);
+        return out;
     }
 
     /**
@@ -391,6 +429,183 @@ public class TaskExecutionServiceImpl implements TaskExecutionService {
 
         Map<String, Object> output = pick(resultsTemplate.keySet(), accumulated);
         Object body = completeTask(workflowName, usertaskId, DEFAULT_PHASE, user, groups, auth, output);
+        return new ExecOutcome(HttpStatus.OK, body);
+    }
+
+    // ------------------------------------------------------------------ rollback
+
+    @Override
+    public ExecOutcome rollback(String authorization, ExecuteTaskRequest request) {
+        requireJwtUser();
+        String workflowName = require(request.getWorkflowName(), "MISSING_WORKFLOW_NAME", "workflowName is mandatory");
+        String instanceId = require(request.getInstanceId(), "MISSING_INSTANCE_ID", "instanceId is mandatory");
+
+        // Target task: explicit, or the instance's last completed human task.
+        String target = request.getTaskName();
+        if (target == null || target.isBlank()) {
+            target = lastCompletedHumanTask(instanceId, authorization);
+            if (target == null) {
+                // Distinguish "instance unknown" (404) from "nothing completed yet" (400).
+                if (fetchNodeInstances(workflowName, instanceId, authorization) == null
+                        && fetchEndedInstanceVariables(workflowName, instanceId, authorization) == null) {
+                    throw new WorkflowEngineException(workflowName, HttpStatus.NOT_FOUND, "INSTANCE_NOT_FOUND",
+                            "Instance '" + instanceId + "' was not found, live or in history.");
+                }
+                throw new AssignmentValidationException("NOTHING_TO_ROLLBACK",
+                        "No completed human task found for instance '" + instanceId + "'.");
+            }
+        } else {
+            target = target.trim();
+        }
+        String nodeId = processGraphService.taskNodeId(workflowName, target);
+        if (nodeId == null) {
+            throw new AssignmentValidationException("INVALID_TASK_NAME",
+                    "'" + target + "' is not a human task of '" + workflowName + "'. Expected one of "
+                            + processGraphService.humanTasks(workflowName));
+        }
+
+        List<Map<String, Object>> active = fetchNodeInstances(workflowName, instanceId, authorization);
+        if (active != null) {
+            // Live instance: bring the target back first, then cancel what was active —
+            // the instance never sits with zero active nodes.
+            triggerNode(workflowName, instanceId, nodeId, authorization);
+            for (Map<String, Object> node : active) {
+                Object nid = nodeInstanceId(node);
+                if (nid != null) {
+                    cancelNodeInstance(workflowName, instanceId, nid.toString(), authorization);
+                }
+            }
+            return rollbackOutcome(workflowName, target, instanceId, null, authorization);
+        }
+
+        // Ended instance: re-create it from the data-index's final variables, then steer
+        // the new instance to the target task.
+        Map<String, Object> variables = fetchEndedInstanceVariables(workflowName, instanceId, authorization);
+        if (variables == null) {
+            throw new WorkflowEngineException(workflowName, HttpStatus.NOT_FOUND, "INSTANCE_NOT_FOUND",
+                    "Instance '" + instanceId + "' was not found, live or in history.");
+        }
+        variables.remove("id");
+        Object created = startInstance(workflowName, authorization, variables);
+        String newId = (created instanceof Map<?, ?> map && map.get("id") != null)
+                ? map.get("id").toString() : null;
+        if (newId == null) {
+            throw new WorkflowEngineException(workflowName, HttpStatus.BAD_GATEWAY,
+                    "ENGINE_ERROR", "Could not determine the id of the re-created instance.");
+        }
+
+        List<Map<String, Object>> autoActive = fetchNodeInstances(workflowName, newId, authorization);
+        boolean targetAlreadyActive = false;
+        if (autoActive != null) {
+            for (Map<String, Object> node : autoActive) {
+                targetAlreadyActive |= target.equals(String.valueOf(nodeName(node)));
+            }
+        }
+        if (!targetAlreadyActive) {
+            triggerNode(workflowName, newId, nodeId, authorization);
+            if (autoActive != null) {
+                for (Map<String, Object> node : autoActive) {
+                    Object nid = nodeInstanceId(node);
+                    if (nid != null) {
+                        cancelNodeInstance(workflowName, newId, nid.toString(), authorization);
+                    }
+                }
+            }
+        }
+        return rollbackOutcome(workflowName, target, newId, instanceId, authorization);
+    }
+
+    private ExecOutcome rollbackOutcome(String workflowName, String target, String instanceId,
+                                        String previousInstanceId, String auth) {
+        Map<String, Object> body = new LinkedHashMap<>();
+        body.put("rolledBackTo", target);
+        body.put("instanceId", instanceId);
+        if (previousInstanceId != null) {
+            body.put("previousInstanceId", previousInstanceId);
+        }
+        body.put("activeNodes", fetchActiveNodeNames(workflowName, instanceId, auth));
+        return new ExecOutcome(HttpStatus.OK, body);
+    }
+
+    // ------------------------------------------------------------ instance status
+
+    private static final String INSTANCE_STATUS_QUERY = """
+            query ($where: ProcessInstanceArgument) {
+              ProcessInstances(where: $where) {
+                id processId processName state start end businessKey
+              }
+            }
+            """;
+
+    private static final String INSTANCE_TASKS_QUERY = """
+            query ($where: UserTaskInstanceArgument) {
+              UserTaskInstances(where: $where, orderBy: { started: ASC }) {
+                id externalReferenceId name state actualOwner
+                potentialUsers potentialGroups started completed lastUpdate
+              }
+            }
+            """;
+
+    @Override
+    @SuppressWarnings("unchecked")
+    public ExecOutcome instanceStatus(String authorization, String instanceId) {
+        requireJwtUser();
+        String id = require(instanceId, "MISSING_INSTANCE_ID", "instanceId is mandatory");
+
+        Map<String, Object> response = dataIndexQuery(authorization, INSTANCE_STATUS_QUERY,
+                Map.of("where", Map.of("id", Map.of("equal", id))));
+        Map<String, Object> instance = null;
+        if (response != null && response.get("data") instanceof Map<?, ?> data
+                && data.get("ProcessInstances") instanceof List<?> list && !list.isEmpty()
+                && list.get(0) instanceof Map<?, ?> first) {
+            instance = (Map<String, Object>) first;
+        }
+        if (instance == null) {
+            throw new WorkflowEngineException(null, HttpStatus.NOT_FOUND, "INSTANCE_NOT_FOUND",
+                    "Instance '" + id + "' was not found.");
+        }
+
+        Map<String, Object> tasksResponse = dataIndexQuery(authorization, INSTANCE_TASKS_QUERY,
+                Map.of("where", Map.of("processInstanceId", Map.of("equal", id))));
+        List<Map<String, Object>> tasks = List.of();
+        if (tasksResponse != null && tasksResponse.get("data") instanceof Map<?, ?> data
+                && data.get("UserTaskInstances") instanceof List<?> list) {
+            tasks = (List<Map<String, Object>>) list;
+        }
+
+        List<Map<String, Object>> activeTasks = new ArrayList<>();
+        List<Map<String, Object>> completedTasks = new ArrayList<>();
+        for (Map<String, Object> task : tasks) {
+            Map<String, Object> entry = new LinkedHashMap<>();
+            entry.put("taskId", task.get("externalReferenceId") != null
+                    ? task.get("externalReferenceId") : task.get("id"));
+            entry.put("taskName", task.get("name"));
+            entry.put("state", task.get("state"));
+            entry.put("actualOwner", task.get("actualOwner"));
+            entry.put("potentialUsers", task.get("potentialUsers"));
+            entry.put("potentialGroups", task.get("potentialGroups"));
+            entry.put("started", task.get("started"));
+            entry.put("completed", task.get("completed"));
+            String state = task.get("state") == null ? "" : task.get("state").toString();
+            if ("Completed".equalsIgnoreCase(state) || "Aborted".equalsIgnoreCase(state)) {
+                completedTasks.add(entry);
+            } else {
+                activeTasks.add(entry);
+            }
+        }
+
+        String state = instance.get("state") == null ? null : instance.get("state").toString();
+        Map<String, Object> body = new LinkedHashMap<>();
+        body.put("instanceId", instance.get("id"));
+        body.put("workflowName", instance.get("processId"));
+        body.put("workflowLabel", instance.get("processName"));
+        body.put("status", state);
+        body.put("completed", state != null && !"ACTIVE".equalsIgnoreCase(state));
+        body.put("businessKey", instance.get("businessKey"));
+        body.put("start", instance.get("start"));
+        body.put("end", instance.get("end"));
+        body.put("activeTasks", activeTasks);
+        body.put("completedTasks", completedTasks);
         return new ExecOutcome(HttpStatus.OK, body);
     }
 
@@ -642,6 +857,25 @@ public class TaskExecutionServiceImpl implements TaskExecutionService {
      * Returns {@code null} when the addon/endpoint is unavailable.
      */
     private Set<String> fetchActiveNodeNames(String workflowName, String instanceId, String auth) {
+        List<Map<String, Object>> nodes = fetchNodeInstances(workflowName, instanceId, auth);
+        if (nodes == null) {
+            return null;
+        }
+        Set<String> names = new LinkedHashSet<>();
+        for (Map<String, Object> node : nodes) {
+            Object name = nodeName(node);
+            if (name != null) {
+                names.add(name.toString());
+            }
+        }
+        return names;
+    }
+
+    /**
+     * The instance's active node instances (raw maps with id + name), or {@code null} when
+     * the instance is unknown to the engine / the management addon is unavailable.
+     */
+    private List<Map<String, Object>> fetchNodeInstances(String workflowName, String instanceId, String auth) {
         try {
             var spec = engine.get().uri(
                     "/management/processes/{processId}/instances/{processInstanceId}/nodeInstances",
@@ -649,24 +883,138 @@ public class TaskExecutionServiceImpl implements TaskExecutionService {
             if (auth != null && !auth.isBlank()) {
                 spec.header(HttpHeaders.AUTHORIZATION, auth);
             }
-            List<Map<String, Object>> nodes = spec.retrieve().body(LIST_OF_MAP);
-            if (nodes == null) {
-                return null;
-            }
-            Set<String> names = new LinkedHashSet<>();
-            for (Map<String, Object> node : nodes) {
-                Object name = node.getOrDefault("name", node.get("nodeName"));
-                if (name != null) {
-                    names.add(name.toString());
-                }
-            }
-            return names;
+            return spec.retrieve().body(LIST_OF_MAP);
         } catch (HttpClientErrorException | HttpServerErrorException e) {
             return null;
         } catch (ResourceAccessException unreachable) {
             throw new WorkflowEngineException(workflowName, HttpStatus.SERVICE_UNAVAILABLE,
                     "ENGINE_UNREACHABLE", "Workflow engine is not reachable.");
         }
+    }
+
+    private static Object nodeName(Map<String, Object> node) {
+        return node.getOrDefault("name", node.get("nodeName"));
+    }
+
+    private static Object nodeInstanceId(Map<String, Object> node) {
+        return node.getOrDefault("nodeInstanceId", node.get("id"));
+    }
+
+    /** Trigger a node (by BPMN element id) on a live instance (process-management addon). */
+    private void triggerNode(String workflowName, String instanceId, String nodeId, String auth) {
+        try {
+            var spec = engine.post().uri(
+                    "/management/processes/{processId}/instances/{processInstanceId}/nodes/{nodeId}",
+                    workflowName, instanceId, nodeId);
+            if (auth != null && !auth.isBlank()) {
+                spec.header(HttpHeaders.AUTHORIZATION, auth);
+            }
+            spec.retrieve().toBodilessEntity();
+        } catch (HttpClientErrorException ce) {
+            throw new WorkflowEngineException(workflowName, ce.getStatusCode(),
+                    "ROLLBACK_TRIGGER_FAILED", "Could not trigger node '" + nodeId + "': " + ce.getResponseBodyAsString());
+        } catch (HttpServerErrorException se) {
+            throw new WorkflowEngineException(workflowName, HttpStatus.BAD_GATEWAY,
+                    "ENGINE_ERROR", "The workflow engine returned an error: " + se.getResponseBodyAsString());
+        } catch (ResourceAccessException unreachable) {
+            throw new WorkflowEngineException(workflowName, HttpStatus.SERVICE_UNAVAILABLE,
+                    "ENGINE_UNREACHABLE", "Workflow engine is not reachable.");
+        }
+    }
+
+    /** Cancel one active node instance (process-management addon). */
+    private void cancelNodeInstance(String workflowName, String instanceId, String nodeInstanceId, String auth) {
+        try {
+            var spec = engine.delete().uri(
+                    "/management/processes/{processId}/instances/{processInstanceId}/nodeInstances/{nodeInstanceId}",
+                    workflowName, instanceId, nodeInstanceId);
+            if (auth != null && !auth.isBlank()) {
+                spec.header(HttpHeaders.AUTHORIZATION, auth);
+            }
+            spec.retrieve().toBodilessEntity();
+        } catch (HttpClientErrorException ce) {
+            throw new WorkflowEngineException(workflowName, ce.getStatusCode(),
+                    "ROLLBACK_CANCEL_FAILED", "Could not cancel node instance '" + nodeInstanceId + "': "
+                            + ce.getResponseBodyAsString());
+        } catch (HttpServerErrorException se) {
+            throw new WorkflowEngineException(workflowName, HttpStatus.BAD_GATEWAY,
+                    "ENGINE_ERROR", "The workflow engine returned an error: " + se.getResponseBodyAsString());
+        } catch (ResourceAccessException unreachable) {
+            throw new WorkflowEngineException(workflowName, HttpStatus.SERVICE_UNAVAILABLE,
+                    "ENGINE_UNREACHABLE", "Workflow engine is not reachable.");
+        }
+    }
+
+    private static final String LAST_COMPLETED_TASK_QUERY = """
+            query ($where: UserTaskInstanceArgument) {
+              UserTaskInstances(where: $where, orderBy: { completed: DESC },
+                                pagination: { limit: 1, offset: 0 }) {
+                name
+              }
+            }
+            """;
+
+    /** Name of the instance's most recently completed human task (data-index), or null. */
+    private String lastCompletedHumanTask(String instanceId, String auth) {
+        Map<String, Object> where = Map.of(
+                "processInstanceId", Map.of("equal", instanceId),
+                "state", Map.of("equal", "Completed"));
+        Map<String, Object> response = dataIndexQuery(auth, LAST_COMPLETED_TASK_QUERY, Map.of("where", where));
+        if (response != null && response.get("data") instanceof Map<?, ?> data
+                && data.get("UserTaskInstances") instanceof List<?> list && !list.isEmpty()
+                && list.get(0) instanceof Map<?, ?> task && task.get("name") != null) {
+            return task.get("name").toString();
+        }
+        return null;
+    }
+
+    private static final String ENDED_INSTANCE_QUERY = """
+            query ($where: ProcessInstanceArgument) {
+              ProcessInstances(where: $where) { id state variables }
+            }
+            """;
+
+    /**
+     * Final variables of an ended instance from the data-index, or null when the instance
+     * is unknown there too.
+     */
+    @SuppressWarnings("unchecked")
+    private Map<String, Object> fetchEndedInstanceVariables(String workflowName, String instanceId, String auth) {
+        Map<String, Object> where = Map.of(
+                "id", Map.of("equal", instanceId),
+                "processId", Map.of("equal", workflowName));
+        Map<String, Object> response = dataIndexQuery(auth, ENDED_INSTANCE_QUERY, Map.of("where", where));
+        if (response != null && response.get("data") instanceof Map<?, ?> data
+                && data.get("ProcessInstances") instanceof List<?> list && !list.isEmpty()
+                && list.get(0) instanceof Map<?, ?> instance) {
+            Object variables = instance.get("variables");
+            if (variables instanceof Map<?, ?> map) {
+                return new LinkedHashMap<>((Map<String, Object>) map);
+            }
+            return new LinkedHashMap<>();
+        }
+        return null;
+    }
+
+    /** POST a query+variables to the data-index {@code /graphql}; GraphQL errors → 502. */
+    private Map<String, Object> dataIndexQuery(String auth, String query, Map<String, Object> variables) {
+        Map<String, Object> response;
+        try {
+            var spec = engine.post().uri("/graphql").contentType(MediaType.APPLICATION_JSON);
+            if (auth != null && !auth.isBlank()) {
+                spec.header(HttpHeaders.AUTHORIZATION, auth);
+            }
+            response = spec.body(Map.of("query", query, "variables", variables))
+                    .retrieve().body(MAP);
+        } catch (ResourceAccessException unreachable) {
+            throw new WorkflowEngineException(null, HttpStatus.SERVICE_UNAVAILABLE,
+                    "ENGINE_UNREACHABLE", "Workflow engine is not reachable.");
+        }
+        if (response != null && response.get("errors") != null) {
+            throw new WorkflowEngineException(null, HttpStatus.BAD_GATEWAY,
+                    "ENGINE_ERROR", "Data-index query failed: " + response.get("errors"));
+        }
+        return response;
     }
 
     /** Set process variables on a live instance (partial model update, PATCH). */

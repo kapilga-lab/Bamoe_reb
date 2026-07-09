@@ -200,6 +200,12 @@ public class ProcessGraphService {
         return (graph == null) ? Set.of() : Set.copyOf(graph.userTaskIdByName.keySet());
     }
 
+    /** The BPMN element id of a human task (e.g. {@code makerTask}), or null if unknown. */
+    public String taskNodeId(String processId, String taskName) {
+        ProcessGraph graph = graphs.get(processId);
+        return (graph == null) ? null : graph.userTaskIdByName.get(taskName);
+    }
+
     /** The process-variable names {@code taskName} writes as outputs (property names). */
     public Set<String> taskOutputVars(String processId, String taskName) {
         ProcessGraph graph = graphs.get(processId);
