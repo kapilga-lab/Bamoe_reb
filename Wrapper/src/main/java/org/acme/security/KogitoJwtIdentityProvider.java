@@ -8,9 +8,11 @@ import org.acme.security.jwt.UserContextHolder;
 import org.acme.security.jwt.dto.UserDetailsJwt;
 import org.acme.security.jwt.dto.UserGroupDTO;
 import org.kie.kogito.auth.IdentityProvider;
+import org.kie.kogito.services.identity.NoOpIdentityProvider;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.Primary;
 import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;
-import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Component;
 
 /**
@@ -18,8 +20,13 @@ import org.springframework.stereotype.Component;
  * by the {@code JwtFilter}. This is what the engine uses to populate
  * CREATED_BY / UPDATED_BY and to evaluate task assignment.
  *
- * <p>Marked {@code @Primary} so it takes precedence over the default
- * {@code SpringIdentityProvider} wired by the jBPM Spring Boot starter.</p>
+ * <p>The JWT logic applies <b>only while a wrapper-authenticated request is being
+ * processed</b> (a JWT context is present on the thread). Outside of that — engine
+ * calls without a token, the management console, background threads like the Jobs
+ * Service — every method delegates to the default identity resolution: the first
+ * other {@code IdentityProvider} bean in the context (e.g. the starter's Spring
+ * Security provider when security is enabled), or Kogito's {@code NoOpIdentityProvider}
+ * when none exists.</p>
  *
  * <ul>
  *   <li>{@code getName()}  → the JWT {@code sub} (e.g. {@code sachin})</li>
@@ -31,25 +38,36 @@ import org.springframework.stereotype.Component;
 @Order(Ordered.HIGHEST_PRECEDENCE) // be first in List<IdentityProvider> so the engine uses us for eventUser (CREATED_BY/UPDATED_BY)
 public class KogitoJwtIdentityProvider implements IdentityProvider {
 
+    private final ApplicationContext applicationContext;
+    private volatile IdentityProvider fallback;
+
+    public KogitoJwtIdentityProvider(ApplicationContext applicationContext) {
+        this.applicationContext = applicationContext;
+    }
+
     @Override
     public String getName() {
         UserDetailsJwt context = UserContextHolder.getContext();
-        return (context != null) ? context.getUsername() : null;
+        if (context == null) {
+            return fallback().getName();
+        }
+        return context.getUsername();
     }
 
     @Override
     public Collection<String> getRoles() {
         UserDetailsJwt context = UserContextHolder.getContext();
+        if (context == null) {
+            return fallback().getRoles();
+        }
         List<String> roles = new ArrayList<>();
-        if (context != null) {
-            if (context.getRoles() != null) {
-                roles.addAll(context.getRoles());
-            }
-            if (context.getUserGroups() != null) {
-                for (UserGroupDTO group : context.getUserGroups()) {
-                    if (group.getGroupName() != null) {
-                        roles.add(group.getGroupName());
-                    }
+        if (context.getRoles() != null) {
+            roles.addAll(context.getRoles());
+        }
+        if (context.getUserGroups() != null) {
+            for (UserGroupDTO group : context.getUserGroups()) {
+                if (group.getGroupName() != null) {
+                    roles.add(group.getGroupName());
                 }
             }
         }
@@ -58,6 +76,31 @@ public class KogitoJwtIdentityProvider implements IdentityProvider {
 
     @Override
     public boolean hasRole(String role) {
+        UserDetailsJwt context = UserContextHolder.getContext();
+        if (context == null) {
+            return fallback().hasRole(role);
+        }
         return getRoles().contains(role);
+    }
+
+    /**
+     * The "super" behavior when no JWT context is present: the first other
+     * IdentityProvider bean (resolved lazily to avoid a circular dependency),
+     * or the engine's NoOp default.
+     */
+    private IdentityProvider fallback() {
+        IdentityProvider resolved = fallback;
+        if (resolved == null) {
+            synchronized (this) {
+                if (fallback == null) {
+                    fallback = applicationContext.getBeansOfType(IdentityProvider.class).values().stream()
+                            .filter(provider -> provider != this)
+                            .findFirst()
+                            .orElseGet(NoOpIdentityProvider::new);
+                }
+                resolved = fallback;
+            }
+        }
+        return resolved;
     }
 }
