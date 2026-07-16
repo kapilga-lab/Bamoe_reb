@@ -37,34 +37,29 @@ public class AssignmentResolverImpl implements AssignmentResolver {
     }
 
     @Override
-    public AssignmentResult resolve(StartWorkflowRequest request, String authorization) {
+    public AssignmentResult resolve(StartWorkflowRequest request, String authorization, String taskName,
+                                    String instanceId) {
         String workflowName = require(request.getWorkflowName(), "MISSING_WORKFLOW_NAME", "workflowName is mandatory");
+        String task = require(taskName, "MISSING_TASK_NAME", "taskName is mandatory for assignment resolution");
         String field = require(request.getAssigneToFieldName(), "MISSING_ASSIGNE_FIELD", "assigneToFieldName is mandatory");
         require(request.getAssignmentStrategy(), "MISSING_ASSIGNMENT_STRATEGY", "assignmentStrategy is mandatory");
         AssignmentStrategy strategy = AssignmentStrategy.parse(request.getAssignmentStrategy());
 
         Map<String, Object> variables = new LinkedHashMap<>(request.getVariables());
 
-        // LAST_ASSIGN_TO_*: reuse the stored assignee if we have one.
-        if (strategy.isLastAssign()) {
-            Optional<String> stored = lastAssignmentStore.findAssignee(workflowName, field);
+        // LAST_ASSIGN_TO_*: reuse whoever had this task in THIS instance. At start there
+        // is no instance yet, so this never matches and the base strategy applies.
+        if (strategy.isLastAssign() && instanceId != null && !instanceId.isBlank()) {
+            Optional<String> stored = lastAssignmentStore.findAssignee(workflowName, task, field, instanceId.trim());
             if (stored.isPresent() && !stored.get().isBlank()) {
                 variables.put(field, stored.get());
-                lastAssignmentStore.upsert(workflowName, field, stored.get(), currentUsername()); // refresh
                 return new Resolved(variables);
             }
         }
 
-        AssignmentResult result = resolveBase(strategy.base(), field, variables, request, authorization);
-
-        // Remember the resolved value for next time (LAST_* strategies only).
-        if (strategy.isLastAssign() && result instanceof Resolved resolved) {
-            Object value = resolved.variables().get(field);
-            if (value != null) {
-                lastAssignmentStore.upsert(workflowName, field, value.toString(), currentUsername());
-            }
-        }
-        return result;
+        // Per-instance recording of resolved values happens centrally in the service
+        // (it also covers start, where the instance id only exists after creation).
+        return resolveBase(strategy.base(), task, field, variables, request, authorization);
     }
 
     @Override
@@ -72,7 +67,7 @@ public class AssignmentResolverImpl implements AssignmentResolver {
         return fetchCandidates(request, authorization);
     }
 
-    private AssignmentResult resolveBase(AssignmentStrategy base, String field,
+    private AssignmentResult resolveBase(AssignmentStrategy base, String taskName, String field,
                                          Map<String, Object> variables, StartWorkflowRequest request, String auth) {
         switch (base) {
             case USER, GROUP -> {
@@ -96,6 +91,24 @@ public class AssignmentResolverImpl implements AssignmentResolver {
                 List<UsersByGroupDto> users = fetchCandidates(request, auth);
                 UsersByGroupDto picked = users.get(ThreadLocalRandom.current().nextInt(users.size()));
                 variables.put(field, picked.getUserName());
+                return new Resolved(variables);
+            }
+            case ROUND_ROBIN -> {
+                List<UsersByGroupDto> users = fetchCandidates(request, auth);
+                List<String> sorted = users.stream()
+                        .map(UsersByGroupDto::getUserName)
+                        .filter(Objects::nonNull)
+                        .distinct()
+                        .sorted(String.CASE_INSENSITIVE_ORDER)
+                        .toList();
+                String previous = lastAssignmentStore
+                        .findAssignee(request.getWorkflowName(), taskName, field, LastAssignmentStore.GLOBAL_SCOPE)
+                        .orElse(null);
+                String next = nextInRotation(sorted, previous);
+                variables.put(field, next);
+                // Advance the workflow+task-wide rotation cursor.
+                lastAssignmentStore.upsert(request.getWorkflowName(), taskName, field,
+                        LastAssignmentStore.GLOBAL_SCOPE, next, currentUsername());
                 return new Resolved(variables);
             }
             case TO_ALL_USER -> {
@@ -139,11 +152,38 @@ public class AssignmentResolverImpl implements AssignmentResolver {
                     "At least one of groupName or roleNames is required for this strategy");
         }
         List<UsersByGroupDto> users = userDetailsClient.fetchUsers(request.getGroupName(), request.getRoleNames(), auth);
-        if (users.isEmpty()) {
+        // No task may be assigned from nothing: null/empty responses and entries without a
+        // usable userName all count as "no user found".
+        List<UsersByGroupDto> valid = (users == null) ? List.of() : users.stream()
+                .filter(u -> u != null && u.getUserName() != null && !u.getUserName().isBlank())
+                .toList();
+        if (valid.isEmpty()) {
             throw new AssignmentValidationException("NO_USER_FOUND",
                     "No user found from userDetails for the given groupName/roleNames filter");
         }
-        return users;
+        return valid;
+    }
+
+    /**
+     * The user after {@code previous} in alphabetical rotation: first user when there is
+     * no history; wrap-around at the end; when {@code previous} is no longer a candidate,
+     * the first user alphabetically after it (or the first overall).
+     */
+    private static String nextInRotation(List<String> sorted, String previous) {
+        if (previous == null || previous.isBlank()) {
+            return sorted.get(0);
+        }
+        for (int i = 0; i < sorted.size(); i++) {
+            if (sorted.get(i).equalsIgnoreCase(previous.trim())) {
+                return sorted.get((i + 1) % sorted.size());
+            }
+        }
+        for (String candidate : sorted) {
+            if (String.CASE_INSENSITIVE_ORDER.compare(candidate, previous.trim()) > 0) {
+                return candidate;
+            }
+        }
+        return sorted.get(0);
     }
 
     private String currentUsername() {

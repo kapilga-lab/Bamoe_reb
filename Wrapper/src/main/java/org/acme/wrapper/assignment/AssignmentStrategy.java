@@ -15,12 +15,14 @@ public enum AssignmentStrategy {
     GROUP(false, false),
     SELF(false, false),
     RANDOM_SELECT(false, true),
+    ROUND_ROBIN(false, true),
     TO_ALL_USER(false, true),
     CHOICE(false, true),
     LAST_ASSIGN_TO_OR_USER(true, false),
     LAST_ASSIGN_TO_OR_GROUP(true, false),
     LAST_ASSIGN_TO_OR_SELF(true, false),
     LAST_ASSIGN_TO_OR_RANDOM_SELECT(true, true),
+    LAST_ASSIGN_TO_OR_ROUND_ROBIN(true, true),
     LAST_ASSIGN_TO_OR_CHOICE(true, true);
 
     private final boolean lastAssign;
@@ -48,6 +50,7 @@ public enum AssignmentStrategy {
             case LAST_ASSIGN_TO_OR_GROUP -> GROUP;
             case LAST_ASSIGN_TO_OR_SELF -> SELF;
             case LAST_ASSIGN_TO_OR_RANDOM_SELECT -> RANDOM_SELECT;
+            case LAST_ASSIGN_TO_OR_ROUND_ROBIN -> ROUND_ROBIN;
             case LAST_ASSIGN_TO_OR_CHOICE -> CHOICE;
             default -> this;
         };

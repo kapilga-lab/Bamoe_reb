@@ -13,6 +13,7 @@ import org.acme.security.jwt.dto.UserDetailsJwt;
 import org.acme.security.jwt.dto.UserGroupDTO;
 import org.acme.wrapper.assignment.AssignmentResolver;
 import org.acme.wrapper.assignment.AssignmentResult;
+import org.acme.wrapper.assignment.LastAssignmentStore;
 import org.acme.wrapper.client.dto.UsersByGroupDto;
 import org.acme.wrapper.dto.ExecuteTaskRequest;
 import org.acme.wrapper.dto.TaskCandidates;
@@ -52,15 +53,18 @@ public class TaskExecutionServiceImpl implements TaskExecutionService {
     private final RestClient engine;
     private final AssignmentResolver assignmentResolver;
     private final ProcessGraphService processGraphService;
+    private final LastAssignmentStore lastAssignmentStore;
 
     public TaskExecutionServiceImpl(
             @Value("${wrapper.engine.base-url:http://${server.address:localhost}:${server.port:8080}${server.servlet.context-path:}}")
             String engineBaseUrl,
             AssignmentResolver assignmentResolver,
-            ProcessGraphService processGraphService) {
+            ProcessGraphService processGraphService,
+            LastAssignmentStore lastAssignmentStore) {
         this.engine = RestClient.builder().baseUrl(engineBaseUrl).build();
         this.assignmentResolver = assignmentResolver;
         this.processGraphService = processGraphService;
+        this.lastAssignmentStore = lastAssignmentStore;
     }
 
     @Override
@@ -204,6 +208,16 @@ public class TaskExecutionServiceImpl implements TaskExecutionService {
             return new ExecOutcome(HttpStatus.OK, pending);
         }
         Object created = startInstance(workflowName, auth, startVars);
+        String newId = createdInstanceId(created);
+        if (newId != null) {
+            for (ExecuteTaskRequest item : items) {
+                String t = item.getTaskName().trim();
+                for (String field : union(processGraphService.actorsVars(workflowName, t),
+                        processGraphService.groupsVars(workflowName, t))) {
+                    recordInstanceAssignment(workflowName, t, field, newId, startVars.get(field));
+                }
+            }
+        }
         return new ExecOutcome(HttpStatus.CREATED, created);
     }
 
@@ -252,7 +266,18 @@ public class TaskExecutionServiceImpl implements TaskExecutionService {
         }
 
         Object created = startInstance(workflowName, auth, variables);
+        String newId = createdInstanceId(created);
+        if (newId != null && next.type() == NextNodeType.HUMAN && next.nodeName() != null) {
+            for (String field : union(settableActors, settableGroups)) {
+                recordInstanceAssignment(workflowName, next.nodeName(), field, newId, variables.get(field));
+            }
+        }
         return new ExecOutcome(HttpStatus.CREATED, created);
+    }
+
+    private static String createdInstanceId(Object created) {
+        return (created instanceof Map<?, ?> map && map.get("id") != null)
+                ? map.get("id").toString() : null;
     }
 
     private Object startInstance(String workflowName, String auth, Map<String, Object> variables) {
@@ -659,7 +684,7 @@ public class TaskExecutionServiceImpl implements TaskExecutionService {
             requireStrategy(request, next.nodeName());
             seedActors(request, settableActors);
             for (String a : settableActors) {
-                AssignmentResult result = resolveField(request, a, auth);
+                AssignmentResult result = resolveField(request, next.nodeName(), a, auth);
                 if (result instanceof AssignmentResult.Choices choices) {
                     return new ExecOutcome(HttpStatus.OK, choices.users());
                 }
@@ -697,7 +722,7 @@ public class TaskExecutionServiceImpl implements TaskExecutionService {
             requireStrategy(item, taskName);
             seedActors(item, settableActors);
             for (String field : settableActors) {
-                AssignmentResult result = resolveField(item, field, auth);
+                AssignmentResult result = resolveField(item, taskName, field, auth);
                 if (result instanceof AssignmentResult.Choices choices) {
                     pending.add(new TaskCandidates(null, taskName, field, choices.users()));
                 } else {
@@ -728,10 +753,28 @@ public class TaskExecutionServiceImpl implements TaskExecutionService {
         }
     }
 
-    /** Point the request at one field and resolve it via the strategy. */
-    private AssignmentResult resolveField(ExecuteTaskRequest request, String field, String auth) {
+    /** Point the request at one field of one task and resolve it via the strategy. */
+    private AssignmentResult resolveField(ExecuteTaskRequest request, String taskName, String field, String auth) {
         request.setAssigneToFieldName(field);
-        return assignmentResolver.resolve(request, auth);
+        String instanceId = notBlank(request.getInstanceId()) ? request.getInstanceId().trim() : null;
+        AssignmentResult result = assignmentResolver.resolve(request, auth, taskName, instanceId);
+        // Record who holds this task in this instance (any strategy) so in-instance
+        // LAST_ASSIGN_TO_* can reuse it later, e.g. on sendback.
+        if (instanceId != null && result instanceof AssignmentResult.Resolved resolved) {
+            recordInstanceAssignment(request.getWorkflowName(), taskName, field, instanceId,
+                    resolved.variables().get(field));
+        }
+        return result;
+    }
+
+    /** Persist "this user has this task in this instance" (no-op for blank values). */
+    private void recordInstanceAssignment(String workflowName, String taskName, String field,
+                                          String instanceId, Object value) {
+        if (value != null && !value.toString().isBlank()) {
+            UserDetailsJwt user = UserContextHolder.getContext();
+            lastAssignmentStore.upsert(workflowName, taskName, field, instanceId,
+                    value.toString(), (user != null) ? user.getUsername() : null);
+        }
     }
 
     private static List<String> humanTaskNames(List<NextNode> nodes) {

@@ -13,9 +13,14 @@ public interface AssignmentResolver {
     /**
      * @param request       the start request (control fields incl. {@code workflowName} + variables).
      * @param authorization incoming Authorization header to forward to userDetails (may be null).
+     * @param taskName      the human task being assigned.
+     * @param instanceId    the process instance being acted on, or null at start. LAST_ASSIGN
+     *                      reuse is per workflowName + taskName + instanceId (so it never
+     *                      matches at start); the ROUND_ROBIN cursor is per
+     *                      workflowName + taskName across all instances.
      * @return resolved variables to start with, or the candidate list for CHOICE.
      */
-    AssignmentResult resolve(StartWorkflowRequest request, String authorization);
+    AssignmentResult resolve(StartWorkflowRequest request, String authorization, String taskName, String instanceId);
 
     /**
      * Fetch the candidate users for a task straight from userDetails using the request's
