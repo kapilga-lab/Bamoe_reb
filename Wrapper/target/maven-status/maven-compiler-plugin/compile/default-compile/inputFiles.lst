@@ -20,7 +20,10 @@ D:\SAMADHAN_AI\Bamoe\Wrapper\src\main\java\org\acme\wrapper\client\UserDetailsCl
 D:\SAMADHAN_AI\Bamoe\Wrapper\src\main\java\org\acme\wrapper\CommentController.java
 D:\SAMADHAN_AI\Bamoe\Wrapper\src\main\java\org\acme\wrapper\comments\TaskCommentStore.java
 D:\SAMADHAN_AI\Bamoe\Wrapper\src\main\java\org\acme\wrapper\config\OracleOrmMappingPostProcessor.java
+D:\SAMADHAN_AI\Bamoe\Wrapper\src\main\java\org\acme\wrapper\DecisionConfigController.java
+D:\SAMADHAN_AI\Bamoe\Wrapper\src\main\java\org\acme\wrapper\decisions\DecisionConfigStore.java
 D:\SAMADHAN_AI\Bamoe\Wrapper\src\main\java\org\acme\wrapper\dto\CommentRequest.java
+D:\SAMADHAN_AI\Bamoe\Wrapper\src\main\java\org\acme\wrapper\dto\DecisionConfigRequest.java
 D:\SAMADHAN_AI\Bamoe\Wrapper\src\main\java\org\acme\wrapper\dto\ExecuteTaskRequest.java
 D:\SAMADHAN_AI\Bamoe\Wrapper\src\main\java\org\acme\wrapper\dto\StartWorkflowRequest.java
 D:\SAMADHAN_AI\Bamoe\Wrapper\src\main\java\org\acme\wrapper\dto\TaskCandidates.java
@@ -34,8 +37,10 @@ D:\SAMADHAN_AI\Bamoe\Wrapper\src\main\java\org\acme\wrapper\graph\NextNode.java
 D:\SAMADHAN_AI\Bamoe\Wrapper\src\main\java\org\acme\wrapper\graph\NextNodeType.java
 D:\SAMADHAN_AI\Bamoe\Wrapper\src\main\java\org\acme\wrapper\graph\ProcessGraphService.java
 D:\SAMADHAN_AI\Bamoe\Wrapper\src\main\java\org\acme\wrapper\service\CommentService.java
+D:\SAMADHAN_AI\Bamoe\Wrapper\src\main\java\org\acme\wrapper\service\DecisionConfigService.java
 D:\SAMADHAN_AI\Bamoe\Wrapper\src\main\java\org\acme\wrapper\service\ExecOutcome.java
 D:\SAMADHAN_AI\Bamoe\Wrapper\src\main\java\org\acme\wrapper\service\impl\CommentServiceImpl.java
+D:\SAMADHAN_AI\Bamoe\Wrapper\src\main\java\org\acme\wrapper\service\impl\DecisionConfigServiceImpl.java
 D:\SAMADHAN_AI\Bamoe\Wrapper\src\main\java\org\acme\wrapper\service\impl\TaskExecutionServiceImpl.java
 D:\SAMADHAN_AI\Bamoe\Wrapper\src\main\java\org\acme\wrapper\service\impl\TaskServiceImpl.java
 D:\SAMADHAN_AI\Bamoe\Wrapper\src\main\java\org\acme\wrapper\service\TaskExecutionService.java

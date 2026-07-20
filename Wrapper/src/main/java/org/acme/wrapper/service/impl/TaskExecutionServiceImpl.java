@@ -14,6 +14,7 @@ import org.acme.security.jwt.dto.UserGroupDTO;
 import org.acme.wrapper.assignment.AssignmentResolver;
 import org.acme.wrapper.assignment.AssignmentResult;
 import org.acme.wrapper.assignment.LastAssignmentStore;
+import org.acme.wrapper.decisions.DecisionConfigStore;
 import org.acme.wrapper.client.dto.UsersByGroupDto;
 import org.acme.wrapper.dto.ExecuteTaskRequest;
 import org.acme.wrapper.dto.TaskCandidates;
@@ -54,17 +55,20 @@ public class TaskExecutionServiceImpl implements TaskExecutionService {
     private final AssignmentResolver assignmentResolver;
     private final ProcessGraphService processGraphService;
     private final LastAssignmentStore lastAssignmentStore;
+    private final DecisionConfigStore decisionConfigStore;
 
     public TaskExecutionServiceImpl(
             @Value("${wrapper.engine.base-url:http://${server.address:localhost}:${server.port:8080}${server.servlet.context-path:}}")
             String engineBaseUrl,
             AssignmentResolver assignmentResolver,
             ProcessGraphService processGraphService,
-            LastAssignmentStore lastAssignmentStore) {
+            LastAssignmentStore lastAssignmentStore,
+            DecisionConfigStore decisionConfigStore) {
         this.engine = RestClient.builder().baseUrl(engineBaseUrl).build();
         this.assignmentResolver = assignmentResolver;
         this.processGraphService = processGraphService;
         this.lastAssignmentStore = lastAssignmentStore;
+        this.decisionConfigStore = decisionConfigStore;
     }
 
     @Override
@@ -158,6 +162,9 @@ public class TaskExecutionServiceImpl implements TaskExecutionService {
         for (ExecuteTaskRequest item : items) {
             unionVars.putAll(item.getVariables());
         }
+        // Configured START decision: its variable is mandatory with an allowed value
+        // (normalized in unionVars, which seeds the start variables below).
+        enforceDecision(workflowName, "START", unionVars);
         List<String> firstTasks = humanTaskNames(processGraphService.firstHumanTasks(workflowName, unionVars));
         Set<String> allTasks = processGraphService.humanTasks(workflowName);
 
@@ -224,6 +231,9 @@ public class TaskExecutionServiceImpl implements TaskExecutionService {
     // ---------------------------------------------------------------- START mode
 
     private ExecOutcome startWorkflow(String workflowName, ExecuteTaskRequest request, String auth) {
+        // Configured START decision: its variable is mandatory with an allowed value.
+        enforceDecision(workflowName, "START", request.getVariables());
+
         // Parallel-aware: a fork can activate several first human tasks at once. Only the
         // immediately-activating tasks are assigned at start; a task behind a join (e.g.
         // Reviewer D) is assigned later, by whoever completes the last branch into the join.
@@ -324,6 +334,11 @@ public class TaskExecutionServiceImpl implements TaskExecutionService {
             Object body = completeTask(workflowName, usertaskId, phase, user, groups, auth, request.getVariables());
             return new ExecOutcome(HttpStatus.OK, body);
         }
+
+        // Configured decision (e.g. checkerDecision ∈ {APPROVE, REJECT, SENDBACK}): the
+        // variable is mandatory and its value must be allowed; matches are normalized to
+        // the configured casing. Unconfigured tasks are not validated.
+        enforceDecision(workflowName, taskName, request.getVariables());
 
         // The engine only allows complete from Reserved — auto-claim a Ready task so a
         // candidate can complete it in one call.
@@ -765,6 +780,38 @@ public class TaskExecutionServiceImpl implements TaskExecutionService {
                     resolved.variables().get(field));
         }
         return result;
+    }
+
+    /**
+     * When a decision is configured for (workflow, task/START): require the configured
+     * variable in {@code variables}, validate its value case-insensitively against the
+     * allowed values, and normalize it to the configured canonical casing. 400 otherwise.
+     */
+    @SuppressWarnings("unchecked")
+    private void enforceDecision(String workflowName, String taskName, Map<String, Object> variables) {
+        Map<String, Object> config = decisionConfigStore.find(workflowName, taskName).orElse(null);
+        if (config == null) {
+            return;
+        }
+        String variable = String.valueOf(config.get("variableName"));
+        List<String> allowed = (List<String>) config.get("allowedValues");
+        String stage = "START".equals(taskName)
+                ? "starting '" + workflowName + "'"
+                : "completing '" + taskName + "' of '" + workflowName + "'";
+
+        Object value = variables.get(variable);
+        if (value == null || value.toString().isBlank()) {
+            throw new AssignmentValidationException("MISSING_DECISION",
+                    "'" + variable + "' is mandatory when " + stage + "; allowed values: " + allowed);
+        }
+        String submitted = value.toString().trim();
+        String canonical = allowed.stream()
+                .filter(a -> a.equalsIgnoreCase(submitted))
+                .findFirst()
+                .orElseThrow(() -> new AssignmentValidationException("INVALID_DECISION",
+                        "'" + submitted + "' is not a valid value for '" + variable + "' when "
+                                + stage + "; allowed values: " + allowed));
+        variables.put(variable, canonical);
     }
 
     /** Persist "this user has this task in this instance" (no-op for blank values). */
