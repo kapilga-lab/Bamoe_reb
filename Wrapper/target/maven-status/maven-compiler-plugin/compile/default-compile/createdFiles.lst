@@ -2,6 +2,7 @@ org\acme\security\jwt\JwtFilter.class
 org\acme\wrapper\service\TaskExecutionService.class
 org\acme\security\jwt\UserContextHolder.class
 org\acme\wrapper\exception\WorkflowExceptionHandler.class
+org\acme\wrapper\decisions\DecisionConfigStore.class
 org\acme\wrapper\comments\TaskCommentStore.class
 org\acme\wrapper\assignment\impl\AssignmentResolverImpl$1.class
 org\acme\security\jwt\dto\UserGroupDTO.class
@@ -13,11 +14,13 @@ org\acme\wrapper\graph\ProcessGraphService$GraphNode.class
 org\acme\wrapper\service\impl\TaskServiceImpl$1.class
 org\acme\wrapper\graph\ProcessGraphService$ProcessGraph.class
 org\acme\security\jwt\dto\UserGroupDTO$UserGroupDTOBuilder.class
+org\acme\wrapper\dto\DecisionConfigRequest.class
 org\acme\wrapper\exception\AssignmentValidationException.class
 org\acme\wrapper\assignment\AssignmentResolver.class
 org\acme\wrapper\client\dto\UserDetailsResponse.class
 org\acme\wrapper\assignment\LastAssignmentStore.class
 org\acme\wrapper\client\dto\Group.class
+org\acme\wrapper\service\impl\DecisionConfigServiceImpl.class
 org\acme\wrapper\service\impl\CommentServiceImpl.class
 org\acme\wrapper\graph\NextNode.class
 org\acme\wrapper\assignment\AssignmentResult$Resolved.class
@@ -35,6 +38,7 @@ org\acme\wrapper\client\UserDetailsClient.class
 org\acme\wrapper\service\TaskService.class
 org\acme\wrapper\service\impl\TaskServiceImpl$2.class
 org\acme\security\jwt\dto\RoleDetailDTO$RoleDetailDTOBuilder.class
+org\acme\wrapper\service\DecisionConfigService.class
 org\acme\wrapper\WorkflowController.class
 org\acme\security\jwt\JwtUtil.class
 org\acme\wrapper\dto\CommentRequest.class
@@ -42,6 +46,7 @@ org\acme\wrapper\TaskController.class
 org\acme\wrapper\dto\StartWorkflowRequest.class
 org\acme\wrapper\graph\ProcessGraphService$Flow.class
 org\acme\wrapper\service\impl\TaskExecutionServiceImpl.class
+org\acme\wrapper\DecisionConfigController.class
 org\acme\wrapper\service\impl\TaskExecutionServiceImpl$1.class
 org\acme\security\KogitoJwtIdentityProvider.class
 org\acme\wrapper\service\CommentService.class

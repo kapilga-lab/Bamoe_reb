@@ -573,6 +573,7 @@ public class TaskExecutionServiceImpl implements TaskExecutionService {
             query ($where: ProcessInstanceArgument) {
               ProcessInstances(where: $where) {
                 id processId processName state start end businessKey
+                nodes { name type exit }
               }
             }
             """;
@@ -634,6 +635,22 @@ public class TaskExecutionServiceImpl implements TaskExecutionService {
             }
         }
 
+        // Which end event(s) the instance finished at (e.g. "Approved" vs "Rejected"):
+        // the data-index records every executed node — pick the exited end nodes.
+        List<String> endNodes = new ArrayList<>();
+        if (instance.get("nodes") instanceof List<?> nodeList) {
+            for (Object o : nodeList) {
+                if (o instanceof Map<?, ?> node
+                        && node.get("type") != null && node.get("type").toString().contains("End")
+                        && node.get("exit") != null) {
+                    Object name = node.get("name");
+                    if (name != null && !name.toString().isBlank()) {
+                        endNodes.add(name.toString());
+                    }
+                }
+            }
+        }
+
         String state = instance.get("state") == null ? null : instance.get("state").toString();
         Map<String, Object> body = new LinkedHashMap<>();
         body.put("instanceId", instance.get("id"));
@@ -641,6 +658,8 @@ public class TaskExecutionServiceImpl implements TaskExecutionService {
         body.put("workflowLabel", instance.get("processName"));
         body.put("status", state);
         body.put("completed", state != null && !"ACTIVE".equalsIgnoreCase(state));
+        body.put("endedBy", endNodes.isEmpty() ? null : endNodes.get(0));
+        body.put("endNodes", endNodes);
         body.put("businessKey", instance.get("businessKey"));
         body.put("start", instance.get("start"));
         body.put("end", instance.get("end"));
