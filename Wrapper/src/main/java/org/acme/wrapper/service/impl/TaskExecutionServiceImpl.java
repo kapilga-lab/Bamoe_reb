@@ -668,6 +668,75 @@ public class TaskExecutionServiceImpl implements TaskExecutionService {
         return new ExecOutcome(HttpStatus.OK, body);
     }
 
+    private static final String INSTANCE_LOOKUP_QUERY = """
+            query ($where: ProcessInstanceArgument) {
+              ProcessInstances(where: $where) { id processId state }
+            }
+            """;
+
+    @Override
+    @SuppressWarnings("unchecked")
+    public ExecOutcome abortInstance(String authorization, String instanceId) {
+        requireJwtUser();
+        String id = require(instanceId, "MISSING_INSTANCE_ID", "instanceId is mandatory");
+
+        // Resolve the workflow name from the data-index — the caller passes only the id.
+        Map<String, Object> response = dataIndexQuery(authorization, INSTANCE_LOOKUP_QUERY,
+                Map.of("where", Map.of("id", Map.of("equal", id))));
+        Map<String, Object> instance = null;
+        if (response != null && response.get("data") instanceof Map<?, ?> data
+                && data.get("ProcessInstances") instanceof List<?> list && !list.isEmpty()
+                && list.get(0) instanceof Map<?, ?> first) {
+            instance = (Map<String, Object>) first;
+        }
+        if (instance == null) {
+            throw new WorkflowEngineException(null, HttpStatus.NOT_FOUND, "INSTANCE_NOT_FOUND",
+                    "Instance '" + id + "' was not found.");
+        }
+        String workflowName = String.valueOf(instance.get("processId"));
+        String previousState = instance.get("state") == null ? null : instance.get("state").toString();
+
+        Map<String, Object> body = new LinkedHashMap<>();
+        body.put("instanceId", id);
+        body.put("workflowName", workflowName);
+        body.put("previousStatus", previousState);
+
+        if (!"ACTIVE".equalsIgnoreCase(previousState)) {
+            // Already finished — nothing to abort; report idempotently.
+            body.put("aborted", false);
+            body.put("message", "Instance already ended (" + previousState + "); nothing to abort.");
+            return new ExecOutcome(HttpStatus.OK, body);
+        }
+
+        // Abort the live instance regardless of stage / assignee (engine delete = abort).
+        deleteInstance(workflowName, id, authorization);
+        body.put("aborted", true);
+        return new ExecOutcome(HttpStatus.OK, body);
+    }
+
+    /** Abort a running instance via the generated {@code DELETE /{workflowName}/{instanceId}}. */
+    private void deleteInstance(String workflowName, String instanceId, String auth) {
+        try {
+            var spec = engine.delete().uri("/{workflowName}/{instanceId}", workflowName, instanceId);
+            if (auth != null && !auth.isBlank()) {
+                spec.header(HttpHeaders.AUTHORIZATION, auth);
+            }
+            spec.retrieve().toBodilessEntity();
+        } catch (HttpClientErrorException.NotFound nf) {
+            throw new WorkflowEngineException(workflowName, HttpStatus.NOT_FOUND,
+                    "INSTANCE_NOT_FOUND", "Instance '" + instanceId + "' is no longer running.");
+        } catch (HttpClientErrorException ce) {
+            throw new WorkflowEngineException(workflowName, ce.getStatusCode(),
+                    "ABORT_FAILED", "Could not abort instance '" + instanceId + "': " + ce.getResponseBodyAsString());
+        } catch (HttpServerErrorException se) {
+            throw new WorkflowEngineException(workflowName, HttpStatus.BAD_GATEWAY,
+                    "ENGINE_ERROR", "The workflow engine returned an error: " + se.getResponseBodyAsString());
+        } catch (ResourceAccessException unreachable) {
+            throw new WorkflowEngineException(workflowName, HttpStatus.SERVICE_UNAVAILABLE,
+                    "ENGINE_UNREACHABLE", "Workflow engine is not reachable.");
+        }
+    }
+
     /** The vars this task's outputs cannot set and that hold no value yet. */
     private Set<String> lateVarsOf(Set<String> vars, Map<String, Object> resultsTemplate,
                                    Map<String, Object> mergedVars) {

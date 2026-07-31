@@ -8,6 +8,7 @@ import org.acme.wrapper.service.TaskExecutionService;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -86,6 +87,18 @@ public class WorkflowController {
             @RequestHeader(value = HttpHeaders.AUTHORIZATION, required = false) String authorization,
             @PathVariable("instanceId") String instanceId) {
         ExecOutcome outcome = taskExecutionService.instanceStatus(authorization, instanceId);
+        return ResponseEntity.status(outcome.status()).body(outcome.body());
+    }
+
+    /**
+     * Abort (delete) a running instance by id alone — regardless of its current stage or
+     * who its tasks are assigned to. The workflow name is resolved internally.
+     */
+    @DeleteMapping(value = "/{instanceId}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Object> abortInstance(
+            @RequestHeader(value = HttpHeaders.AUTHORIZATION, required = false) String authorization,
+            @PathVariable("instanceId") String instanceId) {
+        ExecOutcome outcome = taskExecutionService.abortInstance(authorization, instanceId);
         return ResponseEntity.status(outcome.status()).body(outcome.body());
     }
 }

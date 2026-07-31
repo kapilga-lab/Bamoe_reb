@@ -51,4 +51,15 @@ public interface TaskExecutionService {
      * @return 200 with the status document; 404 when the instance is unknown.
      */
     ExecOutcome instanceStatus(String authorization, String instanceId);
+
+    /**
+     * Abort (delete) a running instance by id alone, regardless of its current stage or who
+     * its tasks are assigned to. The workflow name is resolved from the data-index. Already
+     * ended (COMPLETED/ABORTED) instances are reported as such; unknown → 404.
+     *
+     * @param authorization the incoming {@code Authorization: Bearer <jwt>} header (may be null).
+     * @param instanceId    the process instance id.
+     * @return 200 with {aborted, instanceId, workflowName, previousStatus}.
+     */
+    ExecOutcome abortInstance(String authorization, String instanceId);
 }
