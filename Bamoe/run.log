@@ -1,134 +1,4 @@
-[INFO] Scanning for projects...
-[INFO] 
-[INFO] ----------------< org.acme:your-bamoe-business-service >----------------
-[INFO] Building your-bamoe-business-service 1.0.0-SNAPSHOT
-[INFO]   from pom.xml
-[INFO] --------------------------------[ jar ]---------------------------------
-[INFO] 
-[INFO] >>> spring-boot:3.5.14:run (default-cli) > test-compile @ your-bamoe-business-service >>>
-[INFO] 
-[INFO] --- resources:3.3.1:resources (default-resources) @ your-bamoe-business-service ---
-[INFO] Copying 3 resources from src\main\resources to target\classes
-[INFO] The encoding used to copy filtered properties files have not been set. This means that the same encoding will be used to copy filtered properties files as when copying other filtered resources. This might not be what you want! Run your build with --debug to see which files might be affected. Read more at https://maven.apache.org/plugins/maven-resources-plugin/examples/filtering-properties-files.html
-[INFO] 
-[INFO] --- compiler:3.11.0:compile (default-compile) @ your-bamoe-business-service ---
-[INFO] Nothing to compile - all classes are up to date
-[INFO] 
-[INFO] --- kogito:9.4.2-ibm-0002:generateModel (default) @ your-bamoe-business-service ---
-[INFO] ========================================
-[INFO]   Kogito Code Generation Configuration
-[INFO] ========================================
-[INFO]   Java Version        : 17
-[INFO]   Source Encoding     : UTF-8
-[INFO]   Base Directory      : D:\SAMADHAN_AI\Bamoe\Bamoe
-[INFO]   Output Directory    : D:\SAMADHAN_AI\Bamoe\Bamoe\target\classes
-[INFO]   JSON Schema Version : nd
-[INFO]   Persistence Enabled : false
-[INFO]   Keep Sources        : false
-[INFO]   Framework           : SPRING
-[INFO] ========================================
-[INFO] Building project: org.acme:your-bamoe-business-service:1.0.0-SNAPSHOT
-[INFO] Reflections took 2994 ms to scan 362 urls, producing 16206 keys and 84967 values
-[INFO] Performed addonsConfig discovery, found: AddonsConfig{usePersistence=true, useTracing=false, useMonitoring=false, usePrometheusMonitoring=false, useCloudEvents=false, useExplainability=false, useProcessSVG=true, useEventDrivenDecisions=false, useEventDrivenRules=false, useProcessSources=true}
-2026-07-02T07:41:40.067477800Z main ERROR Log4j API could not find a logging provider.
-[INFO] Generator discovery performed, found [processes, rules, decisions, predictions, messaging, usertasks]
-[INFO] Skipping generator 'decisions' because disabled
-[INFO] Skipping generator 'predictions' because disabled
-[INFO] Skipping generator 'messaging' because disabled
-[INFO] No rule unit is present: generate KieRuntimeBuilder implementation.
-[INFO] Writing file: org\kie\kogito\app\Application.java
-[INFO] Writing file: org\drools\bpmn2\ApprovalModelInput.java
-[INFO] Writing file: org\drools\project\model\ProjectRuntime.java
-[INFO] Writing file: org\drools\bpmn2\Approval_makerTask_TaskModel.java
-[INFO] Writing file: org\kie\kogito\app\UnitOfWorkExecutorInitializer.java
-[INFO] Writing file: org\kie\kogito\app\SourceFilesProviderProducer.java
-[INFO] Writing file: org\kie\kogito\app\UserTaskLifeCycles.java
-[INFO] Writing file: org\kie\kogito\app\UserTasksResource.java
-[INFO] Writing file: org\kie\kogito\app\ExceptionHandlerTransaction.java
-[INFO] Writing file: org\drools\bpmn2\Approval_checkerTask_TaskOutput.java
-[INFO] Writing file: org\kie\kogito\app\RuleConfig.java
-[INFO] Writing file: org\drools\bpmn2\ApprovalModel.java
-[INFO] Writing file: org\kie\kogito\app\UserTaskServiceProducer.java
-[INFO] Writing file: org\drools\bpmn2\Approval_MakerTask.java
-[INFO] Writing file: org\drools\bpmn2\Approval_makerTask_TaskInput.java
-[INFO] Writing file: org\drools\bpmn2\ApprovalProcess.java
-[INFO] Writing file: org\drools\bpmn2\Approval_checkerTask_TaskInput.java
-[INFO] Writing file: org\drools\bpmn2\Approval_makerTask_TaskOutput.java
-[INFO] Writing file: org\drools\bpmn2\Approval_TaskModelFactory.java
-[INFO] Writing file: org\kie\kogito\app\RuleUnits.java
-[INFO] Writing file: org\kie\kogito\app\GlobalObjectMapper.java
-[INFO] Writing file: org\kie\kogito\app\Processes.java
-[INFO] Writing file: org\drools\project\model\ProjectModel.java
-[INFO] Writing file: org\drools\bpmn2\ApprovalResource.java
-[INFO] Writing file: org\kie\kogito\app\ApplicationConfig.java
-[INFO] Writing file: org\kie\kogito\app\UserTaskConfig.java
-[INFO] Writing file: org\kie\kogito\app\ProcessCloudEventMetaFactory.java
-[INFO] Writing file: org\drools\bpmn2\ApprovalProcessInstance.java
-[INFO] Writing file: org\drools\bpmn2\Approval_CheckerTask.java
-[INFO] Writing file: org\drools\bpmn2\Approval_checkerTask_TaskModel.java
-[INFO] Writing file: org\kie\kogito\app\ProcessConfig.java
-[INFO] Writing file: org\kie\kogito\app\UserTasks.java
-[INFO] Writing file: org\kie\kogito\app\ProcessServiceProducer.java
-[INFO] Writing file: org\kie\kogito\app\ConfigBean.java
-[INFO] Writing file: org\drools\bpmn2\ApprovalModelOutput.java
-[INFO] Writing file: org\drools\bpmn2\ApprovalResource.class
-[INFO] Writing file: org\drools\bpmn2\ApprovalModelOutput.class
-[INFO] Writing file: org\kie\kogito\app\UnitOfWorkExecutorInitializer.class
-[INFO] Writing file: org\kie\kogito\app\Processes.class
-[INFO] Writing file: org\drools\bpmn2\Approval_makerTask_TaskOutput.class
-[INFO] Writing file: org\drools\bpmn2\Approval_checkerTask_TaskOutput.class
-[INFO] Writing file: org\drools\bpmn2\Approval_checkerTask_TaskModel.class
-[INFO] Writing file: org\kie\kogito\app\UserTasksResource.class
-[INFO] Writing file: org\drools\project\model\ProjectRuntime.class
-[INFO] Writing file: org\kie\kogito\app\RuleConfig.class
-[INFO] Writing file: org\kie\kogito\app\Application.class
-[INFO] Writing file: org\kie\kogito\app\SourceFilesProviderProducer.class
-[INFO] Writing file: org\kie\kogito\app\GlobalObjectMapper$1.class
-[INFO] Writing file: org\drools\bpmn2\Approval_TaskModelFactory.class
-[INFO] Writing file: org\kie\kogito\app\RuleUnits.class
-[INFO] Writing file: org\kie\kogito\app\ProcessConfig.class
-[INFO] Writing file: org\drools\bpmn2\Approval_CheckerTask.class
-[INFO] Writing file: org\kie\kogito\app\UserTaskServiceProducer.class
-[INFO] Writing file: org\drools\bpmn2\ApprovalModelInput.class
-[INFO] Writing file: org\drools\bpmn2\Approval_MakerTask.class
-[INFO] Writing file: org\drools\bpmn2\ApprovalModel.class
-[INFO] Writing file: org\kie\kogito\app\ApplicationConfig.class
-[INFO] Writing file: org\kie\kogito\app\GlobalObjectMapper.class
-[INFO] Writing file: org\kie\kogito\app\ProcessServiceProducer.class
-[INFO] Writing file: org\kie\kogito\app\ExceptionHandlerTransaction.class
-[INFO] Writing file: org\kie\kogito\app\ConfigBean.class
-[INFO] Writing file: org\kie\kogito\app\UserTaskConfig.class
-[INFO] Writing file: org\drools\project\model\ProjectModel.class
-[INFO] Writing file: org\drools\bpmn2\Approval_makerTask_TaskInput.class
-[INFO] Writing file: org\drools\bpmn2\Approval_checkerTask_TaskInput.class
-[INFO] Writing file: org\drools\bpmn2\ApprovalProcess.class
-[INFO] Writing file: org\drools\bpmn2\Approval_makerTask_TaskModel.class
-[INFO] Writing file: org\kie\kogito\app\UserTasks.class
-[INFO] Writing file: org\kie\kogito\app\UserTaskLifeCycles.class
-[INFO] Writing file: org\drools\bpmn2\ApprovalProcessInstance.class
-[INFO] Writing file: org\kie\kogito\app\ProcessCloudEventMetaFactory.class
-[INFO] Reflections took 1698 ms to scan 362 urls, producing 16206 keys and 84967 values
-[INFO] Writing file: META-INF\jsonSchema\approval_Checker.json
-[INFO] Writing file: META-INF\kogito-types.proto
-[INFO] Writing file: META-INF\resources\persistence\protobuf\approval.proto
-[INFO] Writing file: META-INF\resources\persistence\protobuf\list.json
-[INFO] Writing file: META-INF\application-types.proto
-[INFO] Writing file: META-INF\jsonSchema\approval_Maker.json
-[INFO] Writing file: META-INF\jsonSchema\approval.json
-[INFO] Project build done
-[INFO] 
-[INFO] --- resources:3.3.1:testResources (default-testResources) @ your-bamoe-business-service ---
-[INFO] skip non existing resourceDirectory D:\SAMADHAN_AI\Bamoe\Bamoe\src\test\resources
-[INFO] 
-[INFO] --- compiler:3.11.0:testCompile (default-testCompile) @ your-bamoe-business-service ---
-[INFO] Changes detected - recompiling the module! :dependency
-[INFO] Compiling 1 source file with javac [debug release 17] to target\test-classes
-[INFO] 
-[INFO] <<< spring-boot:3.5.14:run (default-cli) < test-compile @ your-bamoe-business-service <<<
-[INFO] 
-[INFO] 
-[INFO] --- spring-boot:3.5.14:run (default-cli) @ your-bamoe-business-service ---
-[INFO] Attaching agents: []
+2026-07-21T08:42:52.832384400Z main ERROR Log4j API could not find a logging provider.
 SLF4J: A SLF4J service provider failed to instantiate:
 org.slf4j.spi.SLF4JServiceProvider: Provider org.slf4j.impl.JBossSlf4jServiceProvider could not be instantiated
 
@@ -141,51 +11,115 @@ org.slf4j.spi.SLF4JServiceProvider: Provider org.slf4j.impl.JBossSlf4jServicePro
 
  :: Spring Boot ::               (v3.5.14)
 
-2026-07-02T13:11:54.605+05:30  INFO 38004 --- [  restartedMain] org.acme.BamoeSpringBootApplication      : Starting BamoeSpringBootApplication using Java 21.0.7 with PID 38004 (D:\SAMADHAN_AI\Bamoe\Bamoe\target\classes started by kapil in D:\SAMADHAN_AI\Bamoe\Bamoe)
-2026-07-02T13:11:54.607+05:30  INFO 38004 --- [  restartedMain] org.acme.BamoeSpringBootApplication      : The following 1 profile is active: "dev"
-2026-07-02T13:11:54.670+05:30  INFO 38004 --- [  restartedMain] o.s.b.devtools.restart.ChangeableUrls    : The Class-Path manifest attribute in C:\Users\kapil\.m2\repository\org\apache\opennlp\opennlp-tools\2.5.4\opennlp-tools-2.5.4.jar referenced one or more files that do not exist: file:/C:/Users/kapil/.m2/repository/org/apache/opennlp/opennlp-tools/2.5.4/slf4j-api-2.0.17.jar
-2026-07-02T13:11:54.671+05:30  INFO 38004 --- [  restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
-2026-07-02T13:11:54.671+05:30  INFO 38004 --- [  restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
-2026-07-02T13:11:58.287+05:30  INFO 38004 --- [  restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2026-07-02T13:11:58.328+05:30  INFO 38004 --- [  restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 29 ms. Found 0 JPA repository interfaces.
-2026-07-02T13:12:00.004+05:30  INFO 38004 --- [  restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
-2026-07-02T13:12:00.028+05:30  INFO 38004 --- [  restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2026-07-02T13:12:00.028+05:30  INFO 38004 --- [  restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.54]
-2026-07-02T13:12:00.195+05:30  INFO 38004 --- [  restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2026-07-02T13:12:00.196+05:30  INFO 38004 --- [  restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 5523 ms
-2026-07-02T13:12:00.878+05:30  INFO 38004 --- [  restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2026-07-02T13:12:06.347+05:30  INFO 38004 --- [  restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection conn1: url=jdbc:h2:file:./target/h2db/kogito user=KOGITO
-2026-07-02T13:12:06.349+05:30  INFO 38004 --- [  restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2026-07-02T13:12:06.358+05:30  INFO 38004 --- [  restartedMain] o.k.f.i.db.KieFlywayDataBaseHelper       : Reading DataBase Product: 'H2' Version: '2.3.232 (2024-08-11)'
-2026-07-02T13:12:06.594+05:30  INFO 38004 --- [  restartedMain] org.flywaydb.core.FlywayExecutor         : Database: jdbc:h2:file:./target/h2db/kogito (H2 2.3)
-2026-07-02T13:12:06.660+05:30  INFO 38004 --- [  restartedMain] o.f.core.internal.command.DbValidate     : Successfully validated 4 migrations (execution time 00:00.033s)
-2026-07-02T13:12:06.668+05:30  INFO 38004 --- [  restartedMain] o.f.core.internal.command.DbMigrate      : Current version of schema "PUBLIC": 10.0.2
-2026-07-02T13:12:06.672+05:30  INFO 38004 --- [  restartedMain] o.f.core.internal.command.DbMigrate      : Schema "PUBLIC" is up to date. No migration necessary.
-2026-07-02T13:12:06.705+05:30  INFO 38004 --- [  restartedMain] org.flywaydb.core.FlywayExecutor         : Database: jdbc:h2:file:./target/h2db/kogito (H2 2.3)
-2026-07-02T13:12:06.736+05:30  INFO 38004 --- [  restartedMain] o.f.core.internal.command.DbValidate     : Successfully validated 22 migrations (execution time 00:00.022s)
-2026-07-02T13:12:06.740+05:30  INFO 38004 --- [  restartedMain] o.f.core.internal.command.DbMigrate      : Current version of schema "PUBLIC": 1.49.0
-2026-07-02T13:12:06.741+05:30  INFO 38004 --- [  restartedMain] o.f.core.internal.command.DbMigrate      : Schema "PUBLIC" is up to date. No migration necessary.
-2026-07-02T13:12:06.768+05:30  INFO 38004 --- [  restartedMain] org.flywaydb.core.FlywayExecutor         : Database: jdbc:h2:file:./target/h2db/kogito (H2 2.3)
-2026-07-02T13:12:06.782+05:30  INFO 38004 --- [  restartedMain] o.f.core.internal.command.DbValidate     : Successfully validated 11 migrations (execution time 00:00.009s)
-2026-07-02T13:12:06.784+05:30  INFO 38004 --- [  restartedMain] o.f.core.internal.command.DbMigrate      : Current version of schema "PUBLIC": 1.5.0
-2026-07-02T13:12:06.785+05:30  INFO 38004 --- [  restartedMain] o.f.core.internal.command.DbMigrate      : Schema "PUBLIC" is up to date. No migration necessary.
-2026-07-02T13:12:06.813+05:30  INFO 38004 --- [  restartedMain] org.flywaydb.core.FlywayExecutor         : Database: jdbc:h2:file:./target/h2db/kogito (H2 2.3)
-2026-07-02T13:12:06.820+05:30  INFO 38004 --- [  restartedMain] o.f.core.internal.command.DbValidate     : Successfully validated 3 migrations (execution time 00:00.003s)
-2026-07-02T13:12:06.821+05:30  INFO 38004 --- [  restartedMain] o.f.core.internal.command.DbMigrate      : Current version of schema "PUBLIC": 3.0.4
-2026-07-02T13:12:06.822+05:30  INFO 38004 --- [  restartedMain] o.f.core.internal.command.DbMigrate      : Schema "PUBLIC" is up to date. No migration necessary.
-2026-07-02T13:12:06.845+05:30  INFO 38004 --- [  restartedMain] org.flywaydb.core.FlywayExecutor         : Database: jdbc:h2:file:./target/h2db/kogito (H2 2.3)
-2026-07-02T13:12:06.867+05:30  INFO 38004 --- [  restartedMain] o.f.core.internal.command.DbValidate     : Successfully validated 7 migrations (execution time 00:00.018s)
-2026-07-02T13:12:06.869+05:30  INFO 38004 --- [  restartedMain] o.f.core.internal.command.DbMigrate      : Current version of schema "PUBLIC": 1.0.5
-2026-07-02T13:12:06.870+05:30  INFO 38004 --- [  restartedMain] o.f.core.internal.command.DbMigrate      : Schema "PUBLIC" is up to date. No migration necessary.
-2026-07-02T13:12:06.892+05:30  INFO 38004 --- [  restartedMain] org.flywaydb.core.FlywayExecutor         : Database: jdbc:h2:file:./target/h2db/kogito (H2 2.3)
-2026-07-02T13:12:06.899+05:30  INFO 38004 --- [  restartedMain] o.f.core.internal.command.DbValidate     : Successfully validated 3 migrations (execution time 00:00.002s)
-2026-07-02T13:12:06.900+05:30  INFO 38004 --- [  restartedMain] o.f.core.internal.command.DbMigrate      : Current version of schema "PUBLIC": 1.0.1
-2026-07-02T13:12:06.901+05:30  INFO 38004 --- [  restartedMain] o.f.core.internal.command.DbMigrate      : Schema "PUBLIC" is up to date. No migration necessary.
-2026-07-02T13:12:07.087+05:30  INFO 38004 --- [  restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2026-07-02T13:12:07.165+05:30  INFO 38004 --- [  restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 7.1.14.Final
-2026-07-02T13:12:07.835+05:30  INFO 38004 --- [  restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
-2026-07-02T13:12:07.939+05:30  INFO 38004 --- [  restartedMain] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
-	Database JDBC URL [jdbc:h2:file:./target/h2db/kogito]
+2026-07-21T14:13:15.137+05:30  INFO 25076 --- [  restartedMain] org.acme.BamoeSpringBootApplication      : Starting BamoeSpringBootApplication using Java 21.0.7 with PID 25076 (D:\SAMADHAN_AI\Bamoe\Bamoe\target\classes started by kapil in D:\SAMADHAN_AI\Bamoe\Bamoe)
+2026-07-21T14:13:15.139+05:30  INFO 25076 --- [  restartedMain] org.acme.BamoeSpringBootApplication      : No active profile set, falling back to 1 default profile: "dev"
+2026-07-21T14:13:15.229+05:30  INFO 25076 --- [  restartedMain] o.s.b.devtools.restart.ChangeableUrls    : The Class-Path manifest attribute in C:\Users\kapil\.m2\repository\com\oracle\database\jdbc\ojdbc11\23.5.0.24.07\ojdbc11-23.5.0.24.07.jar referenced one or more files that do not exist: file:/C:/Users/kapil/.m2/repository/com/oracle/database/jdbc/ojdbc11/23.5.0.24.07/oraclepki.jar
+2026-07-21T14:13:15.229+05:30  INFO 25076 --- [  restartedMain] o.s.b.devtools.restart.ChangeableUrls    : The Class-Path manifest attribute in C:\Users\kapil\.m2\repository\org\apache\opennlp\opennlp-tools\2.5.4\opennlp-tools-2.5.4.jar referenced one or more files that do not exist: file:/C:/Users/kapil/.m2/repository/org/apache/opennlp/opennlp-tools/2.5.4/slf4j-api-2.0.17.jar
+2026-07-21T14:13:15.229+05:30  INFO 25076 --- [  restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2026-07-21T14:13:15.229+05:30  INFO 25076 --- [  restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2026-07-21T14:13:18.747+05:30  INFO 25076 --- [  restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-07-21T14:13:18.787+05:30  INFO 25076 --- [  restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 28 ms. Found 0 JPA repository interfaces.
+2026-07-21T14:13:20.500+05:30  INFO 25076 --- [  restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2026-07-21T14:13:20.523+05:30  INFO 25076 --- [  restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-07-21T14:13:20.523+05:30  INFO 25076 --- [  restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.54]
+2026-07-21T14:13:20.712+05:30  INFO 25076 --- [  restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2026-07-21T14:13:20.714+05:30  INFO 25076 --- [  restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 5482 ms
+2026-07-21T14:13:21.793+05:30  INFO 25076 --- [  restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-07-21T14:13:22.416+05:30  INFO 25076 --- [  restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection conn0: url=jdbc:h2:mem:kogito user=KOGITO
+2026-07-21T14:13:22.419+05:30  INFO 25076 --- [  restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-07-21T14:13:22.432+05:30  INFO 25076 --- [  restartedMain] o.k.f.i.db.KieFlywayDataBaseHelper       : Reading DataBase Product: 'H2' Version: '2.3.232 (2024-08-11)'
+2026-07-21T14:13:22.824+05:30  INFO 25076 --- [  restartedMain] org.flywaydb.core.FlywayExecutor         : Database: jdbc:h2:mem:kogito (H2 2.3)
+2026-07-21T14:13:22.887+05:30  INFO 25076 --- [  restartedMain] o.f.c.i.s.JdbcTableSchemaHistory         : Schema history table "PUBLIC"."kie_flyway_history_runtime_persistence" does not exist yet
+2026-07-21T14:13:22.890+05:30  INFO 25076 --- [  restartedMain] o.f.core.internal.command.DbValidate     : Successfully validated 4 migrations (execution time 00:00.027s)
+2026-07-21T14:13:22.901+05:30  INFO 25076 --- [  restartedMain] org.flywaydb.core.Flyway                 : All configured schemas are empty; baseline operation skipped. A baseline or migration script with a lower version than the baseline version may execute if available. Check the Schemas parameter if this is not intended.
+2026-07-21T14:13:22.903+05:30  INFO 25076 --- [  restartedMain] o.f.c.i.s.JdbcTableSchemaHistory         : Creating Schema History table "PUBLIC"."kie_flyway_history_runtime_persistence" ...
+2026-07-21T14:13:22.959+05:30  INFO 25076 --- [  restartedMain] o.f.core.internal.command.DbMigrate      : Current version of schema "PUBLIC": << Empty Schema >>
+2026-07-21T14:13:22.971+05:30  INFO 25076 --- [  restartedMain] o.f.core.internal.command.DbMigrate      : Migrating schema "PUBLIC" to version "1.35.0 - create runtime ansi"
+2026-07-21T14:13:22.992+05:30  INFO 25076 --- [  restartedMain] o.f.core.internal.command.DbMigrate      : Migrating schema "PUBLIC" to version "10.0.0 - add business key ansi"
+2026-07-21T14:13:23.012+05:30  INFO 25076 --- [  restartedMain] o.f.core.internal.command.DbMigrate      : Migrating schema "PUBLIC" to version "10.0.1 - create correlation ansi"
+2026-07-21T14:13:23.023+05:30  INFO 25076 --- [  restartedMain] o.f.core.internal.command.DbMigrate      : Migrating schema "PUBLIC" to version "10.0.2 - create event table"
+2026-07-21T14:13:23.036+05:30  INFO 25076 --- [  restartedMain] o.f.core.internal.command.DbMigrate      : Successfully applied 4 migrations to schema "PUBLIC", now at version v10.0.2 (execution time 00:00.024s)
+2026-07-21T14:13:23.100+05:30  INFO 25076 --- [  restartedMain] org.flywaydb.core.FlywayExecutor         : Database: jdbc:h2:mem:kogito (H2 2.3)
+2026-07-21T14:13:23.132+05:30  INFO 25076 --- [  restartedMain] o.f.c.i.s.JdbcTableSchemaHistory         : Schema history table "PUBLIC"."kie_flyway_history_data_index" does not exist yet
+2026-07-21T14:13:23.135+05:30  INFO 25076 --- [  restartedMain] o.f.core.internal.command.DbValidate     : Successfully validated 21 migrations (execution time 00:00.024s)
+2026-07-21T14:13:23.140+05:30  INFO 25076 --- [  restartedMain] o.f.c.i.s.JdbcTableSchemaHistory         : Creating Schema History table "PUBLIC"."kie_flyway_history_data_index" with baseline ...
+2026-07-21T14:13:23.150+05:30  INFO 25076 --- [  restartedMain] o.f.core.internal.command.DbBaseline     : Successfully baselined schema with version: 0.0
+2026-07-21T14:13:23.155+05:30  INFO 25076 --- [  restartedMain] o.f.core.internal.command.DbMigrate      : Current version of schema "PUBLIC": 0.0
+2026-07-21T14:13:23.166+05:30  INFO 25076 --- [  restartedMain] o.f.core.internal.command.DbMigrate      : Migrating schema "PUBLIC" to version "1.33.0 - data index create"
+2026-07-21T14:13:23.225+05:30  INFO 25076 --- [  restartedMain] o.f.core.internal.command.DbMigrate      : Migrating schema "PUBLIC" to version "1.44.0 - data index definitions"
+2026-07-21T14:13:23.264+05:30  INFO 25076 --- [  restartedMain] o.f.core.internal.command.DbMigrate      : Migrating schema "PUBLIC" to version "1.45.0.0 - data index node definitions"
+2026-07-21T14:13:23.285+05:30  INFO 25076 --- [  restartedMain] o.f.core.internal.command.DbMigrate      : Migrating schema "PUBLIC" to version "1.45.0.1 - add identity to process instance"
+2026-07-21T14:13:23.304+05:30  INFO 25076 --- [  restartedMain] o.f.core.internal.command.DbMigrate      : Migrating schema "PUBLIC" to version "1.45.0.2 - data index definitions add colums"
+2026-07-21T14:13:23.330+05:30  INFO 25076 --- [  restartedMain] o.f.core.internal.command.DbMigrate      : Migrating schema "PUBLIC" to version "1.45.0.3 - add fk index"
+2026-07-21T14:13:23.350+05:30  INFO 25076 --- [  restartedMain] o.f.core.internal.command.DbMigrate      : Migrating schema "PUBLIC" to version "1.45.0.4 - increase varchar length"
+2026-07-21T14:13:23.367+05:30  INFO 25076 --- [  restartedMain] o.f.core.internal.command.DbMigrate      : Migrating schema "PUBLIC" to version "1.45.0.5 - add external reference id"
+2026-07-21T14:13:23.387+05:30  INFO 25076 --- [  restartedMain] o.f.core.internal.command.DbMigrate      : Migrating schema "PUBLIC" to version "1.45.0.6 - add sla due date columns"
+2026-07-21T14:13:23.409+05:30  INFO 25076 --- [  restartedMain] o.f.core.internal.command.DbMigrate      : Migrating schema "PUBLIC" to version "1.45.0.7 - add sla due date tasks"
+2026-07-21T14:13:23.424+05:30  INFO 25076 --- [  restartedMain] o.f.core.internal.command.DbMigrate      : Migrating schema "PUBLIC" to version "1.45.0.8 - modify columns with reserved words"
+2026-07-21T14:13:23.433+05:30  INFO 25076 --- [  restartedMain] o.f.core.internal.command.DbMigrate      : Migrating schema "PUBLIC" to version "1.45.0.9 - increase comments content size"
+2026-07-21T14:13:23.442+05:30  INFO 25076 --- [  restartedMain] o.f.core.internal.command.DbMigrate      : Migrating schema "PUBLIC" to version "1.45.1.0 - metadata as column"
+2026-07-21T14:13:23.455+05:30  INFO 25076 --- [  restartedMain] o.f.core.internal.command.DbMigrate      : Migrating schema "PUBLIC" to version "1.45.1.1 - retrigger"
+2026-07-21T14:13:23.479+05:30  INFO 25076 --- [  restartedMain] o.f.core.internal.command.DbMigrate      : Migrating schema "PUBLIC" to version "1.45.1.2 - cloudevent"
+2026-07-21T14:13:23.499+05:30  INFO 25076 --- [  restartedMain] o.f.core.internal.command.DbMigrate      : Migrating schema "PUBLIC" to version "1.45.1.3 - add cancelled type nodes"
+2026-07-21T14:13:23.516+05:30  INFO 25076 --- [  restartedMain] o.f.core.internal.command.DbMigrate      : Migrating schema "PUBLIC" to version "1.45.1.4 - add indexes for jobs and tasks"
+2026-07-21T14:13:23.532+05:30  INFO 25076 --- [  restartedMain] o.f.core.internal.command.DbMigrate      : Migrating schema "PUBLIC" to version "1.46.0 - add task id column"
+2026-07-21T14:13:23.547+05:30  INFO 25076 --- [  restartedMain] o.f.core.internal.command.DbMigrate      : Migrating schema "PUBLIC" to version "1.47.0 - adjust column sizes in tables updated by hibernate"
+2026-07-21T14:13:23.556+05:30  INFO 25076 --- [  restartedMain] o.f.core.internal.command.DbMigrate      : Migrating schema "PUBLIC" to version "1.48.0 - add input output args"
+2026-07-21T14:13:23.571+05:30  INFO 25076 --- [  restartedMain] o.f.core.internal.command.DbMigrate      : Migrating schema "PUBLIC" to version "1.49.0 - add job exception details"
+2026-07-21T14:13:23.581+05:30  INFO 25076 --- [  restartedMain] o.f.core.internal.command.DbMigrate      : Successfully applied 21 migrations to schema "PUBLIC", now at version v1.49.0 (execution time 00:00.238s)
+2026-07-21T14:13:23.622+05:30  INFO 25076 --- [  restartedMain] org.flywaydb.core.FlywayExecutor         : Database: jdbc:h2:mem:kogito (H2 2.3)
+2026-07-21T14:13:23.639+05:30  INFO 25076 --- [  restartedMain] o.f.c.i.s.JdbcTableSchemaHistory         : Schema history table "PUBLIC"."kie_flyway_history_data_audit" does not exist yet
+2026-07-21T14:13:23.640+05:30  INFO 25076 --- [  restartedMain] o.f.core.internal.command.DbValidate     : Successfully validated 10 migrations (execution time 00:00.011s)
+2026-07-21T14:13:23.642+05:30  INFO 25076 --- [  restartedMain] o.f.c.i.s.JdbcTableSchemaHistory         : Creating Schema History table "PUBLIC"."kie_flyway_history_data_audit" with baseline ...
+2026-07-21T14:13:23.647+05:30  INFO 25076 --- [  restartedMain] o.f.core.internal.command.DbBaseline     : Successfully baselined schema with version: 0.0
+2026-07-21T14:13:23.650+05:30  INFO 25076 --- [  restartedMain] o.f.core.internal.command.DbMigrate      : Current version of schema "PUBLIC": 0.0
+2026-07-21T14:13:23.668+05:30  INFO 25076 --- [  restartedMain] o.f.core.internal.command.DbMigrate      : Migrating schema "PUBLIC" to version "1.0.0 - CREATE DATA AUDIT SCHEMA"
+2026-07-21T14:13:23.717+05:30  INFO 25076 --- [  restartedMain] o.f.core.internal.command.DbMigrate      : Migrating schema "PUBLIC" to version "1.1.0 - Add Query audit dynamic registering"
+2026-07-21T14:13:23.725+05:30  INFO 25076 --- [  restartedMain] o.f.core.internal.command.DbMigrate      : Migrating schema "PUBLIC" to version "1.2.0 - Add migration event type"
+2026-07-21T14:13:23.733+05:30  INFO 25076 --- [  restartedMain] o.f.core.internal.command.DbMigrate      : Migrating schema "PUBLIC" to version "1.3.0 - Increase Task Instance Comment Log comment size"
+2026-07-21T14:13:23.740+05:30  INFO 25076 --- [  restartedMain] o.f.core.internal.command.DbMigrate      : Migrating schema "PUBLIC" to version "1.4.0 - Increase variable value column size"
+2026-07-21T14:13:23.746+05:30  INFO 25076 --- [  restartedMain] o.f.core.internal.command.DbMigrate      : Migrating schema "PUBLIC" to version "1.4.1 - Add state update event type check"
+2026-07-21T14:13:23.753+05:30  INFO 25076 --- [  restartedMain] o.f.core.internal.command.DbMigrate      : Migrating schema "PUBLIC" to version "1.4.2 - Add user information to process instance logs"
+2026-07-21T14:13:23.772+05:30  INFO 25076 --- [  restartedMain] o.f.core.internal.command.DbMigrate      : Migrating schema "PUBLIC" to version "1.4.3 - Add process instance state retriggered event type check"
+2026-07-21T14:13:23.778+05:30  INFO 25076 --- [  restartedMain] o.f.core.internal.command.DbMigrate      : Migrating schema "PUBLIC" to version "1.4.4 - Add on cascade delete"
+2026-07-21T14:13:23.787+05:30  INFO 25076 --- [  restartedMain] o.f.core.internal.command.DbMigrate      : Migrating schema "PUBLIC" to version "1.5.0 - Add job exception columns"
+2026-07-21T14:13:23.794+05:30  INFO 25076 --- [  restartedMain] o.f.core.internal.command.DbMigrate      : Successfully applied 10 migrations to schema "PUBLIC", now at version v1.5.0 (execution time 00:00.073s)
+2026-07-21T14:13:23.825+05:30  INFO 25076 --- [  restartedMain] org.flywaydb.core.FlywayExecutor         : Database: jdbc:h2:mem:kogito (H2 2.3)
+2026-07-21T14:13:23.831+05:30  INFO 25076 --- [  restartedMain] o.f.c.i.s.JdbcTableSchemaHistory         : Schema history table "PUBLIC"."kie_flyway_history_jobs_service" does not exist yet
+2026-07-21T14:13:23.831+05:30  INFO 25076 --- [  restartedMain] o.f.core.internal.command.DbValidate     : Successfully validated 2 migrations (execution time 00:00.002s)
+2026-07-21T14:13:23.832+05:30  INFO 25076 --- [  restartedMain] o.f.c.i.s.JdbcTableSchemaHistory         : Creating Schema History table "PUBLIC"."kie_flyway_history_jobs_service" with baseline ...
+2026-07-21T14:13:23.836+05:30  INFO 25076 --- [  restartedMain] o.f.core.internal.command.DbBaseline     : Successfully baselined schema with version: 0.0
+2026-07-21T14:13:23.837+05:30  INFO 25076 --- [  restartedMain] o.f.core.internal.command.DbMigrate      : Current version of schema "PUBLIC": 0.0
+2026-07-21T14:13:23.851+05:30  INFO 25076 --- [  restartedMain] o.f.core.internal.command.DbMigrate      : Migrating schema "PUBLIC" to version "2.0.0 - Create Tables"
+2026-07-21T14:13:23.857+05:30  INFO 25076 --- [  restartedMain] o.f.core.internal.command.DbMigrate      : Migrating schema "PUBLIC" to version "3.0.4 - Add Exception Details"
+2026-07-21T14:13:23.862+05:30  INFO 25076 --- [  restartedMain] o.f.core.internal.command.DbMigrate      : Successfully applied 2 migrations to schema "PUBLIC", now at version v3.0.4 (execution time 00:00.006s)
+2026-07-21T14:13:23.897+05:30  INFO 25076 --- [  restartedMain] org.flywaydb.core.FlywayExecutor         : Database: jdbc:h2:mem:kogito (H2 2.3)
+2026-07-21T14:13:23.907+05:30  INFO 25076 --- [  restartedMain] o.f.c.i.s.JdbcTableSchemaHistory         : Schema history table "PUBLIC"."kie_flyway_history_jbpm_user_task_storage" does not exist yet
+2026-07-21T14:13:23.907+05:30  INFO 25076 --- [  restartedMain] o.f.core.internal.command.DbValidate     : Successfully validated 6 migrations (execution time 00:00.006s)
+2026-07-21T14:13:23.908+05:30  INFO 25076 --- [  restartedMain] o.f.c.i.s.JdbcTableSchemaHistory         : Creating Schema History table "PUBLIC"."kie_flyway_history_jbpm_user_task_storage" with baseline ...
+2026-07-21T14:13:23.912+05:30  INFO 25076 --- [  restartedMain] o.f.core.internal.command.DbBaseline     : Successfully baselined schema with version: 0.0
+2026-07-21T14:13:23.914+05:30  INFO 25076 --- [  restartedMain] o.f.core.internal.command.DbMigrate      : Current version of schema "PUBLIC": 0.0
+2026-07-21T14:13:23.920+05:30  INFO 25076 --- [  restartedMain] o.f.core.internal.command.DbMigrate      : Migrating schema "PUBLIC" to version "1.0.0 - jBPM user task create"
+2026-07-21T14:13:23.937+05:30  INFO 25076 --- [  restartedMain] o.f.core.internal.command.DbMigrate      : Migrating schema "PUBLIC" to version "1.0.1 - jBPM user task timers"
+2026-07-21T14:13:23.949+05:30  INFO 25076 --- [  restartedMain] o.f.core.internal.command.DbMigrate      : Migrating schema "PUBLIC" to version "1.0.2 - jBPM user tasks comments increase comment size"
+2026-07-21T14:13:23.955+05:30  INFO 25076 --- [  restartedMain] o.f.core.internal.command.DbMigrate      : Migrating schema "PUBLIC" to version "1.0.3 - jBPM user tasks additional indexes"
+2026-07-21T14:13:23.963+05:30  INFO 25076 --- [  restartedMain] o.f.core.internal.command.DbMigrate      : Migrating schema "PUBLIC" to version "1.0.4 - jBPM user tasks add missing indexes"
+2026-07-21T14:13:23.969+05:30  INFO 25076 --- [  restartedMain] o.f.core.internal.command.DbMigrate      : Migrating schema "PUBLIC" to version "1.0.5 - jBPM usertasks add process info"
+2026-07-21T14:13:24.013+05:30  INFO 25076 --- [  restartedMain] o.f.core.internal.command.DbMigrate      : Successfully applied 6 migrations to schema "PUBLIC", now at version v1.0.5 (execution time 00:00.066s)
+2026-07-21T14:13:24.043+05:30  INFO 25076 --- [  restartedMain] org.flywaydb.core.FlywayExecutor         : Database: jdbc:h2:mem:kogito (H2 2.3)
+2026-07-21T14:13:24.050+05:30  INFO 25076 --- [  restartedMain] o.f.c.i.s.JdbcTableSchemaHistory         : Schema history table "PUBLIC"."kie_flyway_history_pim" does not exist yet
+2026-07-21T14:13:24.050+05:30  INFO 25076 --- [  restartedMain] o.f.core.internal.command.DbValidate     : Successfully validated 2 migrations (execution time 00:00.003s)
+2026-07-21T14:13:24.052+05:30  INFO 25076 --- [  restartedMain] o.f.c.i.s.JdbcTableSchemaHistory         : Creating Schema History table "PUBLIC"."kie_flyway_history_pim" with baseline ...
+2026-07-21T14:13:24.054+05:30  INFO 25076 --- [  restartedMain] o.f.core.internal.command.DbBaseline     : Successfully baselined schema with version: 0.0
+2026-07-21T14:13:24.056+05:30  INFO 25076 --- [  restartedMain] o.f.core.internal.command.DbMigrate      : Current version of schema "PUBLIC": 0.0
+2026-07-21T14:13:24.059+05:30  INFO 25076 --- [  restartedMain] o.f.core.internal.command.DbMigrate      : Migrating schema "PUBLIC" to version "1.0.0 - BAMOE pim"
+2026-07-21T14:13:24.069+05:30  INFO 25076 --- [  restartedMain] o.f.core.internal.command.DbMigrate      : Migrating schema "PUBLIC" to version "1.0.1 - add missing indexes"
+2026-07-21T14:13:24.072+05:30  INFO 25076 --- [  restartedMain] o.f.core.internal.command.DbMigrate      : Successfully applied 2 migrations to schema "PUBLIC", now at version v1.0.1 (execution time 00:00.007s)
+2026-07-21T14:13:24.347+05:30  INFO 25076 --- [  restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-07-21T14:13:24.465+05:30  INFO 25076 --- [  restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 7.1.14.Final
+2026-07-21T14:13:25.391+05:30  INFO 25076 --- [  restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-07-21T14:13:25.559+05:30  INFO 25076 --- [  restartedMain] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [jdbc:h2:mem:kogito]
 	Database driver: H2 JDBC Driver
 	Database dialect: H2Dialect
 	Database version: 2.3.232
@@ -196,59 +130,211 @@ org.slf4j.spi.SLF4JServiceProvider: Provider org.slf4j.impl.JBossSlf4jServicePro
 	Pool: DatasourceConnectionProviderImpl
 	Minimum pool size: undefined/unknown
 	Maximum pool size: undefined/unknown
-2026-07-02T13:12:08.310+05:30  WARN 38004 --- [  restartedMain] org.hibernate.orm.deprecation            : HHH90000033: Encountered use of deprecated annotation [interface jakarta.persistence.Temporal] at org.kie.kogito.app.audit.jpa.model.JobExecutionLog.eventDate.
-2026-07-02T13:12:08.311+05:30  WARN 38004 --- [  restartedMain] org.hibernate.orm.deprecation            : HHH90000033: Encountered use of deprecated annotation [interface jakarta.persistence.Temporal] at org.kie.kogito.app.audit.jpa.model.JobExecutionLog.expirationTime.
-2026-07-02T13:12:08.319+05:30  WARN 38004 --- [  restartedMain] org.hibernate.orm.deprecation            : HHH90000033: Encountered use of deprecated annotation [interface jakarta.persistence.Temporal] at org.kie.kogito.app.audit.jpa.model.ProcessInstanceErrorLog.eventDate.
-2026-07-02T13:12:08.324+05:30  WARN 38004 --- [  restartedMain] org.hibernate.orm.deprecation            : HHH90000033: Encountered use of deprecated annotation [interface jakarta.persistence.Temporal] at org.kie.kogito.app.audit.jpa.model.ProcessInstanceNodeLog.eventDate.
-2026-07-02T13:12:08.326+05:30  WARN 38004 --- [  restartedMain] org.hibernate.orm.deprecation            : HHH90000033: Encountered use of deprecated annotation [interface jakarta.persistence.Temporal] at org.kie.kogito.app.audit.jpa.model.ProcessInstanceNodeLog.slaDueDate.
-2026-07-02T13:12:08.330+05:30  WARN 38004 --- [  restartedMain] org.hibernate.orm.deprecation            : HHH90000033: Encountered use of deprecated annotation [interface jakarta.persistence.Temporal] at org.kie.kogito.app.audit.jpa.model.ProcessInstanceStateLog.eventDate.
-2026-07-02T13:12:08.332+05:30  WARN 38004 --- [  restartedMain] org.hibernate.orm.deprecation            : HHH90000033: Encountered use of deprecated annotation [interface jakarta.persistence.Temporal] at org.kie.kogito.app.audit.jpa.model.ProcessInstanceStateLog.slaDueDate.
-2026-07-02T13:12:08.336+05:30  WARN 38004 --- [  restartedMain] org.hibernate.orm.deprecation            : HHH90000033: Encountered use of deprecated annotation [interface jakarta.persistence.Temporal] at org.kie.kogito.app.audit.jpa.model.ProcessInstanceVariableLog.eventDate.
-2026-07-02T13:12:08.342+05:30  WARN 38004 --- [  restartedMain] org.hibernate.orm.deprecation            : HHH90000033: Encountered use of deprecated annotation [interface jakarta.persistence.Temporal] at org.kie.kogito.app.audit.jpa.model.UserTaskInstanceAssignmentLog.eventDate.
-2026-07-02T13:12:08.348+05:30  WARN 38004 --- [  restartedMain] org.hibernate.orm.deprecation            : HHH90000033: Encountered use of deprecated annotation [interface jakarta.persistence.Temporal] at org.kie.kogito.app.audit.jpa.model.UserTaskInstanceAttachmentLog.eventDate.
-2026-07-02T13:12:08.352+05:30  WARN 38004 --- [  restartedMain] org.hibernate.orm.deprecation            : HHH90000033: Encountered use of deprecated annotation [interface jakarta.persistence.Temporal] at org.kie.kogito.app.audit.jpa.model.UserTaskInstanceCommentLog.eventDate.
-2026-07-02T13:12:08.355+05:30  WARN 38004 --- [  restartedMain] org.hibernate.orm.deprecation            : HHH90000033: Encountered use of deprecated annotation [interface jakarta.persistence.Temporal] at org.kie.kogito.app.audit.jpa.model.UserTaskInstanceDeadlineLog.eventDate.
-2026-07-02T13:12:08.360+05:30  WARN 38004 --- [  restartedMain] org.hibernate.orm.deprecation            : HHH90000033: Encountered use of deprecated annotation [interface jakarta.persistence.Temporal] at org.kie.kogito.app.audit.jpa.model.UserTaskInstanceStateLog.eventDate.
-2026-07-02T13:12:08.364+05:30  WARN 38004 --- [  restartedMain] org.hibernate.orm.deprecation            : HHH90000033: Encountered use of deprecated annotation [interface jakarta.persistence.Temporal] at org.kie.kogito.app.audit.jpa.model.UserTaskInstanceVariableLog.eventDate.
-2026-07-02T13:12:08.370+05:30  WARN 38004 --- [  restartedMain] org.hibernate.orm.deprecation            : HHH90000033: Encountered use of deprecated annotation [interface jakarta.persistence.Temporal] at org.kie.kogito.app.jobs.jpa.model.JobDetailsEntity.created.
-2026-07-02T13:12:08.371+05:30  WARN 38004 --- [  restartedMain] org.hibernate.orm.deprecation            : HHH90000033: Encountered use of deprecated annotation [interface jakarta.persistence.Temporal] at org.kie.kogito.app.jobs.jpa.model.JobDetailsEntity.fireTime.
-2026-07-02T13:12:08.372+05:30  WARN 38004 --- [  restartedMain] org.hibernate.orm.deprecation            : HHH90000033: Encountered use of deprecated annotation [interface jakarta.persistence.Temporal] at org.kie.kogito.app.jobs.jpa.model.JobDetailsEntity.lastUpdate.
-2026-07-02T13:12:08.376+05:30  WARN 38004 --- [  restartedMain] org.hibernate.orm.deprecation            : HHH90000033: Encountered use of deprecated annotation [interface jakarta.persistence.Temporal] at org.jbpm.usertask.jpa.model.AttachmentEntity.updatedAt.
-2026-07-02T13:12:08.379+05:30  WARN 38004 --- [  restartedMain] org.hibernate.orm.deprecation            : HHH90000033: Encountered use of deprecated annotation [interface jakarta.persistence.Temporal] at org.jbpm.usertask.jpa.model.CommentEntity.updatedAt.
-2026-07-02T13:12:10.801+05:30  INFO 38004 --- [  restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-2026-07-02T13:12:11.384+05:30  INFO 38004 --- [  restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2026-07-02T13:12:12.130+05:30  INFO 38004 --- [  restartedMain] o.k.k.app.jobs.impl.VertxJobScheduler    : Initializing Job Service Logic 
+2026-07-21T14:13:26.225+05:30  WARN 25076 --- [  restartedMain] org.hibernate.orm.deprecation            : HHH90000033: Encountered use of deprecated annotation [interface jakarta.persistence.Temporal] at org.kie.kogito.app.audit.jpa.model.JobExecutionLog.eventDate.
+2026-07-21T14:13:26.229+05:30  WARN 25076 --- [  restartedMain] org.hibernate.orm.deprecation            : HHH90000033: Encountered use of deprecated annotation [interface jakarta.persistence.Temporal] at org.kie.kogito.app.audit.jpa.model.JobExecutionLog.expirationTime.
+2026-07-21T14:13:26.241+05:30  WARN 25076 --- [  restartedMain] org.hibernate.orm.deprecation            : HHH90000033: Encountered use of deprecated annotation [interface jakarta.persistence.Temporal] at org.kie.kogito.app.audit.jpa.model.ProcessInstanceErrorLog.eventDate.
+2026-07-21T14:13:26.252+05:30  WARN 25076 --- [  restartedMain] org.hibernate.orm.deprecation            : HHH90000033: Encountered use of deprecated annotation [interface jakarta.persistence.Temporal] at org.kie.kogito.app.audit.jpa.model.ProcessInstanceNodeLog.eventDate.
+2026-07-21T14:13:26.256+05:30  WARN 25076 --- [  restartedMain] org.hibernate.orm.deprecation            : HHH90000033: Encountered use of deprecated annotation [interface jakarta.persistence.Temporal] at org.kie.kogito.app.audit.jpa.model.ProcessInstanceNodeLog.slaDueDate.
+2026-07-21T14:13:26.261+05:30  WARN 25076 --- [  restartedMain] org.hibernate.orm.deprecation            : HHH90000033: Encountered use of deprecated annotation [interface jakarta.persistence.Temporal] at org.kie.kogito.app.audit.jpa.model.ProcessInstanceStateLog.eventDate.
+2026-07-21T14:13:26.264+05:30  WARN 25076 --- [  restartedMain] org.hibernate.orm.deprecation            : HHH90000033: Encountered use of deprecated annotation [interface jakarta.persistence.Temporal] at org.kie.kogito.app.audit.jpa.model.ProcessInstanceStateLog.slaDueDate.
+2026-07-21T14:13:26.270+05:30  WARN 25076 --- [  restartedMain] org.hibernate.orm.deprecation            : HHH90000033: Encountered use of deprecated annotation [interface jakarta.persistence.Temporal] at org.kie.kogito.app.audit.jpa.model.ProcessInstanceVariableLog.eventDate.
+2026-07-21T14:13:26.282+05:30  WARN 25076 --- [  restartedMain] org.hibernate.orm.deprecation            : HHH90000033: Encountered use of deprecated annotation [interface jakarta.persistence.Temporal] at org.kie.kogito.app.audit.jpa.model.UserTaskInstanceAssignmentLog.eventDate.
+2026-07-21T14:13:26.300+05:30  WARN 25076 --- [  restartedMain] org.hibernate.orm.deprecation            : HHH90000033: Encountered use of deprecated annotation [interface jakarta.persistence.Temporal] at org.kie.kogito.app.audit.jpa.model.UserTaskInstanceAttachmentLog.eventDate.
+2026-07-21T14:13:26.313+05:30  WARN 25076 --- [  restartedMain] org.hibernate.orm.deprecation            : HHH90000033: Encountered use of deprecated annotation [interface jakarta.persistence.Temporal] at org.kie.kogito.app.audit.jpa.model.UserTaskInstanceCommentLog.eventDate.
+2026-07-21T14:13:26.319+05:30  WARN 25076 --- [  restartedMain] org.hibernate.orm.deprecation            : HHH90000033: Encountered use of deprecated annotation [interface jakarta.persistence.Temporal] at org.kie.kogito.app.audit.jpa.model.UserTaskInstanceDeadlineLog.eventDate.
+2026-07-21T14:13:26.329+05:30  WARN 25076 --- [  restartedMain] org.hibernate.orm.deprecation            : HHH90000033: Encountered use of deprecated annotation [interface jakarta.persistence.Temporal] at org.kie.kogito.app.audit.jpa.model.UserTaskInstanceStateLog.eventDate.
+2026-07-21T14:13:26.339+05:30  WARN 25076 --- [  restartedMain] org.hibernate.orm.deprecation            : HHH90000033: Encountered use of deprecated annotation [interface jakarta.persistence.Temporal] at org.kie.kogito.app.audit.jpa.model.UserTaskInstanceVariableLog.eventDate.
+2026-07-21T14:13:26.349+05:30  WARN 25076 --- [  restartedMain] org.hibernate.orm.deprecation            : HHH90000033: Encountered use of deprecated annotation [interface jakarta.persistence.Temporal] at org.kie.kogito.app.jobs.jpa.model.JobDetailsEntity.created.
+2026-07-21T14:13:26.351+05:30  WARN 25076 --- [  restartedMain] org.hibernate.orm.deprecation            : HHH90000033: Encountered use of deprecated annotation [interface jakarta.persistence.Temporal] at org.kie.kogito.app.jobs.jpa.model.JobDetailsEntity.fireTime.
+2026-07-21T14:13:26.351+05:30  WARN 25076 --- [  restartedMain] org.hibernate.orm.deprecation            : HHH90000033: Encountered use of deprecated annotation [interface jakarta.persistence.Temporal] at org.kie.kogito.app.jobs.jpa.model.JobDetailsEntity.lastUpdate.
+2026-07-21T14:13:26.360+05:30  WARN 25076 --- [  restartedMain] org.hibernate.orm.deprecation            : HHH90000033: Encountered use of deprecated annotation [interface jakarta.persistence.Temporal] at org.jbpm.usertask.jpa.model.AttachmentEntity.updatedAt.
+2026-07-21T14:13:26.364+05:30  WARN 25076 --- [  restartedMain] org.hibernate.orm.deprecation            : HHH90000033: Encountered use of deprecated annotation [interface jakarta.persistence.Temporal] at org.jbpm.usertask.jpa.model.CommentEntity.updatedAt.
+2026-07-21T14:13:30.178+05:30  INFO 25076 --- [  restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-07-21T14:13:31.129+05:30  INFO 25076 --- [  restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-07-21T14:13:32.357+05:30  INFO 25076 --- [  restartedMain] o.k.k.app.jobs.impl.VertxJobScheduler    : Initializing Job Service Logic 
 	MaxRefreshJobsIntervalWindow: 600000 (millis)
 	MaxIntervalLimitToRetryMillis: 100 (millis)
 	MaxNumberOfRetries: 3
 	RefreshJobsInterval: 600000 (millis)
 	Number of worker threads 10
-	Store: org.kie.kogito.app.jobs.springboot.jpa.SpringbootJPAJobStore@2a8b54f0
-2026-07-02T13:12:12.273+05:30  INFO 38004 --- [  restartedMain] o.k.k.u.i.l.DefaultUserTaskLifeCycles    : Registered UserTaskLifeCycles {ws-human-task=org.kie.kogito.usertask.impl.lifecycle.WsHumanTaskLifeCycle@b1bcbaf, kogito=org.kie.kogito.usertask.impl.lifecycle.DefaultUserTaskLifeCycle@4c1139d9} with default lifecycle: kogito
-2026-07-02T13:12:12.993+05:30  WARN 38004 --- [  restartedMain] o.k.k.s.r.ProcessDefinitionEventRegistry : Not source found for process id approval
-2026-07-02T13:12:14.792+05:30  INFO 38004 --- [  restartedMain] o.a.wrapper.graph.ProcessGraphService    : Loaded process graphs for: [approval]
-2026-07-02T13:12:15.536+05:30  INFO 38004 --- [  restartedMain] o.k.k.i.g.AbstractGraphQLSchemaManager   : Custom mutations are {}
-2026-07-02T13:12:16.016+05:30  WARN 38004 --- [  restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2026-07-02T13:12:16.575+05:30  INFO 38004 --- [  restartedMain] s.b.a.g.s.GraphQlWebMvcAutoConfiguration : GraphQL endpoint HTTP POST /graphql
-2026-07-02T13:12:18.384+05:30  INFO 38004 --- [  restartedMain] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:h2:file:./target/h2db/kogito'
-2026-07-02T13:12:18.533+05:30  INFO 38004 --- [  restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
-2026-07-02T13:12:18.559+05:30  INFO 38004 --- [  restartedMain] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint beneath base path '/actuator'
-2026-07-02T13:12:18.729+05:30  INFO 38004 --- [  restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
-2026-07-02T13:12:18.756+05:30  INFO 38004 --- [  restartedMain] org.acme.BamoeSpringBootApplication      : Started BamoeSpringBootApplication in 24.718 seconds (process running for 25.772)
-2026-07-02T13:12:42.347+05:30  INFO 38004 --- [0.1-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2026-07-02T13:12:42.347+05:30  INFO 38004 --- [0.1-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2026-07-02T13:12:42.349+05:30  INFO 38004 --- [0.1-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
-2026-07-02T13:12:43.366+05:30  WARN 38004 --- [0.1-8080-exec-5] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.acme.wrapper.exception.UnauthorizedException: A valid JWT is required to list tasks (Authorization: Bearer <token>).]
-[INFO] ------------------------------------------------------------------------
-[INFO] BUILD FAILURE
-[INFO] ------------------------------------------------------------------------
-[INFO] Total time:  03:31 min
-[INFO] Finished at: 2026-07-02T13:14:56+05:30
-[INFO] ------------------------------------------------------------------------
-[ERROR] Failed to execute goal org.springframework.boot:spring-boot-maven-plugin:3.5.14:run (default-cli) on project your-bamoe-business-service: Process terminated with exit code: -1 -> [Help 1]
-[ERROR] 
-[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
-[ERROR] Re-run Maven using the -X switch to enable full debug logging.
-[ERROR] 
-[ERROR] For more information about the errors and possible solutions, please read the following articles:
-[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoExecutionException
+	Store: org.kie.kogito.app.jobs.springboot.jpa.SpringbootJPAJobStore@7be7f507
+2026-07-21T14:13:32.557+05:30  INFO 25076 --- [  restartedMain] o.k.k.u.i.l.DefaultUserTaskLifeCycles    : Registered UserTaskLifeCycles {ws-human-task=org.kie.kogito.usertask.impl.lifecycle.WsHumanTaskLifeCycle@5d3f8ac8, kogito=org.kie.kogito.usertask.impl.lifecycle.DefaultUserTaskLifeCycle@25c218ff} with default lifecycle: kogito
+2026-07-21T14:13:33.908+05:30  WARN 25076 --- [  restartedMain] o.k.k.s.r.ProcessDefinitionEventRegistry : Not source found for process id approval
+2026-07-21T14:13:33.913+05:30  WARN 25076 --- [  restartedMain] o.k.k.s.r.ProcessDefinitionEventRegistry : Not source found for process id claimApproval
+2026-07-21T14:13:33.914+05:30  WARN 25076 --- [  restartedMain] o.k.k.s.r.ProcessDefinitionEventRegistry : Not source found for process id parallelApproval
+2026-07-21T14:13:35.461+05:30  INFO 25076 --- [  restartedMain] o.a.wrapper.comments.TaskCommentStore    : Created table wrapper_task_comments
+2026-07-21T14:13:35.917+05:30  INFO 25076 --- [  restartedMain] o.a.w.decisions.DecisionConfigStore      : Created table wrapper_task_decisions
+2026-07-21T14:13:36.855+05:30  INFO 25076 --- [  restartedMain] o.a.wrapper.graph.ProcessGraphService    : Loaded process graphs for: [approval, claimApproval, parallelApproval]
+2026-07-21T14:13:37.027+05:30  INFO 25076 --- [  restartedMain] o.a.w.assignment.LastAssignmentStore     : Created table last_assignment
+2026-07-21T14:13:38.399+05:30  INFO 25076 --- [  restartedMain] o.k.k.i.g.AbstractGraphQLSchemaManager   : Custom mutations are {}
+2026-07-21T14:13:39.150+05:30  WARN 25076 --- [  restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-07-21T14:13:39.958+05:30  INFO 25076 --- [  restartedMain] s.b.a.g.s.GraphQlWebMvcAutoConfiguration : GraphQL endpoint HTTP POST /graphql
+2026-07-21T14:13:42.623+05:30  INFO 25076 --- [  restartedMain] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:h2:mem:kogito'
+2026-07-21T14:13:43.053+05:30  INFO 25076 --- [  restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2026-07-21T14:13:43.184+05:30  INFO 25076 --- [  restartedMain] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint beneath base path '/actuator'
+2026-07-21T14:13:43.692+05:30  INFO 25076 --- [  restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2026-07-21T14:13:43.757+05:30  INFO 25076 --- [  restartedMain] org.acme.BamoeSpringBootApplication      : Started BamoeSpringBootApplication in 29.282 seconds (process running for 30.273)
+2026-07-21T14:14:09.558+05:30  INFO 25076 --- [0.1-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-07-21T14:14:09.558+05:30  INFO 25076 --- [0.1-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2026-07-21T14:14:09.562+05:30  INFO 25076 --- [0.1-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 4 ms
+2026-07-21T14:34:36.367+05:30  WARN 25076 --- [l-1:housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=3m13s573ms233µs300ns).
+2026-07-21T17:49:22.134+05:30  WARN 25076 --- [l-1:housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=3h15s534ms996µs).
+2026-07-21T20:06:49.249+05:30  WARN 25076 --- [l-1:housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=2h17m40s259ms270µs500ns).
+2026-07-21T20:10:29.467+05:30  WARN 25076 --- [         Jobs-4] org.hibernate.orm.jdbc.error             : HHH000247: ErrorCode: 42104, SQLState: 42S04
+2026-07-21T20:10:29.468+05:30  WARN 25076 --- [         Jobs-4] org.hibernate.orm.jdbc.error             : Table "JOB_DETAILS" not found (this database is empty); SQL statement:
+select jde1_0.id,jde1_0.correlation_id,jde1_0.created,jde1_0.exception_details,jde1_0.exception_message,jde1_0.execution_counter,jde1_0.execution_timeout,jde1_0.execution_timeout_unit,jde1_0.fire_time,jde1_0.last_update,jde1_0.priority,jde1_0.recipient,jde1_0.retries,jde1_0.scheduled_id,jde1_0.status,jde1_0.trigger from job_details jde1_0 where jde1_0.status in (?,?) and jde1_0.fire_time<=? [42104-232]
+2026-07-21T20:10:29.621+05:30  WARN 25076 --- [         Jobs-4] org.hibernate.orm.jdbc.error             : HHH000247: ErrorCode: 42104, SQLState: 42S04
+2026-07-21T20:10:29.621+05:30  WARN 25076 --- [         Jobs-4] org.hibernate.orm.jdbc.error             : Table "JOB_DETAILS" not found (this database is empty); SQL statement:
+select jde1_0.id,jde1_0.correlation_id,jde1_0.created,jde1_0.exception_details,jde1_0.exception_message,jde1_0.execution_counter,jde1_0.execution_timeout,jde1_0.execution_timeout_unit,jde1_0.fire_time,jde1_0.last_update,jde1_0.priority,jde1_0.recipient,jde1_0.retries,jde1_0.scheduled_id,jde1_0.status,jde1_0.trigger from job_details jde1_0 where jde1_0.status in (?,?) and jde1_0.fire_time<=? [42104-232]
+2026-07-21T20:10:29.623+05:30  WARN 25076 --- [         Jobs-4] org.hibernate.orm.jdbc.error             : HHH000247: ErrorCode: 42104, SQLState: 42S04
+2026-07-21T20:10:29.623+05:30  WARN 25076 --- [         Jobs-4] org.hibernate.orm.jdbc.error             : Table "JOB_DETAILS" not found (this database is empty); SQL statement:
+select jde1_0.id,jde1_0.correlation_id,jde1_0.created,jde1_0.exception_details,jde1_0.exception_message,jde1_0.execution_counter,jde1_0.execution_timeout,jde1_0.execution_timeout_unit,jde1_0.fire_time,jde1_0.last_update,jde1_0.priority,jde1_0.recipient,jde1_0.retries,jde1_0.scheduled_id,jde1_0.status,jde1_0.trigger from job_details jde1_0 where jde1_0.status in (?,?) and jde1_0.fire_time<=? [42104-232]
+2026-07-21T20:10:29.624+05:30  WARN 25076 --- [         Jobs-4] org.hibernate.orm.jdbc.error             : HHH000247: ErrorCode: 42104, SQLState: 42S04
+2026-07-21T20:10:29.624+05:30  WARN 25076 --- [         Jobs-4] org.hibernate.orm.jdbc.error             : Table "JOB_DETAILS" not found (this database is empty); SQL statement:
+select jde1_0.id,jde1_0.correlation_id,jde1_0.created,jde1_0.exception_details,jde1_0.exception_message,jde1_0.execution_counter,jde1_0.execution_timeout,jde1_0.execution_timeout_unit,jde1_0.fire_time,jde1_0.last_update,jde1_0.priority,jde1_0.recipient,jde1_0.retries,jde1_0.scheduled_id,jde1_0.status,jde1_0.trigger from job_details jde1_0 where jde1_0.status in (?,?) and jde1_0.fire_time<=? [42104-232]
+2026-07-21T20:10:29.626+05:30  WARN 25076 --- [         Jobs-4] org.hibernate.orm.jdbc.error             : HHH000247: ErrorCode: 42104, SQLState: 42S04
+2026-07-21T20:10:29.626+05:30  WARN 25076 --- [         Jobs-4] org.hibernate.orm.jdbc.error             : Table "JOB_DETAILS" not found (this database is empty); SQL statement:
+select jde1_0.id,jde1_0.correlation_id,jde1_0.created,jde1_0.exception_details,jde1_0.exception_message,jde1_0.execution_counter,jde1_0.execution_timeout,jde1_0.execution_timeout_unit,jde1_0.fire_time,jde1_0.last_update,jde1_0.priority,jde1_0.recipient,jde1_0.retries,jde1_0.scheduled_id,jde1_0.status,jde1_0.trigger from job_details jde1_0 where jde1_0.status in (?,?) and jde1_0.fire_time<=? [42104-232]
+2026-07-21T20:10:29.627+05:30  WARN 25076 --- [         Jobs-4] org.hibernate.orm.jdbc.error             : HHH000247: ErrorCode: 42104, SQLState: 42S04
+2026-07-21T20:10:29.627+05:30  WARN 25076 --- [         Jobs-4] org.hibernate.orm.jdbc.error             : Table "JOB_DETAILS" not found (this database is empty); SQL statement:
+select jde1_0.id,jde1_0.correlation_id,jde1_0.created,jde1_0.exception_details,jde1_0.exception_message,jde1_0.execution_counter,jde1_0.execution_timeout,jde1_0.execution_timeout_unit,jde1_0.fire_time,jde1_0.last_update,jde1_0.priority,jde1_0.recipient,jde1_0.retries,jde1_0.scheduled_id,jde1_0.status,jde1_0.trigger from job_details jde1_0 where jde1_0.status in (?,?) and jde1_0.fire_time<=? [42104-232]
+2026-07-21T20:10:29.629+05:30  WARN 25076 --- [         Jobs-4] org.hibernate.orm.jdbc.error             : HHH000247: ErrorCode: 42104, SQLState: 42S04
+2026-07-21T20:10:29.629+05:30  WARN 25076 --- [         Jobs-4] org.hibernate.orm.jdbc.error             : Table "JOB_DETAILS" not found (this database is empty); SQL statement:
+select jde1_0.id,jde1_0.correlation_id,jde1_0.created,jde1_0.exception_details,jde1_0.exception_message,jde1_0.execution_counter,jde1_0.execution_timeout,jde1_0.execution_timeout_unit,jde1_0.fire_time,jde1_0.last_update,jde1_0.priority,jde1_0.recipient,jde1_0.retries,jde1_0.scheduled_id,jde1_0.status,jde1_0.trigger from job_details jde1_0 where jde1_0.status in (?,?) and jde1_0.fire_time<=? [42104-232]
+2026-07-21T20:10:29.630+05:30  WARN 25076 --- [         Jobs-4] org.hibernate.orm.jdbc.error             : HHH000247: ErrorCode: 42104, SQLState: 42S04
+2026-07-21T20:10:29.630+05:30  WARN 25076 --- [         Jobs-4] org.hibernate.orm.jdbc.error             : Table "JOB_DETAILS" not found (this database is empty); SQL statement:
+select jde1_0.id,jde1_0.correlation_id,jde1_0.created,jde1_0.exception_details,jde1_0.exception_message,jde1_0.execution_counter,jde1_0.execution_timeout,jde1_0.execution_timeout_unit,jde1_0.fire_time,jde1_0.last_update,jde1_0.priority,jde1_0.recipient,jde1_0.retries,jde1_0.scheduled_id,jde1_0.status,jde1_0.trigger from job_details jde1_0 where jde1_0.status in (?,?) and jde1_0.fire_time<=? [42104-232]
+2026-07-21T20:10:29.631+05:30  WARN 25076 --- [         Jobs-4] org.hibernate.orm.jdbc.error             : HHH000247: ErrorCode: 42104, SQLState: 42S04
+2026-07-21T20:10:29.631+05:30  WARN 25076 --- [         Jobs-4] org.hibernate.orm.jdbc.error             : Table "JOB_DETAILS" not found (this database is empty); SQL statement:
+select jde1_0.id,jde1_0.correlation_id,jde1_0.created,jde1_0.exception_details,jde1_0.exception_message,jde1_0.execution_counter,jde1_0.execution_timeout,jde1_0.execution_timeout_unit,jde1_0.fire_time,jde1_0.last_update,jde1_0.priority,jde1_0.recipient,jde1_0.retries,jde1_0.scheduled_id,jde1_0.status,jde1_0.trigger from job_details jde1_0 where jde1_0.status in (?,?) and jde1_0.fire_time<=? [42104-232]
+2026-07-21T20:10:29.633+05:30  WARN 25076 --- [         Jobs-4] org.hibernate.orm.jdbc.error             : HHH000247: ErrorCode: 42104, SQLState: 42S04
+2026-07-21T20:10:29.633+05:30  WARN 25076 --- [         Jobs-4] org.hibernate.orm.jdbc.error             : Table "JOB_DETAILS" not found (this database is empty); SQL statement:
+select jde1_0.id,jde1_0.correlation_id,jde1_0.created,jde1_0.exception_details,jde1_0.exception_message,jde1_0.execution_counter,jde1_0.execution_timeout,jde1_0.execution_timeout_unit,jde1_0.fire_time,jde1_0.last_update,jde1_0.priority,jde1_0.recipient,jde1_0.retries,jde1_0.scheduled_id,jde1_0.status,jde1_0.trigger from job_details jde1_0 where jde1_0.status in (?,?) and jde1_0.fire_time<=? [42104-232]
+2026-07-21T20:10:29.634+05:30  WARN 25076 --- [         Jobs-4] org.hibernate.orm.jdbc.error             : HHH000247: ErrorCode: 42104, SQLState: 42S04
+2026-07-21T20:10:29.634+05:30  WARN 25076 --- [         Jobs-4] org.hibernate.orm.jdbc.error             : Table "JOB_DETAILS" not found (this database is empty); SQL statement:
+select jde1_0.id,jde1_0.correlation_id,jde1_0.created,jde1_0.exception_details,jde1_0.exception_message,jde1_0.execution_counter,jde1_0.execution_timeout,jde1_0.execution_timeout_unit,jde1_0.fire_time,jde1_0.last_update,jde1_0.priority,jde1_0.recipient,jde1_0.retries,jde1_0.scheduled_id,jde1_0.status,jde1_0.trigger from job_details jde1_0 where jde1_0.status in (?,?) and jde1_0.fire_time<=? [42104-232]
+2026-07-21T20:10:29.636+05:30  WARN 25076 --- [         Jobs-4] org.hibernate.orm.jdbc.error             : HHH000247: ErrorCode: 42104, SQLState: 42S04
+2026-07-21T20:10:29.636+05:30  WARN 25076 --- [         Jobs-4] org.hibernate.orm.jdbc.error             : Table "JOB_DETAILS" not found (this database is empty); SQL statement:
+select jde1_0.id,jde1_0.correlation_id,jde1_0.created,jde1_0.exception_details,jde1_0.exception_message,jde1_0.execution_counter,jde1_0.execution_timeout,jde1_0.execution_timeout_unit,jde1_0.fire_time,jde1_0.last_update,jde1_0.priority,jde1_0.recipient,jde1_0.retries,jde1_0.scheduled_id,jde1_0.status,jde1_0.trigger from job_details jde1_0 where jde1_0.status in (?,?) and jde1_0.fire_time<=? [42104-232]
+2026-07-21T20:10:29.637+05:30  WARN 25076 --- [         Jobs-4] org.hibernate.orm.jdbc.error             : HHH000247: ErrorCode: 42104, SQLState: 42S04
+2026-07-21T20:10:29.638+05:30  WARN 25076 --- [         Jobs-4] org.hibernate.orm.jdbc.error             : Table "JOB_DETAILS" not found (this database is empty); SQL statement:
+select jde1_0.id,jde1_0.correlation_id,jde1_0.created,jde1_0.exception_details,jde1_0.exception_message,jde1_0.execution_counter,jde1_0.execution_timeout,jde1_0.execution_timeout_unit,jde1_0.fire_time,jde1_0.last_update,jde1_0.priority,jde1_0.recipient,jde1_0.retries,jde1_0.scheduled_id,jde1_0.status,jde1_0.trigger from job_details jde1_0 where jde1_0.status in (?,?) and jde1_0.fire_time<=? [42104-232]
+2026-07-21T20:10:29.639+05:30  WARN 25076 --- [         Jobs-4] org.hibernate.orm.jdbc.error             : HHH000247: ErrorCode: 42104, SQLState: 42S04
+2026-07-21T20:10:29.640+05:30  WARN 25076 --- [         Jobs-4] org.hibernate.orm.jdbc.error             : Table "JOB_DETAILS" not found (this database is empty); SQL statement:
+select jde1_0.id,jde1_0.correlation_id,jde1_0.created,jde1_0.exception_details,jde1_0.exception_message,jde1_0.execution_counter,jde1_0.execution_timeout,jde1_0.execution_timeout_unit,jde1_0.fire_time,jde1_0.last_update,jde1_0.priority,jde1_0.recipient,jde1_0.retries,jde1_0.scheduled_id,jde1_0.status,jde1_0.trigger from job_details jde1_0 where jde1_0.status in (?,?) and jde1_0.fire_time<=? [42104-232]
+2026-07-21T20:10:29.641+05:30  WARN 25076 --- [         Jobs-4] org.hibernate.orm.jdbc.error             : HHH000247: ErrorCode: 42104, SQLState: 42S04
+2026-07-21T20:10:29.641+05:30  WARN 25076 --- [         Jobs-4] org.hibernate.orm.jdbc.error             : Table "JOB_DETAILS" not found (this database is empty); SQL statement:
+select jde1_0.id,jde1_0.correlation_id,jde1_0.created,jde1_0.exception_details,jde1_0.exception_message,jde1_0.execution_counter,jde1_0.execution_timeout,jde1_0.execution_timeout_unit,jde1_0.fire_time,jde1_0.last_update,jde1_0.priority,jde1_0.recipient,jde1_0.retries,jde1_0.scheduled_id,jde1_0.status,jde1_0.trigger from job_details jde1_0 where jde1_0.status in (?,?) and jde1_0.fire_time<=? [42104-232]
+2026-07-21T20:10:29.642+05:30  WARN 25076 --- [         Jobs-4] org.hibernate.orm.jdbc.error             : HHH000247: ErrorCode: 42104, SQLState: 42S04
+2026-07-21T20:10:29.642+05:30  WARN 25076 --- [         Jobs-4] org.hibernate.orm.jdbc.error             : Table "JOB_DETAILS" not found (this database is empty); SQL statement:
+select jde1_0.id,jde1_0.correlation_id,jde1_0.created,jde1_0.exception_details,jde1_0.exception_message,jde1_0.execution_counter,jde1_0.execution_timeout,jde1_0.execution_timeout_unit,jde1_0.fire_time,jde1_0.last_update,jde1_0.priority,jde1_0.recipient,jde1_0.retries,jde1_0.scheduled_id,jde1_0.status,jde1_0.trigger from job_details jde1_0 where jde1_0.status in (?,?) and jde1_0.fire_time<=? [42104-232]
+2026-07-21T20:10:29.644+05:30  WARN 25076 --- [         Jobs-4] org.hibernate.orm.jdbc.error             : HHH000247: ErrorCode: 42104, SQLState: 42S04
+2026-07-21T20:10:29.644+05:30  WARN 25076 --- [         Jobs-4] org.hibernate.orm.jdbc.error             : Table "JOB_DETAILS" not found (this database is empty); SQL statement:
+select jde1_0.id,jde1_0.correlation_id,jde1_0.created,jde1_0.exception_details,jde1_0.exception_message,jde1_0.execution_counter,jde1_0.execution_timeout,jde1_0.execution_timeout_unit,jde1_0.fire_time,jde1_0.last_update,jde1_0.priority,jde1_0.recipient,jde1_0.retries,jde1_0.scheduled_id,jde1_0.status,jde1_0.trigger from job_details jde1_0 where jde1_0.status in (?,?) and jde1_0.fire_time<=? [42104-232]
+2026-07-21T20:10:29.645+05:30  WARN 25076 --- [         Jobs-4] org.hibernate.orm.jdbc.error             : HHH000247: ErrorCode: 42104, SQLState: 42S04
+2026-07-21T20:10:29.645+05:30  WARN 25076 --- [         Jobs-4] org.hibernate.orm.jdbc.error             : Table "JOB_DETAILS" not found (this database is empty); SQL statement:
+select jde1_0.id,jde1_0.correlation_id,jde1_0.created,jde1_0.exception_details,jde1_0.exception_message,jde1_0.execution_counter,jde1_0.execution_timeout,jde1_0.execution_timeout_unit,jde1_0.fire_time,jde1_0.last_update,jde1_0.priority,jde1_0.recipient,jde1_0.retries,jde1_0.scheduled_id,jde1_0.status,jde1_0.trigger from job_details jde1_0 where jde1_0.status in (?,?) and jde1_0.fire_time<=? [42104-232]
+2026-07-21T20:10:29.646+05:30  WARN 25076 --- [         Jobs-4] org.hibernate.orm.jdbc.error             : HHH000247: ErrorCode: 42104, SQLState: 42S04
+2026-07-21T20:10:29.646+05:30  WARN 25076 --- [         Jobs-4] org.hibernate.orm.jdbc.error             : Table "JOB_DETAILS" not found (this database is empty); SQL statement:
+select jde1_0.id,jde1_0.correlation_id,jde1_0.created,jde1_0.exception_details,jde1_0.exception_message,jde1_0.execution_counter,jde1_0.execution_timeout,jde1_0.execution_timeout_unit,jde1_0.fire_time,jde1_0.last_update,jde1_0.priority,jde1_0.recipient,jde1_0.retries,jde1_0.scheduled_id,jde1_0.status,jde1_0.trigger from job_details jde1_0 where jde1_0.status in (?,?) and jde1_0.fire_time<=? [42104-232]
+2026-07-21T20:10:29.648+05:30  WARN 25076 --- [         Jobs-4] org.hibernate.orm.jdbc.error             : HHH000247: ErrorCode: 42104, SQLState: 42S04
+2026-07-21T20:10:29.648+05:30  WARN 25076 --- [         Jobs-4] org.hibernate.orm.jdbc.error             : Table "JOB_DETAILS" not found (this database is empty); SQL statement:
+select jde1_0.id,jde1_0.correlation_id,jde1_0.created,jde1_0.exception_details,jde1_0.exception_message,jde1_0.execution_counter,jde1_0.execution_timeout,jde1_0.execution_timeout_unit,jde1_0.fire_time,jde1_0.last_update,jde1_0.priority,jde1_0.recipient,jde1_0.retries,jde1_0.scheduled_id,jde1_0.status,jde1_0.trigger from job_details jde1_0 where jde1_0.status in (?,?) and jde1_0.fire_time<=? [42104-232]
+2026-07-21T20:10:29.649+05:30  WARN 25076 --- [         Jobs-4] org.hibernate.orm.jdbc.error             : HHH000247: ErrorCode: 42104, SQLState: 42S04
+2026-07-21T20:10:29.649+05:30  WARN 25076 --- [         Jobs-4] org.hibernate.orm.jdbc.error             : Table "JOB_DETAILS" not found (this database is empty); SQL statement:
+select jde1_0.id,jde1_0.correlation_id,jde1_0.created,jde1_0.exception_details,jde1_0.exception_message,jde1_0.execution_counter,jde1_0.execution_timeout,jde1_0.execution_timeout_unit,jde1_0.fire_time,jde1_0.last_update,jde1_0.priority,jde1_0.recipient,jde1_0.retries,jde1_0.scheduled_id,jde1_0.status,jde1_0.trigger from job_details jde1_0 where jde1_0.status in (?,?) and jde1_0.fire_time<=? [42104-232]
+2026-07-21T20:10:29.650+05:30  WARN 25076 --- [         Jobs-4] org.hibernate.orm.jdbc.error             : HHH000247: ErrorCode: 42104, SQLState: 42S04
+2026-07-21T20:10:29.650+05:30  WARN 25076 --- [         Jobs-4] org.hibernate.orm.jdbc.error             : Table "JOB_DETAILS" not found (this database is empty); SQL statement:
+select jde1_0.id,jde1_0.correlation_id,jde1_0.created,jde1_0.exception_details,jde1_0.exception_message,jde1_0.execution_counter,jde1_0.execution_timeout,jde1_0.execution_timeout_unit,jde1_0.fire_time,jde1_0.last_update,jde1_0.priority,jde1_0.recipient,jde1_0.retries,jde1_0.scheduled_id,jde1_0.status,jde1_0.trigger from job_details jde1_0 where jde1_0.status in (?,?) and jde1_0.fire_time<=? [42104-232]
+2026-07-21T20:10:29.652+05:30  WARN 25076 --- [         Jobs-4] org.hibernate.orm.jdbc.error             : HHH000247: ErrorCode: 42104, SQLState: 42S04
+2026-07-21T20:10:29.652+05:30  WARN 25076 --- [         Jobs-4] org.hibernate.orm.jdbc.error             : Table "JOB_DETAILS" not found (this database is empty); SQL statement:
+select jde1_0.id,jde1_0.correlation_id,jde1_0.created,jde1_0.exception_details,jde1_0.exception_message,jde1_0.execution_counter,jde1_0.execution_timeout,jde1_0.execution_timeout_unit,jde1_0.fire_time,jde1_0.last_update,jde1_0.priority,jde1_0.recipient,jde1_0.retries,jde1_0.scheduled_id,jde1_0.status,jde1_0.trigger from job_details jde1_0 where jde1_0.status in (?,?) and jde1_0.fire_time<=? [42104-232]
+2026-07-21T20:10:29.654+05:30  WARN 25076 --- [         Jobs-4] org.hibernate.orm.jdbc.error             : HHH000247: ErrorCode: 42104, SQLState: 42S04
+2026-07-21T20:10:29.654+05:30  WARN 25076 --- [         Jobs-4] org.hibernate.orm.jdbc.error             : Table "JOB_DETAILS" not found (this database is empty); SQL statement:
+select jde1_0.id,jde1_0.correlation_id,jde1_0.created,jde1_0.exception_details,jde1_0.exception_message,jde1_0.execution_counter,jde1_0.execution_timeout,jde1_0.execution_timeout_unit,jde1_0.fire_time,jde1_0.last_update,jde1_0.priority,jde1_0.recipient,jde1_0.retries,jde1_0.scheduled_id,jde1_0.status,jde1_0.trigger from job_details jde1_0 where jde1_0.status in (?,?) and jde1_0.fire_time<=? [42104-232]
+2026-07-21T20:10:29.656+05:30  WARN 25076 --- [         Jobs-4] org.hibernate.orm.jdbc.error             : HHH000247: ErrorCode: 42104, SQLState: 42S04
+2026-07-21T20:10:29.656+05:30  WARN 25076 --- [         Jobs-4] org.hibernate.orm.jdbc.error             : Table "JOB_DETAILS" not found (this database is empty); SQL statement:
+select jde1_0.id,jde1_0.correlation_id,jde1_0.created,jde1_0.exception_details,jde1_0.exception_message,jde1_0.execution_counter,jde1_0.execution_timeout,jde1_0.execution_timeout_unit,jde1_0.fire_time,jde1_0.last_update,jde1_0.priority,jde1_0.recipient,jde1_0.retries,jde1_0.scheduled_id,jde1_0.status,jde1_0.trigger from job_details jde1_0 where jde1_0.status in (?,?) and jde1_0.fire_time<=? [42104-232]
+2026-07-21T20:10:29.658+05:30  WARN 25076 --- [         Jobs-4] org.hibernate.orm.jdbc.error             : HHH000247: ErrorCode: 42104, SQLState: 42S04
+2026-07-21T20:10:29.659+05:30  WARN 25076 --- [         Jobs-4] org.hibernate.orm.jdbc.error             : Table "JOB_DETAILS" not found (this database is empty); SQL statement:
+select jde1_0.id,jde1_0.correlation_id,jde1_0.created,jde1_0.exception_details,jde1_0.exception_message,jde1_0.execution_counter,jde1_0.execution_timeout,jde1_0.execution_timeout_unit,jde1_0.fire_time,jde1_0.last_update,jde1_0.priority,jde1_0.recipient,jde1_0.retries,jde1_0.scheduled_id,jde1_0.status,jde1_0.trigger from job_details jde1_0 where jde1_0.status in (?,?) and jde1_0.fire_time<=? [42104-232]
+2026-07-21T20:10:29.661+05:30  WARN 25076 --- [         Jobs-4] org.hibernate.orm.jdbc.error             : HHH000247: ErrorCode: 42104, SQLState: 42S04
+2026-07-21T20:10:29.661+05:30  WARN 25076 --- [         Jobs-4] org.hibernate.orm.jdbc.error             : Table "JOB_DETAILS" not found (this database is empty); SQL statement:
+select jde1_0.id,jde1_0.correlation_id,jde1_0.created,jde1_0.exception_details,jde1_0.exception_message,jde1_0.execution_counter,jde1_0.execution_timeout,jde1_0.execution_timeout_unit,jde1_0.fire_time,jde1_0.last_update,jde1_0.priority,jde1_0.recipient,jde1_0.retries,jde1_0.scheduled_id,jde1_0.status,jde1_0.trigger from job_details jde1_0 where jde1_0.status in (?,?) and jde1_0.fire_time<=? [42104-232]
+2026-07-21T20:10:29.663+05:30  WARN 25076 --- [         Jobs-4] org.hibernate.orm.jdbc.error             : HHH000247: ErrorCode: 42104, SQLState: 42S04
+2026-07-21T20:10:29.663+05:30  WARN 25076 --- [         Jobs-4] org.hibernate.orm.jdbc.error             : Table "JOB_DETAILS" not found (this database is empty); SQL statement:
+select jde1_0.id,jde1_0.correlation_id,jde1_0.created,jde1_0.exception_details,jde1_0.exception_message,jde1_0.execution_counter,jde1_0.execution_timeout,jde1_0.execution_timeout_unit,jde1_0.fire_time,jde1_0.last_update,jde1_0.priority,jde1_0.recipient,jde1_0.retries,jde1_0.scheduled_id,jde1_0.status,jde1_0.trigger from job_details jde1_0 where jde1_0.status in (?,?) and jde1_0.fire_time<=? [42104-232]
+2026-07-21T20:10:29.664+05:30  WARN 25076 --- [         Jobs-4] org.hibernate.orm.jdbc.error             : HHH000247: ErrorCode: 42104, SQLState: 42S04
+2026-07-21T20:10:29.665+05:30  WARN 25076 --- [         Jobs-4] org.hibernate.orm.jdbc.error             : Table "JOB_DETAILS" not found (this database is empty); SQL statement:
+select jde1_0.id,jde1_0.correlation_id,jde1_0.created,jde1_0.exception_details,jde1_0.exception_message,jde1_0.execution_counter,jde1_0.execution_timeout,jde1_0.execution_timeout_unit,jde1_0.fire_time,jde1_0.last_update,jde1_0.priority,jde1_0.recipient,jde1_0.retries,jde1_0.scheduled_id,jde1_0.status,jde1_0.trigger from job_details jde1_0 where jde1_0.status in (?,?) and jde1_0.fire_time<=? [42104-232]
+2026-07-21T20:10:29.666+05:30  WARN 25076 --- [         Jobs-4] org.hibernate.orm.jdbc.error             : HHH000247: ErrorCode: 42104, SQLState: 42S04
+2026-07-21T20:10:29.666+05:30  WARN 25076 --- [         Jobs-4] org.hibernate.orm.jdbc.error             : Table "JOB_DETAILS" not found (this database is empty); SQL statement:
+select jde1_0.id,jde1_0.correlation_id,jde1_0.created,jde1_0.exception_details,jde1_0.exception_message,jde1_0.execution_counter,jde1_0.execution_timeout,jde1_0.execution_timeout_unit,jde1_0.fire_time,jde1_0.last_update,jde1_0.priority,jde1_0.recipient,jde1_0.retries,jde1_0.scheduled_id,jde1_0.status,jde1_0.trigger from job_details jde1_0 where jde1_0.status in (?,?) and jde1_0.fire_time<=? [42104-232]
+2026-07-21T20:10:29.668+05:30  WARN 25076 --- [         Jobs-4] org.hibernate.orm.jdbc.error             : HHH000247: ErrorCode: 42104, SQLState: 42S04
+2026-07-21T20:10:29.668+05:30  WARN 25076 --- [         Jobs-4] org.hibernate.orm.jdbc.error             : Table "JOB_DETAILS" not found (this database is empty); SQL statement:
+select jde1_0.id,jde1_0.correlation_id,jde1_0.created,jde1_0.exception_details,jde1_0.exception_message,jde1_0.execution_counter,jde1_0.execution_timeout,jde1_0.execution_timeout_unit,jde1_0.fire_time,jde1_0.last_update,jde1_0.priority,jde1_0.recipient,jde1_0.retries,jde1_0.scheduled_id,jde1_0.status,jde1_0.trigger from job_details jde1_0 where jde1_0.status in (?,?) and jde1_0.fire_time<=? [42104-232]
+2026-07-21T20:10:29.669+05:30  WARN 25076 --- [         Jobs-4] org.hibernate.orm.jdbc.error             : HHH000247: ErrorCode: 42104, SQLState: 42S04
+2026-07-21T20:10:29.669+05:30  WARN 25076 --- [         Jobs-4] org.hibernate.orm.jdbc.error             : Table "JOB_DETAILS" not found (this database is empty); SQL statement:
+select jde1_0.id,jde1_0.correlation_id,jde1_0.created,jde1_0.exception_details,jde1_0.exception_message,jde1_0.execution_counter,jde1_0.execution_timeout,jde1_0.execution_timeout_unit,jde1_0.fire_time,jde1_0.last_update,jde1_0.priority,jde1_0.recipient,jde1_0.retries,jde1_0.scheduled_id,jde1_0.status,jde1_0.trigger from job_details jde1_0 where jde1_0.status in (?,?) and jde1_0.fire_time<=? [42104-232]
+2026-07-21T20:13:19.200+05:30  WARN 25076 --- [         Jobs-5] org.hibernate.orm.jdbc.error             : HHH000247: ErrorCode: 42104, SQLState: 42S04
+2026-07-21T20:13:19.200+05:30  WARN 25076 --- [         Jobs-5] org.hibernate.orm.jdbc.error             : Table "JOB_DETAILS" not found (this database is empty); SQL statement:
+select jde1_0.id,jde1_0.correlation_id,jde1_0.created,jde1_0.exception_details,jde1_0.exception_message,jde1_0.execution_counter,jde1_0.execution_timeout,jde1_0.execution_timeout_unit,jde1_0.fire_time,jde1_0.last_update,jde1_0.priority,jde1_0.recipient,jde1_0.retries,jde1_0.scheduled_id,jde1_0.status,jde1_0.trigger from job_details jde1_0 where jde1_0.status in (?,?) and jde1_0.fire_time<=? [42104-232]
+2026-07-21T20:23:19.206+05:30  WARN 25076 --- [         Jobs-6] org.hibernate.orm.jdbc.error             : HHH000247: ErrorCode: 42104, SQLState: 42S04
+2026-07-21T20:23:19.206+05:30  WARN 25076 --- [         Jobs-6] org.hibernate.orm.jdbc.error             : Table "JOB_DETAILS" not found (this database is empty); SQL statement:
+select jde1_0.id,jde1_0.correlation_id,jde1_0.created,jde1_0.exception_details,jde1_0.exception_message,jde1_0.execution_counter,jde1_0.execution_timeout,jde1_0.execution_timeout_unit,jde1_0.fire_time,jde1_0.last_update,jde1_0.priority,jde1_0.recipient,jde1_0.retries,jde1_0.scheduled_id,jde1_0.status,jde1_0.trigger from job_details jde1_0 where jde1_0.status in (?,?) and jde1_0.fire_time<=? [42104-232]
+2026-07-21T20:33:19.188+05:30  WARN 25076 --- [         Jobs-7] org.hibernate.orm.jdbc.error             : HHH000247: ErrorCode: 42104, SQLState: 42S04
+2026-07-21T20:33:19.189+05:30  WARN 25076 --- [         Jobs-7] org.hibernate.orm.jdbc.error             : Table "JOB_DETAILS" not found (this database is empty); SQL statement:
+select jde1_0.id,jde1_0.correlation_id,jde1_0.created,jde1_0.exception_details,jde1_0.exception_message,jde1_0.execution_counter,jde1_0.execution_timeout,jde1_0.execution_timeout_unit,jde1_0.fire_time,jde1_0.last_update,jde1_0.priority,jde1_0.recipient,jde1_0.retries,jde1_0.scheduled_id,jde1_0.status,jde1_0.trigger from job_details jde1_0 where jde1_0.status in (?,?) and jde1_0.fire_time<=? [42104-232]
+2026-07-21T20:43:18.113+05:30  WARN 25076 --- [         Jobs-8] org.hibernate.orm.jdbc.error             : HHH000247: ErrorCode: 42104, SQLState: 42S04
+2026-07-21T20:43:18.113+05:30  WARN 25076 --- [         Jobs-8] org.hibernate.orm.jdbc.error             : Table "JOB_DETAILS" not found (this database is empty); SQL statement:
+select jde1_0.id,jde1_0.correlation_id,jde1_0.created,jde1_0.exception_details,jde1_0.exception_message,jde1_0.execution_counter,jde1_0.execution_timeout,jde1_0.execution_timeout_unit,jde1_0.fire_time,jde1_0.last_update,jde1_0.priority,jde1_0.recipient,jde1_0.retries,jde1_0.scheduled_id,jde1_0.status,jde1_0.trigger from job_details jde1_0 where jde1_0.status in (?,?) and jde1_0.fire_time<=? [42104-232]
+2026-07-21T20:53:18.125+05:30  WARN 25076 --- [         Jobs-9] org.hibernate.orm.jdbc.error             : HHH000247: ErrorCode: 42104, SQLState: 42S04
+2026-07-21T20:53:18.125+05:30  WARN 25076 --- [         Jobs-9] org.hibernate.orm.jdbc.error             : Table "JOB_DETAILS" not found (this database is empty); SQL statement:
+select jde1_0.id,jde1_0.correlation_id,jde1_0.created,jde1_0.exception_details,jde1_0.exception_message,jde1_0.execution_counter,jde1_0.execution_timeout,jde1_0.execution_timeout_unit,jde1_0.fire_time,jde1_0.last_update,jde1_0.priority,jde1_0.recipient,jde1_0.retries,jde1_0.scheduled_id,jde1_0.status,jde1_0.trigger from job_details jde1_0 where jde1_0.status in (?,?) and jde1_0.fire_time<=? [42104-232]
+2026-07-21T21:03:18.127+05:30  WARN 25076 --- [         Jobs-0] org.hibernate.orm.jdbc.error             : HHH000247: ErrorCode: 42104, SQLState: 42S04
+2026-07-21T21:03:18.127+05:30  WARN 25076 --- [         Jobs-0] org.hibernate.orm.jdbc.error             : Table "JOB_DETAILS" not found (this database is empty); SQL statement:
+select jde1_0.id,jde1_0.correlation_id,jde1_0.created,jde1_0.exception_details,jde1_0.exception_message,jde1_0.execution_counter,jde1_0.execution_timeout,jde1_0.execution_timeout_unit,jde1_0.fire_time,jde1_0.last_update,jde1_0.priority,jde1_0.recipient,jde1_0.retries,jde1_0.scheduled_id,jde1_0.status,jde1_0.trigger from job_details jde1_0 where jde1_0.status in (?,?) and jde1_0.fire_time<=? [42104-232]
+2026-07-21T21:13:18.120+05:30  WARN 25076 --- [         Jobs-1] org.hibernate.orm.jdbc.error             : HHH000247: ErrorCode: 42104, SQLState: 42S04
+2026-07-21T21:13:18.120+05:30  WARN 25076 --- [         Jobs-1] org.hibernate.orm.jdbc.error             : Table "JOB_DETAILS" not found (this database is empty); SQL statement:
+select jde1_0.id,jde1_0.correlation_id,jde1_0.created,jde1_0.exception_details,jde1_0.exception_message,jde1_0.execution_counter,jde1_0.execution_timeout,jde1_0.execution_timeout_unit,jde1_0.fire_time,jde1_0.last_update,jde1_0.priority,jde1_0.recipient,jde1_0.retries,jde1_0.scheduled_id,jde1_0.status,jde1_0.trigger from job_details jde1_0 where jde1_0.status in (?,?) and jde1_0.fire_time<=? [42104-232]
+2026-07-21T21:23:18.116+05:30  WARN 25076 --- [         Jobs-2] org.hibernate.orm.jdbc.error             : HHH000247: ErrorCode: 42104, SQLState: 42S04
+2026-07-21T21:23:18.116+05:30  WARN 25076 --- [         Jobs-2] org.hibernate.orm.jdbc.error             : Table "JOB_DETAILS" not found (this database is empty); SQL statement:
+select jde1_0.id,jde1_0.correlation_id,jde1_0.created,jde1_0.exception_details,jde1_0.exception_message,jde1_0.execution_counter,jde1_0.execution_timeout,jde1_0.execution_timeout_unit,jde1_0.fire_time,jde1_0.last_update,jde1_0.priority,jde1_0.recipient,jde1_0.retries,jde1_0.scheduled_id,jde1_0.status,jde1_0.trigger from job_details jde1_0 where jde1_0.status in (?,?) and jde1_0.fire_time<=? [42104-232]
+2026-07-21T21:33:18.123+05:30  WARN 25076 --- [         Jobs-3] org.hibernate.orm.jdbc.error             : HHH000247: ErrorCode: 42104, SQLState: 42S04
+2026-07-21T21:33:18.124+05:30  WARN 25076 --- [         Jobs-3] org.hibernate.orm.jdbc.error             : Table "JOB_DETAILS" not found (this database is empty); SQL statement:
+select jde1_0.id,jde1_0.correlation_id,jde1_0.created,jde1_0.exception_details,jde1_0.exception_message,jde1_0.execution_counter,jde1_0.execution_timeout,jde1_0.execution_timeout_unit,jde1_0.fire_time,jde1_0.last_update,jde1_0.priority,jde1_0.recipient,jde1_0.retries,jde1_0.scheduled_id,jde1_0.status,jde1_0.trigger from job_details jde1_0 where jde1_0.status in (?,?) and jde1_0.fire_time<=? [42104-232]
+2026-07-21T21:43:18.124+05:30  WARN 25076 --- [         Jobs-4] org.hibernate.orm.jdbc.error             : HHH000247: ErrorCode: 42104, SQLState: 42S04
+2026-07-21T21:43:18.124+05:30  WARN 25076 --- [         Jobs-4] org.hibernate.orm.jdbc.error             : Table "JOB_DETAILS" not found (this database is empty); SQL statement:
+select jde1_0.id,jde1_0.correlation_id,jde1_0.created,jde1_0.exception_details,jde1_0.exception_message,jde1_0.execution_counter,jde1_0.execution_timeout,jde1_0.execution_timeout_unit,jde1_0.fire_time,jde1_0.last_update,jde1_0.priority,jde1_0.recipient,jde1_0.retries,jde1_0.scheduled_id,jde1_0.status,jde1_0.trigger from job_details jde1_0 where jde1_0.status in (?,?) and jde1_0.fire_time<=? [42104-232]
+2026-07-21T21:53:18.118+05:30  WARN 25076 --- [         Jobs-5] org.hibernate.orm.jdbc.error             : HHH000247: ErrorCode: 42104, SQLState: 42S04
+2026-07-21T21:53:18.119+05:30  WARN 25076 --- [         Jobs-5] org.hibernate.orm.jdbc.error             : Table "JOB_DETAILS" not found (this database is empty); SQL statement:
+select jde1_0.id,jde1_0.correlation_id,jde1_0.created,jde1_0.exception_details,jde1_0.exception_message,jde1_0.execution_counter,jde1_0.execution_timeout,jde1_0.execution_timeout_unit,jde1_0.fire_time,jde1_0.last_update,jde1_0.priority,jde1_0.recipient,jde1_0.retries,jde1_0.scheduled_id,jde1_0.status,jde1_0.trigger from job_details jde1_0 where jde1_0.status in (?,?) and jde1_0.fire_time<=? [42104-232]
+2026-07-21T22:03:18.112+05:30  WARN 25076 --- [         Jobs-6] org.hibernate.orm.jdbc.error             : HHH000247: ErrorCode: 42104, SQLState: 42S04
+2026-07-21T22:03:18.112+05:30  WARN 25076 --- [         Jobs-6] org.hibernate.orm.jdbc.error             : Table "JOB_DETAILS" not found (this database is empty); SQL statement:
+select jde1_0.id,jde1_0.correlation_id,jde1_0.created,jde1_0.exception_details,jde1_0.exception_message,jde1_0.execution_counter,jde1_0.execution_timeout,jde1_0.execution_timeout_unit,jde1_0.fire_time,jde1_0.last_update,jde1_0.priority,jde1_0.recipient,jde1_0.retries,jde1_0.scheduled_id,jde1_0.status,jde1_0.trigger from job_details jde1_0 where jde1_0.status in (?,?) and jde1_0.fire_time<=? [42104-232]
+2026-07-21T22:13:18.125+05:30  WARN 25076 --- [         Jobs-7] org.hibernate.orm.jdbc.error             : HHH000247: ErrorCode: 42104, SQLState: 42S04
+2026-07-21T22:13:18.125+05:30  WARN 25076 --- [         Jobs-7] org.hibernate.orm.jdbc.error             : Table "JOB_DETAILS" not found (this database is empty); SQL statement:
+select jde1_0.id,jde1_0.correlation_id,jde1_0.created,jde1_0.exception_details,jde1_0.exception_message,jde1_0.execution_counter,jde1_0.execution_timeout,jde1_0.execution_timeout_unit,jde1_0.fire_time,jde1_0.last_update,jde1_0.priority,jde1_0.recipient,jde1_0.retries,jde1_0.scheduled_id,jde1_0.status,jde1_0.trigger from job_details jde1_0 where jde1_0.status in (?,?) and jde1_0.fire_time<=? [42104-232]
+2026-07-21T22:43:10.206+05:30  WARN 25076 --- [l-1:housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=20m19s860ms728µs200ns).
+2026-07-21T23:03:13.271+05:30  WARN 25076 --- [         Jobs-8] org.hibernate.orm.jdbc.error             : HHH000247: ErrorCode: 42104, SQLState: 42S04
+2026-07-21T23:03:13.271+05:30  WARN 25076 --- [         Jobs-8] org.hibernate.orm.jdbc.error             : Table "JOB_DETAILS" not found (this database is empty); SQL statement:
+select jde1_0.id,jde1_0.correlation_id,jde1_0.created,jde1_0.exception_details,jde1_0.exception_message,jde1_0.execution_counter,jde1_0.execution_timeout,jde1_0.execution_timeout_unit,jde1_0.fire_time,jde1_0.last_update,jde1_0.priority,jde1_0.recipient,jde1_0.retries,jde1_0.scheduled_id,jde1_0.status,jde1_0.trigger from job_details jde1_0 where jde1_0.status in (?,?) and jde1_0.fire_time<=? [42104-232]
+2026-07-21T23:03:13.303+05:30  WARN 25076 --- [         Jobs-8] org.hibernate.orm.jdbc.error             : HHH000247: ErrorCode: 42104, SQLState: 42S04
+2026-07-21T23:03:13.303+05:30  WARN 25076 --- [         Jobs-8] org.hibernate.orm.jdbc.error             : Table "JOB_DETAILS" not found (this database is empty); SQL statement:
+select jde1_0.id,jde1_0.correlation_id,jde1_0.created,jde1_0.exception_details,jde1_0.exception_message,jde1_0.execution_counter,jde1_0.execution_timeout,jde1_0.execution_timeout_unit,jde1_0.fire_time,jde1_0.last_update,jde1_0.priority,jde1_0.recipient,jde1_0.retries,jde1_0.scheduled_id,jde1_0.status,jde1_0.trigger from job_details jde1_0 where jde1_0.status in (?,?) and jde1_0.fire_time<=? [42104-232]
+2026-07-21T23:03:13.317+05:30  WARN 25076 --- [         Jobs-8] org.hibernate.orm.jdbc.error             : HHH000247: ErrorCode: 42104, SQLState: 42S04
+2026-07-21T23:03:13.317+05:30  WARN 25076 --- [         Jobs-8] org.hibernate.orm.jdbc.error             : Table "JOB_DETAILS" not found (this database is empty); SQL statement:
+select jde1_0.id,jde1_0.correlation_id,jde1_0.created,jde1_0.exception_details,jde1_0.exception_message,jde1_0.execution_counter,jde1_0.execution_timeout,jde1_0.execution_timeout_unit,jde1_0.fire_time,jde1_0.last_update,jde1_0.priority,jde1_0.recipient,jde1_0.retries,jde1_0.scheduled_id,jde1_0.status,jde1_0.trigger from job_details jde1_0 where jde1_0.status in (?,?) and jde1_0.fire_time<=? [42104-232]
+2026-07-21T23:03:13.343+05:30  WARN 25076 --- [         Jobs-8] org.hibernate.orm.jdbc.error             : HHH000247: ErrorCode: 42104, SQLState: 42S04
+2026-07-21T23:03:13.343+05:30  WARN 25076 --- [         Jobs-8] org.hibernate.orm.jdbc.error             : Table "JOB_DETAILS" not found (this database is empty); SQL statement:
+select jde1_0.id,jde1_0.correlation_id,jde1_0.created,jde1_0.exception_details,jde1_0.exception_message,jde1_0.execution_counter,jde1_0.execution_timeout,jde1_0.execution_timeout_unit,jde1_0.fire_time,jde1_0.last_update,jde1_0.priority,jde1_0.recipient,jde1_0.retries,jde1_0.scheduled_id,jde1_0.status,jde1_0.trigger from job_details jde1_0 where jde1_0.status in (?,?) and jde1_0.fire_time<=? [42104-232]
+2026-07-21T23:13:17.139+05:30  WARN 25076 --- [         Jobs-9] org.hibernate.orm.jdbc.error             : HHH000247: ErrorCode: 42104, SQLState: 42S04
+2026-07-21T23:13:17.140+05:30  WARN 25076 --- [         Jobs-9] org.hibernate.orm.jdbc.error             : Table "JOB_DETAILS" not found (this database is empty); SQL statement:
+select jde1_0.id,jde1_0.correlation_id,jde1_0.created,jde1_0.exception_details,jde1_0.exception_message,jde1_0.execution_counter,jde1_0.execution_timeout,jde1_0.execution_timeout_unit,jde1_0.fire_time,jde1_0.last_update,jde1_0.priority,jde1_0.recipient,jde1_0.retries,jde1_0.scheduled_id,jde1_0.status,jde1_0.trigger from job_details jde1_0 where jde1_0.status in (?,?) and jde1_0.fire_time<=? [42104-232]
+2026-07-21T23:13:18.070+05:30  WARN 25076 --- [         Jobs-0] org.hibernate.orm.jdbc.error             : HHH000247: ErrorCode: 42104, SQLState: 42S04
+2026-07-21T23:13:18.070+05:30  WARN 25076 --- [         Jobs-0] org.hibernate.orm.jdbc.error             : Table "JOB_DETAILS" not found (this database is empty); SQL statement:
+select jde1_0.id,jde1_0.correlation_id,jde1_0.created,jde1_0.exception_details,jde1_0.exception_message,jde1_0.execution_counter,jde1_0.execution_timeout,jde1_0.execution_timeout_unit,jde1_0.fire_time,jde1_0.last_update,jde1_0.priority,jde1_0.recipient,jde1_0.retries,jde1_0.scheduled_id,jde1_0.status,jde1_0.trigger from job_details jde1_0 where jde1_0.status in (?,?) and jde1_0.fire_time<=? [42104-232]
+2026-07-22T00:03:24.968+05:30  WARN 25076 --- [l-1:housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=1h20m14s858ms769µs).
+2026-07-22T01:53:45.079+05:30  WARN 25076 --- [l-1:housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=1h50m20s244ms290µs900ns).
+2026-07-22T03:44:04.092+05:30  WARN 25076 --- [l-1:housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=1h50m19s145ms16µs500ns).
+2026-07-22T05:34:23.029+05:30  WARN 25076 --- [l-1:housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=1h50m19s70ms728µs800ns).

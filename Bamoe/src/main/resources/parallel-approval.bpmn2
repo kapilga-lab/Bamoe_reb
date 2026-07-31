@@ -166,10 +166,8 @@
       <bpmn2:incoming>_DEB176A4-EF93-43EF-B6EF-8E451B753D5D</bpmn2:incoming>
       <bpmn2:outgoing>_BE750B89-ABC1-4380-A3C7-DE0A9719C5BD</bpmn2:outgoing>
       <bpmn2:ioSpecification id="_7B3F5C26-9C63-4F00-9E4B-6C253CF5D604">
-        <bpmn2:inputSet id="_98F7F4DD-F219-474C-84F1-4559CC20651C">
-        </bpmn2:inputSet>
-        <bpmn2:outputSet id="_C16B1381-D680-43D4-883F-54D5A9999695">
-        </bpmn2:outputSet>
+        <bpmn2:inputSet id="_98F7F4DD-F219-474C-84F1-4559CC20651C" />
+        <bpmn2:outputSet id="_C16B1381-D680-43D4-883F-54D5A9999695" />
       </bpmn2:ioSpecification>
       <bpmn2:potentialOwner id="_F2B07D68-8D4D-435E-9B5F-0A59C024E9DA">
         <bpmn2:resourceAssignmentExpression id="_708B7177-C434-42BB-9892-5A8A465588E6">
@@ -219,7 +217,7 @@
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="edge_flow_fork_a" bpmnElement="flow_fork_a">
         <di:waypoint x="215" y="194" />
-        <di:waypoint x="215" y="95" />
+        <di:waypoint x="230" y="110" />
         <di:waypoint x="320" y="95" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="edge_flow_fork_b" bpmnElement="flow_fork_b">
@@ -228,12 +226,12 @@
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="edge_flow_fork_c" bpmnElement="flow_fork_c">
         <di:waypoint x="215" y="244" />
-        <di:waypoint x="215" y="343" />
+        <di:waypoint x="230" y="350" />
         <di:waypoint x="320" y="343" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="edge_flow_a_join" bpmnElement="flow_a_join">
         <di:waypoint x="430" y="95" />
-        <di:waypoint x="525" y="95" />
+        <di:waypoint x="530" y="110" />
         <di:waypoint x="525" y="194" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="edge_flow_b_join" bpmnElement="flow_b_join">
@@ -242,7 +240,7 @@
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="edge_flow_c_join" bpmnElement="flow_c_join">
         <di:waypoint x="430" y="343" />
-        <di:waypoint x="525" y="343" />
+        <di:waypoint x="530" y="350" />
         <di:waypoint x="525" y="244" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="_C028E9F5-1C90-4AD6-A244-5317C992D5C5-AUTO-SOURCE-AUTO-TARGET" bpmnElement="_DEB176A4-EF93-43EF-B6EF-8E451B753D5D" sourceElement="shape_joinGateway" targetElement="_E2CCEDB2-50FC-48D1-BCB5-968859F5040D">

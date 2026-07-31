@@ -1,0 +1,212 @@
+2026-07-17T08:41:53.572489800Z main ERROR Log4j API could not find a logging provider.
+SLF4J: A SLF4J service provider failed to instantiate:
+org.slf4j.spi.SLF4JServiceProvider: Provider org.slf4j.impl.JBossSlf4jServiceProvider could not be instantiated
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+
+ :: Spring Boot ::               (v3.5.14)
+
+2026-07-17T14:12:09.337+05:30  INFO 15484 --- [  restartedMain] org.acme.BamoeSpringBootApplication      : Starting BamoeSpringBootApplication using Java 21.0.7 with PID 15484 (D:\SAMADHAN_AI\Bamoe\Bamoe\target\classes started by kapil in D:\SAMADHAN_AI\Bamoe\Bamoe)
+2026-07-17T14:12:09.340+05:30  INFO 15484 --- [  restartedMain] org.acme.BamoeSpringBootApplication      : No active profile set, falling back to 1 default profile: "default"
+2026-07-17T14:12:09.403+05:30 TRACE 15484 --- [  restartedMain] b.c.c.ConfigDataEnvironmentPostProcessor : Post-processing environment to add config data
+2026-07-17T14:12:09.403+05:30 TRACE 15484 --- [  restartedMain] o.s.b.c.config.ConfigDataEnvironment     : Building config data environment contributors
+2026-07-17T14:12:09.403+05:30 TRACE 15484 --- [  restartedMain] o.s.b.c.config.ConfigDataEnvironment     : Creating wrapped config data contributor for 'configurationProperties'
+2026-07-17T14:12:09.403+05:30 TRACE 15484 --- [  restartedMain] o.s.b.c.config.ConfigDataEnvironment     : Creating wrapped config data contributor for 'servletConfigInitParams'
+2026-07-17T14:12:09.403+05:30 TRACE 15484 --- [  restartedMain] o.s.b.c.config.ConfigDataEnvironment     : Creating wrapped config data contributor for 'servletContextInitParams'
+2026-07-17T14:12:09.403+05:30 TRACE 15484 --- [  restartedMain] o.s.b.c.config.ConfigDataEnvironment     : Creating wrapped config data contributor for 'systemProperties'
+2026-07-17T14:12:09.403+05:30 TRACE 15484 --- [  restartedMain] o.s.b.c.config.ConfigDataEnvironment     : Creating wrapped config data contributor for 'systemEnvironment'
+2026-07-17T14:12:09.403+05:30 TRACE 15484 --- [  restartedMain] o.s.b.c.config.ConfigDataEnvironment     : Creating wrapped config data contributor for 'random'
+2026-07-17T14:12:09.403+05:30 TRACE 15484 --- [  restartedMain] o.s.b.c.config.ConfigDataEnvironment     : Creating wrapped config data contributor for 'applicationInfo'
+2026-07-17T14:12:09.403+05:30 TRACE 15484 --- [  restartedMain] o.s.b.c.config.ConfigDataEnvironment     : Adding initial config data import from locations [optional:file:./;optional:file:./config/;optional:file:./config/*/]
+2026-07-17T14:12:09.403+05:30 TRACE 15484 --- [  restartedMain] o.s.b.c.config.ConfigDataEnvironment     : Adding initial config data import from locations [optional:classpath:/;optional:classpath:/config/]
+2026-07-17T14:12:09.403+05:30 TRACE 15484 --- [  restartedMain] o.s.b.c.config.ConfigDataEnvironment     : Processing initial config data environment contributors without activation context
+2026-07-17T14:12:09.403+05:30 TRACE 15484 --- [  restartedMain] .b.c.c.ConfigDataEnvironmentContributors : Processing imports for phase BEFORE_PROFILE_ACTIVATION. no activation context
+2026-07-17T14:12:09.404+05:30 TRACE 15484 --- [  restartedMain] .b.c.c.ConfigDataEnvironmentContributors : Processing imports [optional:file:./;optional:file:./config/;optional:file:./config/*/]
+2026-07-17T14:12:09.404+05:30 TRACE 15484 --- [  restartedMain] b.c.c.StandardConfigDataLocationResolver : Skipping missing resource file:./application.yaml
+2026-07-17T14:12:09.404+05:30 TRACE 15484 --- [  restartedMain] b.c.c.StandardConfigDataLocationResolver : Skipping missing resource file:./application.yml
+2026-07-17T14:12:09.404+05:30 TRACE 15484 --- [  restartedMain] b.c.c.StandardConfigDataLocationResolver : Skipping missing resource file:./application.xml
+2026-07-17T14:12:09.404+05:30 TRACE 15484 --- [  restartedMain] b.c.c.StandardConfigDataLocationResolver : Skipping missing resource file:./application.properties
+2026-07-17T14:12:09.404+05:30 TRACE 15484 --- [  restartedMain] b.c.c.StandardConfigDataLocationResolver : Skipping missing resource file:./config/application.yaml
+2026-07-17T14:12:09.404+05:30 TRACE 15484 --- [  restartedMain] b.c.c.StandardConfigDataLocationResolver : Skipping missing resource file:./config/application.yml
+2026-07-17T14:12:09.404+05:30 TRACE 15484 --- [  restartedMain] b.c.c.StandardConfigDataLocationResolver : Skipping missing resource file:./config/application.xml
+2026-07-17T14:12:09.404+05:30 TRACE 15484 --- [  restartedMain] b.c.c.StandardConfigDataLocationResolver : Skipping missing resource file:./config/application.properties
+2026-07-17T14:12:09.405+05:30 TRACE 15484 --- [  restartedMain] o.s.b.context.config.ConfigDataImporter  : Considering resource file [.] from location optional:file:./;optional:file:./config/;optional:file:./config/*/
+2026-07-17T14:12:09.405+05:30 TRACE 15484 --- [  restartedMain] o.s.b.context.config.ConfigDataLoaders   : Loading file [.] using loader org.springframework.boot.context.config.StandardConfigDataLoader
+2026-07-17T14:12:09.405+05:30 TRACE 15484 --- [  restartedMain] o.s.b.context.config.ConfigDataImporter  : Loaded resource file [.] from location optional:file:./;optional:file:./config/;optional:file:./config/*/
+2026-07-17T14:12:09.409+05:30 TRACE 15484 --- [  restartedMain] .b.c.c.ConfigDataEnvironmentContributors : Imported 1 resource [file [.]]
+2026-07-17T14:12:09.410+05:30 TRACE 15484 --- [  restartedMain] .b.c.c.ConfigDataEnvironmentContributors : Processing imports [optional:classpath:/;optional:classpath:/config/]
+2026-07-17T14:12:09.410+05:30 TRACE 15484 --- [  restartedMain] b.c.c.StandardConfigDataLocationResolver : Skipping missing resource classpath:/application.yaml
+2026-07-17T14:12:09.410+05:30 TRACE 15484 --- [  restartedMain] b.c.c.StandardConfigDataLocationResolver : Skipping missing resource classpath:/application.yml
+2026-07-17T14:12:09.410+05:30 TRACE 15484 --- [  restartedMain] b.c.c.StandardConfigDataLocationResolver : Skipping missing resource classpath:/application.xml
+2026-07-17T14:12:09.410+05:30 TRACE 15484 --- [  restartedMain] b.c.c.StandardConfigDataLocationResolver : Skipping missing resource classpath:/config/application.yaml
+2026-07-17T14:12:09.410+05:30 TRACE 15484 --- [  restartedMain] b.c.c.StandardConfigDataLocationResolver : Skipping missing resource classpath:/config/application.yml
+2026-07-17T14:12:09.410+05:30 TRACE 15484 --- [  restartedMain] b.c.c.StandardConfigDataLocationResolver : Skipping missing resource classpath:/config/application.xml
+2026-07-17T14:12:09.410+05:30 TRACE 15484 --- [  restartedMain] b.c.c.StandardConfigDataLocationResolver : Skipping missing resource classpath:/config/application.properties
+2026-07-17T14:12:09.410+05:30 TRACE 15484 --- [  restartedMain] o.s.b.context.config.ConfigDataImporter  : Considering resource class path resource [application.properties] from location optional:classpath:/;optional:classpath:/config/
+2026-07-17T14:12:09.411+05:30 TRACE 15484 --- [  restartedMain] o.s.b.context.config.ConfigDataLoaders   : Loading class path resource [application.properties] using loader org.springframework.boot.context.config.StandardConfigDataLoader
+2026-07-17T14:12:09.411+05:30 TRACE 15484 --- [  restartedMain] o.s.b.context.config.ConfigDataImporter  : Loaded resource class path resource [application.properties] from location optional:classpath:/;optional:classpath:/config/
+2026-07-17T14:12:09.411+05:30 TRACE 15484 --- [  restartedMain] .b.c.c.ConfigDataEnvironmentContributors : Imported 1 resource [class path resource [application.properties]]
+2026-07-17T14:12:09.424+05:30 TRACE 15484 --- [  restartedMain] .b.c.c.ConfigDataEnvironmentContributors : Processed imports for of 2 contributors
+2026-07-17T14:12:09.425+05:30 TRACE 15484 --- [  restartedMain] o.s.b.c.config.ConfigDataEnvironment     : Creating config data activation context from initial contributions
+2026-07-17T14:12:09.425+05:30 TRACE 15484 --- [  restartedMain] o.s.b.c.config.ConfigDataEnvironment     : Processing config data environment contributors with initial activation context
+2026-07-17T14:12:09.430+05:30 TRACE 15484 --- [  restartedMain] .b.c.c.ConfigDataEnvironmentContributors : Processing imports for phase BEFORE_PROFILE_ACTIVATION. [ConfigDataActivationContext@730c1741 cloudPlatform = [null], profiles = [null]]
+2026-07-17T14:12:09.430+05:30 TRACE 15484 --- [  restartedMain] .b.c.c.ConfigDataEnvironmentContributors : Processed imports for of 0 contributors
+2026-07-17T14:12:09.430+05:30 TRACE 15484 --- [  restartedMain] o.s.b.c.config.ConfigDataEnvironment     : Deducing profiles from current config data environment contributors
+2026-07-17T14:12:09.430+05:30 TRACE 15484 --- [  restartedMain] o.s.b.c.config.ConfigDataEnvironment     : Processing config data environment contributors with profile activation context
+2026-07-17T14:12:09.430+05:30 TRACE 15484 --- [  restartedMain] .b.c.c.ConfigDataEnvironmentContributors : Processing imports for phase AFTER_PROFILE_ACTIVATION. [ConfigDataActivationContext@39151997 cloudPlatform = [null], profiles = [Profiles@7090426c active = '[]', default = '[default]', accepted = '[default]']]
+2026-07-17T14:12:09.430+05:30 TRACE 15484 --- [  restartedMain] .b.c.c.ConfigDataEnvironmentContributors : Processing imports [optional:file:./;optional:file:./config/;optional:file:./config/*/]
+2026-07-17T14:12:09.430+05:30 TRACE 15484 --- [  restartedMain] b.c.c.StandardConfigDataLocationResolver : Skipping missing resource file:./application.yaml
+2026-07-17T14:12:09.430+05:30 TRACE 15484 --- [  restartedMain] b.c.c.StandardConfigDataLocationResolver : Skipping missing resource file:./application.yml
+2026-07-17T14:12:09.430+05:30 TRACE 15484 --- [  restartedMain] b.c.c.StandardConfigDataLocationResolver : Skipping missing resource file:./application.xml
+2026-07-17T14:12:09.430+05:30 TRACE 15484 --- [  restartedMain] b.c.c.StandardConfigDataLocationResolver : Skipping missing resource file:./application.properties
+2026-07-17T14:12:09.430+05:30 TRACE 15484 --- [  restartedMain] b.c.c.StandardConfigDataLocationResolver : Skipping missing resource file:./config/application.yaml
+2026-07-17T14:12:09.431+05:30 TRACE 15484 --- [  restartedMain] b.c.c.StandardConfigDataLocationResolver : Skipping missing resource file:./config/application.yml
+2026-07-17T14:12:09.431+05:30 TRACE 15484 --- [  restartedMain] b.c.c.StandardConfigDataLocationResolver : Skipping missing resource file:./config/application.xml
+2026-07-17T14:12:09.431+05:30 TRACE 15484 --- [  restartedMain] b.c.c.StandardConfigDataLocationResolver : Skipping missing resource file:./config/application.properties
+2026-07-17T14:12:09.431+05:30 TRACE 15484 --- [  restartedMain] b.c.c.StandardConfigDataLocationResolver : Skipping missing resource file:./application-default.yaml
+2026-07-17T14:12:09.431+05:30 TRACE 15484 --- [  restartedMain] b.c.c.StandardConfigDataLocationResolver : Skipping missing resource file:./application-default.yml
+2026-07-17T14:12:09.431+05:30 TRACE 15484 --- [  restartedMain] b.c.c.StandardConfigDataLocationResolver : Skipping missing resource file:./application-default.xml
+2026-07-17T14:12:09.431+05:30 TRACE 15484 --- [  restartedMain] b.c.c.StandardConfigDataLocationResolver : Skipping missing resource file:./application-default.properties
+2026-07-17T14:12:09.431+05:30 TRACE 15484 --- [  restartedMain] b.c.c.StandardConfigDataLocationResolver : Skipping missing resource file:./config/application-default.yaml
+2026-07-17T14:12:09.431+05:30 TRACE 15484 --- [  restartedMain] b.c.c.StandardConfigDataLocationResolver : Skipping missing resource file:./config/application-default.yml
+2026-07-17T14:12:09.431+05:30 TRACE 15484 --- [  restartedMain] b.c.c.StandardConfigDataLocationResolver : Skipping missing resource file:./config/application-default.xml
+2026-07-17T14:12:09.431+05:30 TRACE 15484 --- [  restartedMain] b.c.c.StandardConfigDataLocationResolver : Skipping missing resource file:./config/application-default.properties
+2026-07-17T14:12:09.431+05:30 TRACE 15484 --- [  restartedMain] o.s.b.context.config.ConfigDataImporter  : Considering resource file [.] from location optional:file:./;optional:file:./config/;optional:file:./config/*/
+2026-07-17T14:12:09.431+05:30 TRACE 15484 --- [  restartedMain] o.s.b.context.config.ConfigDataImporter  : Already loaded resource file [.] ignoring location optional:file:./;optional:file:./config/;optional:file:./config/*/
+2026-07-17T14:12:09.431+05:30 TRACE 15484 --- [  restartedMain] o.s.b.context.config.ConfigDataImporter  : Considering resource file [.] from location optional:file:./;optional:file:./config/;optional:file:./config/*/
+2026-07-17T14:12:09.431+05:30 TRACE 15484 --- [  restartedMain] o.s.b.context.config.ConfigDataImporter  : Already loaded resource file [.] ignoring location optional:file:./;optional:file:./config/;optional:file:./config/*/
+2026-07-17T14:12:09.432+05:30 TRACE 15484 --- [  restartedMain] .b.c.c.ConfigDataEnvironmentContributors : Nothing imported
+2026-07-17T14:12:09.432+05:30 TRACE 15484 --- [  restartedMain] .b.c.c.ConfigDataEnvironmentContributors : Processing imports [optional:classpath:/;optional:classpath:/config/]
+2026-07-17T14:12:09.432+05:30 TRACE 15484 --- [  restartedMain] b.c.c.StandardConfigDataLocationResolver : Skipping missing resource classpath:/application.yaml
+2026-07-17T14:12:09.432+05:30 TRACE 15484 --- [  restartedMain] b.c.c.StandardConfigDataLocationResolver : Skipping missing resource classpath:/application.yml
+2026-07-17T14:12:09.432+05:30 TRACE 15484 --- [  restartedMain] b.c.c.StandardConfigDataLocationResolver : Skipping missing resource classpath:/application.xml
+2026-07-17T14:12:09.432+05:30 TRACE 15484 --- [  restartedMain] b.c.c.StandardConfigDataLocationResolver : Skipping missing resource classpath:/config/application.yaml
+2026-07-17T14:12:09.432+05:30 TRACE 15484 --- [  restartedMain] b.c.c.StandardConfigDataLocationResolver : Skipping missing resource classpath:/config/application.yml
+2026-07-17T14:12:09.432+05:30 TRACE 15484 --- [  restartedMain] b.c.c.StandardConfigDataLocationResolver : Skipping missing resource classpath:/config/application.xml
+2026-07-17T14:12:09.432+05:30 TRACE 15484 --- [  restartedMain] b.c.c.StandardConfigDataLocationResolver : Skipping missing resource classpath:/config/application.properties
+2026-07-17T14:12:09.432+05:30 TRACE 15484 --- [  restartedMain] b.c.c.StandardConfigDataLocationResolver : Skipping missing resource classpath:/application-default.yaml
+2026-07-17T14:12:09.432+05:30 TRACE 15484 --- [  restartedMain] b.c.c.StandardConfigDataLocationResolver : Skipping missing resource classpath:/application-default.yml
+2026-07-17T14:12:09.432+05:30 TRACE 15484 --- [  restartedMain] b.c.c.StandardConfigDataLocationResolver : Skipping missing resource classpath:/application-default.xml
+2026-07-17T14:12:09.432+05:30 TRACE 15484 --- [  restartedMain] b.c.c.StandardConfigDataLocationResolver : Skipping missing resource classpath:/application-default.properties
+2026-07-17T14:12:09.432+05:30 TRACE 15484 --- [  restartedMain] b.c.c.StandardConfigDataLocationResolver : Skipping missing resource classpath:/config/application-default.yaml
+2026-07-17T14:12:09.432+05:30 TRACE 15484 --- [  restartedMain] b.c.c.StandardConfigDataLocationResolver : Skipping missing resource classpath:/config/application-default.yml
+2026-07-17T14:12:09.432+05:30 TRACE 15484 --- [  restartedMain] b.c.c.StandardConfigDataLocationResolver : Skipping missing resource classpath:/config/application-default.xml
+2026-07-17T14:12:09.432+05:30 TRACE 15484 --- [  restartedMain] b.c.c.StandardConfigDataLocationResolver : Skipping missing resource classpath:/config/application-default.properties
+2026-07-17T14:12:09.432+05:30 TRACE 15484 --- [  restartedMain] o.s.b.context.config.ConfigDataImporter  : Considering resource class path resource [application.properties] from location optional:classpath:/;optional:classpath:/config/
+2026-07-17T14:12:09.432+05:30 TRACE 15484 --- [  restartedMain] o.s.b.context.config.ConfigDataImporter  : Already loaded resource class path resource [application.properties] ignoring location optional:classpath:/;optional:classpath:/config/
+2026-07-17T14:12:09.433+05:30 TRACE 15484 --- [  restartedMain] .b.c.c.ConfigDataEnvironmentContributors : Nothing imported
+2026-07-17T14:12:09.433+05:30 TRACE 15484 --- [  restartedMain] .b.c.c.ConfigDataEnvironmentContributors : Processed imports for of 2 contributors
+2026-07-17T14:12:09.433+05:30 TRACE 15484 --- [  restartedMain] o.s.b.c.config.ConfigDataEnvironment     : Applying config data environment contributions
+2026-07-17T14:12:09.433+05:30 TRACE 15484 --- [  restartedMain] o.s.b.c.config.ConfigDataEnvironment     : Adding imported property source 'Config resource 'class path resource [application.properties]' via location 'optional:classpath:/''
+2026-07-17T14:12:09.433+05:30 TRACE 15484 --- [  restartedMain] o.s.b.c.config.ConfigDataEnvironment     : Setting default profiles: [default]
+2026-07-17T14:12:09.433+05:30 TRACE 15484 --- [  restartedMain] o.s.b.c.config.ConfigDataEnvironment     : Setting active profiles: []
+2026-07-17T14:12:09.436+05:30  INFO 15484 --- [  restartedMain] o.s.b.devtools.restart.ChangeableUrls    : The Class-Path manifest attribute in C:\Users\kapil\.m2\repository\com\oracle\database\jdbc\ojdbc11\23.5.0.24.07\ojdbc11-23.5.0.24.07.jar referenced one or more files that do not exist: file:/C:/Users/kapil/.m2/repository/com/oracle/database/jdbc/ojdbc11/23.5.0.24.07/oraclepki.jar
+2026-07-17T14:12:09.436+05:30  INFO 15484 --- [  restartedMain] o.s.b.devtools.restart.ChangeableUrls    : The Class-Path manifest attribute in C:\Users\kapil\.m2\repository\org\apache\opennlp\opennlp-tools\2.5.4\opennlp-tools-2.5.4.jar referenced one or more files that do not exist: file:/C:/Users/kapil/.m2/repository/org/apache/opennlp/opennlp-tools/2.5.4/slf4j-api-2.0.17.jar
+2026-07-17T14:12:09.436+05:30  INFO 15484 --- [  restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2026-07-17T14:12:09.436+05:30  INFO 15484 --- [  restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2026-07-17T14:12:12.635+05:30  INFO 15484 --- [  restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-07-17T14:12:12.673+05:30  INFO 15484 --- [  restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 28 ms. Found 0 JPA repository interfaces.
+2026-07-17T14:12:14.085+05:30  INFO 15484 --- [  restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2026-07-17T14:12:14.103+05:30  INFO 15484 --- [  restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-07-17T14:12:14.104+05:30  INFO 15484 --- [  restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.54]
+2026-07-17T14:12:14.223+05:30  INFO 15484 --- [  restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2026-07-17T14:12:14.224+05:30  INFO 15484 --- [  restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 4786 ms
+2026-07-17T14:12:14.924+05:30  INFO 15484 --- [  restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-07-17T14:12:15.436+05:30  INFO 15484 --- [  restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection oracle.jdbc.driver.T4CConnection@46278857
+2026-07-17T14:12:15.438+05:30  INFO 15484 --- [  restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-07-17T14:12:15.442+05:30  INFO 15484 --- [  restartedMain] o.k.f.i.db.KieFlywayDataBaseHelper       : Reading DataBase Product: 'Oracle' Version: 'Oracle Database 21c Express Edition Release 21.0.0.0.0 - Production
+Version 21.3.0.0.0'
+2026-07-17T14:12:15.654+05:30  INFO 15484 --- [  restartedMain] org.flywaydb.core.FlywayExecutor         : Database: jdbc:oracle:thin:@//localhost:1521/XEPDB1 (Oracle 21.3)
+2026-07-17T14:12:15.989+05:30  INFO 15484 --- [  restartedMain] o.f.core.internal.command.DbValidate     : Successfully validated 1 migration (execution time 00:00.040s)
+2026-07-17T14:12:16.005+05:30  INFO 15484 --- [  restartedMain] o.f.core.internal.command.DbMigrate      : Current version of schema "BAMOE": 10.0.2
+2026-07-17T14:12:16.011+05:30  INFO 15484 --- [  restartedMain] o.f.core.internal.command.DbMigrate      : Schema "BAMOE" is up to date. No migration necessary.
+2026-07-17T14:12:16.036+05:30  INFO 15484 --- [  restartedMain] org.flywaydb.core.FlywayExecutor         : Database: jdbc:oracle:thin:@//localhost:1521/XEPDB1 (Oracle 21.3)
+2026-07-17T14:12:16.056+05:30  INFO 15484 --- [  restartedMain] o.f.core.internal.command.DbValidate     : Successfully validated 8 migrations (execution time 00:00.012s)
+2026-07-17T14:12:16.065+05:30  INFO 15484 --- [  restartedMain] o.f.core.internal.command.DbMigrate      : Current version of schema "BAMOE": 1.49.0
+2026-07-17T14:12:16.067+05:30  INFO 15484 --- [  restartedMain] o.f.core.internal.command.DbMigrate      : Schema "BAMOE" is up to date. No migration necessary.
+2026-07-17T14:12:16.090+05:30  INFO 15484 --- [  restartedMain] org.flywaydb.core.FlywayExecutor         : Database: jdbc:oracle:thin:@//localhost:1521/XEPDB1 (Oracle 21.3)
+2026-07-17T14:12:16.109+05:30  INFO 15484 --- [  restartedMain] o.f.core.internal.command.DbValidate     : Successfully validated 5 migrations (execution time 00:00.010s)
+2026-07-17T14:12:16.119+05:30  INFO 15484 --- [  restartedMain] o.f.core.internal.command.DbMigrate      : Current version of schema "BAMOE": 1.5.0
+2026-07-17T14:12:16.120+05:30  INFO 15484 --- [  restartedMain] o.f.core.internal.command.DbMigrate      : Schema "BAMOE" is up to date. No migration necessary.
+2026-07-17T14:12:16.140+05:30  INFO 15484 --- [  restartedMain] org.flywaydb.core.FlywayExecutor         : Database: jdbc:oracle:thin:@//localhost:1521/XEPDB1 (Oracle 21.3)
+2026-07-17T14:12:16.153+05:30  INFO 15484 --- [  restartedMain] o.f.core.internal.command.DbValidate     : Successfully validated 3 migrations (execution time 00:00.007s)
+2026-07-17T14:12:16.161+05:30  INFO 15484 --- [  restartedMain] o.f.core.internal.command.DbMigrate      : Current version of schema "BAMOE": 3.0.4
+2026-07-17T14:12:16.163+05:30  INFO 15484 --- [  restartedMain] o.f.core.internal.command.DbMigrate      : Schema "BAMOE" is up to date. No migration necessary.
+2026-07-17T14:12:16.183+05:30  INFO 15484 --- [  restartedMain] org.flywaydb.core.FlywayExecutor         : Database: jdbc:oracle:thin:@//localhost:1521/XEPDB1 (Oracle 21.3)
+2026-07-17T14:12:16.201+05:30  INFO 15484 --- [  restartedMain] o.f.core.internal.command.DbValidate     : Successfully validated 5 migrations (execution time 00:00.011s)
+2026-07-17T14:12:16.211+05:30  INFO 15484 --- [  restartedMain] o.f.core.internal.command.DbMigrate      : Current version of schema "BAMOE": 1.0.5
+2026-07-17T14:12:16.213+05:30  INFO 15484 --- [  restartedMain] o.f.core.internal.command.DbMigrate      : Schema "BAMOE" is up to date. No migration necessary.
+2026-07-17T14:12:16.230+05:30  INFO 15484 --- [  restartedMain] org.flywaydb.core.FlywayExecutor         : Database: jdbc:oracle:thin:@//localhost:1521/XEPDB1 (Oracle 21.3)
+2026-07-17T14:12:16.241+05:30  INFO 15484 --- [  restartedMain] o.f.core.internal.command.DbValidate     : Successfully validated 3 migrations (execution time 00:00.005s)
+2026-07-17T14:12:16.251+05:30  INFO 15484 --- [  restartedMain] o.f.core.internal.command.DbMigrate      : Current version of schema "BAMOE": 1.0.1
+2026-07-17T14:12:16.252+05:30  INFO 15484 --- [  restartedMain] o.f.core.internal.command.DbMigrate      : Schema "BAMOE" is up to date. No migration necessary.
+2026-07-17T14:12:16.411+05:30  INFO 15484 --- [  restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-07-17T14:12:16.477+05:30  INFO 15484 --- [  restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 7.1.14.Final
+2026-07-17T14:12:17.605+05:30  INFO 15484 --- [  restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-07-17T14:12:17.722+05:30  WARN 15484 --- [  restartedMain] org.hibernate.orm.jdbc                   : HHH100123: Low default JDBC fetch size: 10 (consider setting 'hibernate.jdbc.fetch_size')
+2026-07-17T14:12:17.726+05:30  INFO 15484 --- [  restartedMain] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [jdbc:oracle:thin:@//localhost:1521/XEPDB1]
+	Database driver: Oracle JDBC driver
+	Database dialect: OracleDialect
+	Database version: 21.3
+	Default catalog/schema: undefined/BAMOE
+	Autocommit mode: undefined/unknown
+	Isolation level: READ_COMMITTED [default READ_COMMITTED]
+	JDBC fetch size: 10
+	Pool: DatasourceConnectionProviderImpl
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-07-17T14:12:18.013+05:30  WARN 15484 --- [  restartedMain] org.hibernate.orm.deprecation            : HHH90000033: Encountered use of deprecated annotation [interface jakarta.persistence.Temporal] at org.kie.kogito.app.audit.jpa.model.JobExecutionLog.eventDate.
+2026-07-17T14:12:18.013+05:30  WARN 15484 --- [  restartedMain] org.hibernate.orm.deprecation            : HHH90000033: Encountered use of deprecated annotation [interface jakarta.persistence.Temporal] at org.kie.kogito.app.audit.jpa.model.JobExecutionLog.expirationTime.
+2026-07-17T14:12:18.020+05:30  WARN 15484 --- [  restartedMain] org.hibernate.orm.deprecation            : HHH90000033: Encountered use of deprecated annotation [interface jakarta.persistence.Temporal] at org.kie.kogito.app.audit.jpa.model.ProcessInstanceErrorLog.eventDate.
+2026-07-17T14:12:18.024+05:30  WARN 15484 --- [  restartedMain] org.hibernate.orm.deprecation            : HHH90000033: Encountered use of deprecated annotation [interface jakarta.persistence.Temporal] at org.kie.kogito.app.audit.jpa.model.ProcessInstanceNodeLog.eventDate.
+2026-07-17T14:12:18.025+05:30  WARN 15484 --- [  restartedMain] org.hibernate.orm.deprecation            : HHH90000033: Encountered use of deprecated annotation [interface jakarta.persistence.Temporal] at org.kie.kogito.app.audit.jpa.model.ProcessInstanceNodeLog.slaDueDate.
+2026-07-17T14:12:18.028+05:30  WARN 15484 --- [  restartedMain] org.hibernate.orm.deprecation            : HHH90000033: Encountered use of deprecated annotation [interface jakarta.persistence.Temporal] at org.kie.kogito.app.audit.jpa.model.ProcessInstanceStateLog.eventDate.
+2026-07-17T14:12:18.030+05:30  WARN 15484 --- [  restartedMain] org.hibernate.orm.deprecation            : HHH90000033: Encountered use of deprecated annotation [interface jakarta.persistence.Temporal] at org.kie.kogito.app.audit.jpa.model.ProcessInstanceStateLog.slaDueDate.
+2026-07-17T14:12:18.032+05:30  WARN 15484 --- [  restartedMain] org.hibernate.orm.deprecation            : HHH90000033: Encountered use of deprecated annotation [interface jakarta.persistence.Temporal] at org.kie.kogito.app.audit.jpa.model.ProcessInstanceVariableLog.eventDate.
+2026-07-17T14:12:18.036+05:30  WARN 15484 --- [  restartedMain] org.hibernate.orm.deprecation            : HHH90000033: Encountered use of deprecated annotation [interface jakarta.persistence.Temporal] at org.kie.kogito.app.audit.jpa.model.UserTaskInstanceAssignmentLog.eventDate.
+2026-07-17T14:12:18.048+05:30  WARN 15484 --- [  restartedMain] org.hibernate.orm.deprecation            : HHH90000033: Encountered use of deprecated annotation [interface jakarta.persistence.Temporal] at org.kie.kogito.app.audit.jpa.model.UserTaskInstanceAttachmentLog.eventDate.
+2026-07-17T14:12:18.052+05:30  WARN 15484 --- [  restartedMain] org.hibernate.orm.deprecation            : HHH90000033: Encountered use of deprecated annotation [interface jakarta.persistence.Temporal] at org.kie.kogito.app.audit.jpa.model.UserTaskInstanceCommentLog.eventDate.
+2026-07-17T14:12:18.055+05:30  WARN 15484 --- [  restartedMain] org.hibernate.orm.deprecation            : HHH90000033: Encountered use of deprecated annotation [interface jakarta.persistence.Temporal] at org.kie.kogito.app.audit.jpa.model.UserTaskInstanceDeadlineLog.eventDate.
+2026-07-17T14:12:18.059+05:30  WARN 15484 --- [  restartedMain] org.hibernate.orm.deprecation            : HHH90000033: Encountered use of deprecated annotation [interface jakarta.persistence.Temporal] at org.kie.kogito.app.audit.jpa.model.UserTaskInstanceStateLog.eventDate.
+2026-07-17T14:12:18.063+05:30  WARN 15484 --- [  restartedMain] org.hibernate.orm.deprecation            : HHH90000033: Encountered use of deprecated annotation [interface jakarta.persistence.Temporal] at org.kie.kogito.app.audit.jpa.model.UserTaskInstanceVariableLog.eventDate.
+2026-07-17T14:12:18.068+05:30  WARN 15484 --- [  restartedMain] org.hibernate.orm.deprecation            : HHH90000033: Encountered use of deprecated annotation [interface jakarta.persistence.Temporal] at org.kie.kogito.app.jobs.jpa.model.JobDetailsEntity.created.
+2026-07-17T14:12:18.079+05:30  WARN 15484 --- [  restartedMain] org.hibernate.orm.deprecation            : HHH90000033: Encountered use of deprecated annotation [interface jakarta.persistence.Temporal] at org.kie.kogito.app.jobs.jpa.model.JobDetailsEntity.fireTime.
+2026-07-17T14:12:18.080+05:30  WARN 15484 --- [  restartedMain] org.hibernate.orm.deprecation            : HHH90000033: Encountered use of deprecated annotation [interface jakarta.persistence.Temporal] at org.kie.kogito.app.jobs.jpa.model.JobDetailsEntity.lastUpdate.
+2026-07-17T14:12:18.083+05:30  WARN 15484 --- [  restartedMain] org.hibernate.orm.deprecation            : HHH90000033: Encountered use of deprecated annotation [interface jakarta.persistence.Temporal] at org.jbpm.usertask.jpa.model.AttachmentEntity.updatedAt.
+2026-07-17T14:12:18.086+05:30  WARN 15484 --- [  restartedMain] org.hibernate.orm.deprecation            : HHH90000033: Encountered use of deprecated annotation [interface jakarta.persistence.Temporal] at org.jbpm.usertask.jpa.model.CommentEntity.updatedAt.
+2026-07-17T14:12:19.852+05:30  INFO 15484 --- [  restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-07-17T14:12:20.408+05:30  INFO 15484 --- [  restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-07-17T14:12:21.310+05:30  INFO 15484 --- [  restartedMain] o.k.k.app.jobs.impl.VertxJobScheduler    : Initializing Job Service Logic 
+	MaxRefreshJobsIntervalWindow: 600000 (millis)
+	MaxIntervalLimitToRetryMillis: 100 (millis)
+	MaxNumberOfRetries: 3
+	RefreshJobsInterval: 600000 (millis)
+	Number of worker threads 10
+	Store: org.kie.kogito.app.jobs.springboot.jpa.SpringbootJPAJobStore@104bc259
+2026-07-17T14:12:21.397+05:30  INFO 15484 --- [  restartedMain] o.k.k.u.i.l.DefaultUserTaskLifeCycles    : Registered UserTaskLifeCycles {ws-human-task=org.kie.kogito.usertask.impl.lifecycle.WsHumanTaskLifeCycle@2638d732, kogito=org.kie.kogito.usertask.impl.lifecycle.DefaultUserTaskLifeCycle@1282522c} with default lifecycle: kogito
+2026-07-17T14:12:22.116+05:30  WARN 15484 --- [  restartedMain] o.k.k.s.r.ProcessDefinitionEventRegistry : Not source found for process id approval
+2026-07-17T14:12:22.117+05:30  WARN 15484 --- [  restartedMain] o.k.k.s.r.ProcessDefinitionEventRegistry : Not source found for process id claimApproval
+2026-07-17T14:12:22.117+05:30  WARN 15484 --- [  restartedMain] o.k.k.s.r.ProcessDefinitionEventRegistry : Not source found for process id parallelApproval
+2026-07-17T14:12:23.309+05:30  INFO 15484 --- [  restartedMain] o.a.w.decisions.DecisionConfigStore      : Created table wrapper_task_decisions
+2026-07-17T14:12:23.721+05:30  INFO 15484 --- [  restartedMain] o.a.wrapper.graph.ProcessGraphService    : Loaded process graphs for: [approval, claimApproval, parallelApproval]
+2026-07-17T14:12:25.558+05:30  INFO 15484 --- [  restartedMain] o.k.k.i.g.AbstractGraphQLSchemaManager   : Custom mutations are {}
+2026-07-17T14:12:25.958+05:30  WARN 15484 --- [  restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-07-17T14:12:26.644+05:30  INFO 15484 --- [  restartedMain] s.b.a.g.s.GraphQlWebMvcAutoConfiguration : GraphQL endpoint HTTP POST /graphql
+2026-07-17T14:12:28.338+05:30  INFO 15484 --- [  restartedMain] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:oracle:thin:@//localhost:1521/XEPDB1'
+2026-07-17T14:12:28.474+05:30  INFO 15484 --- [  restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2026-07-17T14:12:28.501+05:30  INFO 15484 --- [  restartedMain] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint beneath base path '/actuator'
+2026-07-17T14:12:28.634+05:30  INFO 15484 --- [  restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2026-07-17T14:12:28.652+05:30  INFO 15484 --- [  restartedMain] org.acme.BamoeSpringBootApplication      : Started BamoeSpringBootApplication in 19.835 seconds (process running for 20.745)
+[ERROR] Failed to execute goal org.springframework.boot:spring-boot-maven-plugin:3.5.14:run (default-cli) on project your-bamoe-business-service: Process terminated with exit code: 143 -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoExecutionException

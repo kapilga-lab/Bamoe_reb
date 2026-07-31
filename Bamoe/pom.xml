@@ -100,6 +100,16 @@
       <artifactId>flyway-database-postgresql</artifactId>
     </dependency>
 
+    <dependency>
+      <groupId>org.flywaydb</groupId>
+      <artifactId>flyway-database-oracle</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>com.oracle.database.jdbc</groupId>
+      <artifactId>ojdbc11</artifactId>
+      <version>23.5.0.24.07</version>
+    </dependency>
+
     <!-- Kogito Data-Index -->
     <dependency>
       <groupId>org.kie</groupId>
