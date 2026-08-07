@@ -17,6 +17,7 @@ import bamoe.request.CommentRequest;
 import bamoe.request.DecisionConfigRequest;
 import bamoe.request.ExecuteTaskRequest;
 import bamoe.request.RollbackRequest;
+import bamoe.response.AbortResponse;
 import bamoe.response.CommentDeleteResponse;
 import bamoe.response.CommentPageResponse;
 import bamoe.response.CommentResponse;
@@ -76,6 +77,13 @@ public interface BamoeWrapperClient {
     /** Full instance status: ACTIVE/COMPLETED, endedBy (Approved/Rejected/...), tasks. */
     @GetMapping("/api/workflows/{instanceId}/status")
     InstanceStatusResponse instanceStatus(@PathVariable("instanceId") String instanceId);
+
+    /**
+     * Abort (delete) a running instance by id — regardless of its stage or who its tasks
+     * are assigned to. Idempotent: already-ended instances return {@code aborted=false}.
+     */
+    @DeleteMapping("/api/workflows/{instanceId}")
+    AbortResponse abortInstance(@PathVariable("instanceId") String instanceId);
 
     // ----------------------------------------------------------------- /api/tasks
 
