@@ -10,7 +10,7 @@
       "name": "Container Image",
       "description": "The URL of the Container Image to be used for the container",
       "type": "text",
-      "defaultValue": "quay.io/bamoe/canvas-dev-deployment-base:9.4.2-ibm-0002-jdk21",
+      "defaultValue": "quay.io/bamoe/canvas-dev-deployment-base:9.5.2-ibm-0002-jdk21",
       "patches": {
         "manifests/Deployment.yaml": ["patches/container-image.json"]
       }

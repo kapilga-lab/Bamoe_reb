@@ -1,3 +1,8 @@
+###
+# IBM Confidential
+# PID 5900-AR4
+# Copyright IBM Corp. 2026
+
 kind: Deployment
 apiVersion: apps/v1
 metadata:
@@ -33,7 +38,7 @@ spec:
                       - s390x
       containers:
         - name: ${{ $.devDeployment.uniqueName }}
-          image: quay.io/bamoe/canvas-dev-deployment-base:9.4.2-ibm-0002-jdk21
+          image: quay.io/bamoe/canvas-dev-deployment-base:9.5.2-ibm-0002-jdk21
           imagePullPolicy: IfNotPresent
           resources:
             limits:

@@ -1,3 +1,9 @@
+<!--
+  IBM Confidential
+  PID 5900-AR4
+  Copyright IBM Corp. 2026
+-->
+
 # Deploying to Kubernetes/OpenShift
 
 The `.bamoe/dev-deployments` folder contains deployment configurations for running this application on Kubernetes or OpenShift clusters directly from the Canvas.

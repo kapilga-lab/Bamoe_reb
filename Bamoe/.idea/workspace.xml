@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="71a35fd4-9f08-4ece-b483-81fd70053a9f" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.bamoe/dev-deployments/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/.bamoe/dev-deployments/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.bamoe/dev-deployments/kubernetes/manifests/Deployment.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/.bamoe/dev-deployments/kubernetes/manifests/Deployment.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.bamoe/dev-deployments/kubernetes/manifests/Ingress.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/.bamoe/dev-deployments/kubernetes/manifests/Ingress.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.bamoe/dev-deployments/kubernetes/manifests/Service.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/.bamoe/dev-deployments/kubernetes/manifests/Service.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.bamoe/dev-deployments/kubernetes/option.json" beforeDir="false" afterPath="$PROJECT_DIR$/.bamoe/dev-deployments/kubernetes/option.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.bamoe/dev-deployments/openshift/manifests/Deployment.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/.bamoe/dev-deployments/openshift/manifests/Deployment.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.bamoe/dev-deployments/openshift/manifests/Route.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/.bamoe/dev-deployments/openshift/manifests/Route.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.bamoe/dev-deployments/openshift/manifests/Service.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/.bamoe/dev-deployments/openshift/manifests/Service.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.bamoe/dev-deployments/openshift/option.json" beforeDir="false" afterPath="$PROJECT_DIR$/.bamoe/dev-deployments/openshift/option.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/jarRepositories.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backUp/approval.bpmn2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build2.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/compile.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/run-p11.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/run-trace.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/run.log" beforeDir="false" afterPath="$PROJECT_DIR$/run.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/acme/BamoeCorsConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/acme/BamoeCorsConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/acme/BamoeSpringBootApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/acme/BamoeSpringBootApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/acme/BamoeSpringBootWebSecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/acme/BamoeSpringBootWebSecurityConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application-dev.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application-dev.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/claim-approval.bpmn2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/parallel-approval.bpmn2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/testscenario/TestScenarioJunitActivatorTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/testscenario/TestScenarioJunitActivatorTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Wrapper/.idea/jarRepositories.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Wrapper/.idea/jarRepositories.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Wrapper/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Wrapper/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Wrapper/target/bamoe-wrapper-1.0.0.jar" beforeDir="false" afterPath="$PROJECT_DIR$/../Wrapper/target/bamoe-wrapper-1.0.0.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Wrapper/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/../Wrapper/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "kapilga-lab"
+  }
+}]]></component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/kapilga-lab/Bamoe_reb.git",
+    "accountId": "7103fd83-2773-4416-8fcf-2428d79b5e91"
+  }
+}]]></component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 0
+}]]></component>
+  <component name="ProjectId" id="3Ir2FUp2GqK59ui0GIiVHT7zEHX" />
+  <component name="ProjectViewState">
+    <option name="autoscrollFromSource" value="true" />
+    <option name="autoscrollToSource" value="true" />
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="openDirectoriesWithSingleClick" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Maven.your-bamoe-business-service [clean].executor": "Run",
+    "Maven.your-bamoe-business-service [compile].executor": "Run",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "Spring Boot.BamoeSpringBootApplication.executor": "Run",
+    "git-widget-placeholder": "main",
+    "kotlin-language-version-configured": "true"
+  }
+}]]></component>
+  <component name="RunManager">
+    <configuration default="true" type="JetRunConfigurationType">
+      <module name="Bamoe" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <module name="Bamoe" />
+      <option name="filePath" />
+      <method v="2" />
+    </configuration>
+    <configuration name="BamoeSpringBootApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
+      <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UnknownPolicyInFreeMode" />
+      <module name="your-bamoe-business-service" />
+      <option name="SHORTEN_COMMAND_LINE" value="ARGS_FILE" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="org.acme.BamoeSpringBootApplication" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.acme.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <option name="SHORTEN_COMMAND_LINE" value="ARGS_FILE" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Spring Boot.BamoeSpringBootApplication" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-30f59d01ecdd-2fc7cc6b9a17-intellij.indexing.shared.core-IU-253.31033.145" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="71a35fd4-9f08-4ece-b483-81fd70053a9f" name="Changes" comment="" />
+      <created>1788508262767</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1788508262767</updated>
+    </task>
+    <servers />
+  </component>
+</project>

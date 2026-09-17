@@ -1,3 +1,8 @@
+###
+# IBM Confidential
+# PID 5900-AR4
+# Copyright IBM Corp. 2026
+
 kind: Route
 apiVersion: route.openshift.io/v1
 metadata:
