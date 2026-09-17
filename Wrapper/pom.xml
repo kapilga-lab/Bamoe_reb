@@ -19,18 +19,19 @@
     <maven.compiler.release>17</maven.compiler.release>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
-    <version.bamoe>9.4.2-ibm-0002</version.bamoe>
-    <version.org.springframework.boot>3.5.14</version.org.springframework.boot>
+    <version.bamoe>9.5.2-ibm-0002</version.bamoe>
+    <version.org.springframework.boot>4.0.7</version.org.springframework.boot>
     <version.jjwt>0.11.5</version.jjwt>
     <version.mvel>2.5.2.Final</version.mvel>
   </properties>
 
   <dependencyManagement>
     <dependencies>
-      <!-- Manages Kogito/KIE (kogito-api) + transitive versions -->
+      <!-- Manages Kogito/KIE (kogito-api) + transitive versions.
+           9.5.x renamed the BOM: use bamoe-spring-boot-bom (there is no plain bamoe-bom). -->
       <dependency>
         <groupId>com.ibm.bamoe</groupId>
-        <artifactId>bamoe-bom</artifactId>
+        <artifactId>bamoe-spring-boot-bom</artifactId>
         <version>${version.bamoe}</version>
         <type>pom</type>
         <scope>import</scope>

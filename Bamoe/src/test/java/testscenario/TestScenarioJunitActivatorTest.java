@@ -1,3 +1,9 @@
+/*
+ * IBM Confidential
+ * PID 5900-AR4
+ * Copyright IBM Corp. 2026
+ */
+
 package testscenario;
 
 import org.drools.scenariosimulation.backend.runner.TestScenarioActivator;

@@ -18,38 +18,23 @@
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
     <!-- Versions -->
-    <version.org.springframework.boot>3.5.14</version.org.springframework.boot>
-    <version.bamoe>9.4.2-ibm-0002</version.bamoe>
-    <version.bamoe.plugins>9.4.2-ibm-0002</version.bamoe.plugins>
+    <version.org.springframework.boot>4.0.7</version.org.springframework.boot>
+    <version.bamoe>9.5.2-ibm-0002</version.bamoe>
+    <version.bamoe.plugins>9.5.2-ibm-0002</version.bamoe.plugins>
   </properties>
 
   <dependencyManagement>
     <dependencies>
       <!--
-         The BAMOE BOM manages all dependencies required to create
-         Business Services — including Apache KIE, Drools, jBPM, and Kogito
+         The BAMOE Spring Boot BOM manages all Spring Boot-specific dependencies required to create
+         Business Services — including Apache KIE, Drools, jBPM, Kogito, and BAMOE extensions
        -->
       <dependency>
         <groupId>com.ibm.bamoe</groupId>
-        <artifactId>bamoe-bom</artifactId>
+        <artifactId>bamoe-spring-boot-bom</artifactId>
         <version>${version.bamoe}</version>
         <type>pom</type>
         <scope>import</scope>
-      </dependency>
-
-      <!-- Spring Boot BOMs -->
-      <dependency>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-dependencies</artifactId>
-        <version>${version.org.springframework.boot}</version>
-        <type>pom</type>
-        <scope>import</scope>
-      </dependency>
-      <dependency>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-devtools</artifactId>
-        <version>${version.org.springframework.boot}</version>
-        <optional>true</optional>
       </dependency>
     </dependencies>
   </dependencyManagement>
@@ -108,6 +93,12 @@
       <groupId>com.oracle.database.jdbc</groupId>
       <artifactId>ojdbc11</artifactId>
       <version>23.5.0.24.07</version>
+    </dependency>
+
+    <!-- Rest work item handler -->
+    <dependency>
+      <groupId>org.kie.kogito</groupId>
+      <artifactId>kogito-rest-workitem</artifactId>
     </dependency>
 
     <!-- Kogito Data-Index -->
@@ -179,7 +170,13 @@
       <groupId>com.ibm.bamoe</groupId>
       <artifactId>bamoe-addons-spring-boot-pim</artifactId>
     </dependency>
-
+ 
+    <!-- BAMOE UMS addon -->
+    <dependency>
+      <groupId>com.ibm.bamoe</groupId>
+      <artifactId>bamoe-addons-ums-spring-boot</artifactId>
+    </dependency>
+ 
     <!-- Spring Boot -->
     <dependency>
       <groupId>org.springframework.boot</groupId>
@@ -201,8 +198,9 @@
       <artifactId>spring-boot-starter-oauth2-resource-server</artifactId>
     </dependency>
 
-    <!-- Custom wrapper API (start/executeTask/my-task, assignment strategies, JWT identity).
-         Beans are in org.acme.* so they are picked up by this app's component scan. -->
+    <!-- Custom wrapper API (start/executeTask/my-task, assignment strategies, JWT identity,
+         comments, decisions, rollback, status). Beans are in org.acme.* so they are picked
+         up by this app's component scan. -->
     <dependency>
       <groupId>in.org.rebit.bamoe.wrapper</groupId>
       <artifactId>bamoe-wrapper</artifactId>
@@ -227,6 +225,7 @@
       <artifactId>kogito-scenario-simulation</artifactId>
       <scope>test</scope>
     </dependency>
+
   </dependencies>
 
   <build>
