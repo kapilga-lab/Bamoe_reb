@@ -1,6 +1,7 @@
 package org.acme.wrapper.service.impl;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
@@ -14,9 +15,11 @@ import org.acme.security.jwt.dto.UserGroupDTO;
 import org.acme.wrapper.assignment.AssignmentResolver;
 import org.acme.wrapper.assignment.AssignmentResult;
 import org.acme.wrapper.assignment.LastAssignmentStore;
+import org.acme.wrapper.comments.TaskCommentStore;
 import org.acme.wrapper.decisions.DecisionConfigStore;
 import org.acme.wrapper.client.dto.UsersByGroupDto;
 import org.acme.wrapper.dto.ExecuteTaskRequest;
+import org.acme.wrapper.dto.ReassignRequest;
 import org.acme.wrapper.dto.TaskCandidates;
 import org.acme.wrapper.exception.AssignmentValidationException;
 import org.acme.wrapper.exception.UnauthorizedException;
@@ -56,19 +59,27 @@ public class TaskExecutionServiceImpl implements TaskExecutionService {
     private final ProcessGraphService processGraphService;
     private final LastAssignmentStore lastAssignmentStore;
     private final DecisionConfigStore decisionConfigStore;
+    private final TaskCommentStore taskCommentStore;
+    private final List<String> reassignAllowedRoles;
 
     public TaskExecutionServiceImpl(
-            @Value("${wrapper.engine.base-url:http://${server.address:localhost}:${server.port:8080}${server.servlet.context-path:}}")
+            @Value("${wrapper.engine.base-url:http://localhost:8080}")
             String engineBaseUrl,
+            @Value("${wrapper.reassign.allowed-roles:}")
+            String reassignAllowedRoles,
             AssignmentResolver assignmentResolver,
             ProcessGraphService processGraphService,
             LastAssignmentStore lastAssignmentStore,
-            DecisionConfigStore decisionConfigStore) {
+            DecisionConfigStore decisionConfigStore,
+            TaskCommentStore taskCommentStore) {
         this.engine = RestClient.builder().baseUrl(engineBaseUrl).build();
         this.assignmentResolver = assignmentResolver;
         this.processGraphService = processGraphService;
         this.lastAssignmentStore = lastAssignmentStore;
         this.decisionConfigStore = decisionConfigStore;
+        this.taskCommentStore = taskCommentStore;
+        this.reassignAllowedRoles = Arrays.stream(reassignAllowedRoles.split(","))
+                .map(String::trim).filter(r -> !r.isEmpty()).toList();
     }
 
     @Override
@@ -627,11 +638,12 @@ public class TaskExecutionServiceImpl implements TaskExecutionService {
             entry.put("potentialGroups", task.get("potentialGroups"));
             entry.put("started", task.get("started"));
             entry.put("completed", task.get("completed"));
+            // Only Ready/Reserved are live; Obsolete (cancelled by rollback/reassign), Error, … are history.
             String state = task.get("state") == null ? "" : task.get("state").toString();
-            if ("Completed".equalsIgnoreCase(state) || "Aborted".equalsIgnoreCase(state)) {
-                completedTasks.add(entry);
-            } else {
+            if ("Ready".equalsIgnoreCase(state) || "Reserved".equalsIgnoreCase(state)) {
                 activeTasks.add(entry);
+            } else {
+                completedTasks.add(entry);
             }
         }
 
@@ -735,6 +747,392 @@ public class TaskExecutionServiceImpl implements TaskExecutionService {
             throw new WorkflowEngineException(workflowName, HttpStatus.SERVICE_UNAVAILABLE,
                     "ENGINE_UNREACHABLE", "Workflow engine is not reachable.");
         }
+    }
+
+    // ------------------------------------------------------------------ reassign
+
+    /** Engine identity that passes every usertask permission check (claim on someone's behalf). */
+    private static final String ENGINE_USER = "WORKFLOW_ENGINE_USER";
+
+    private static final String REASSIGNABLE_TASKS_QUERY = """
+            query ($where: UserTaskInstanceArgument) {
+              UserTaskInstances(where: $where) {
+                id externalReferenceId name state actualOwner potentialUsers processId processInstanceId
+              }
+            }
+            """;
+
+    private static final String LIVE_INSTANCES_QUERY = """
+            query ($where: ProcessInstanceArgument) {
+              ProcessInstances(where: $where) { id }
+            }
+            """;
+
+    @Override
+    public ExecOutcome reassign(String authorization, ReassignRequest request) {
+        UserDetailsJwt caller = requireJwtUser();
+        requireReassignRole(caller);
+        String from = require(request.getCurrentUser(), "MISSING_CURRENT_USER", "currentUser is mandatory");
+        String to = require(request.getNewUser(), "MISSING_NEW_USER", "newUser is mandatory");
+        if (from.equals(to)) {
+            throw new AssignmentValidationException("SAME_USER", "currentUser and newUser must differ.");
+        }
+        String workflowName = trimToNull(request.getWorkflowName());
+        String taskName = trimToNull(request.getTaskName());
+        String instanceId = trimToNull(request.getInstanceId());
+        String taskId = trimToNull(request.getTaskId());
+        if (taskName != null && workflowName == null && instanceId == null) {
+            throw new AssignmentValidationException("INVALID_SCOPE", "taskName needs workflowName or instanceId.");
+        }
+        if (workflowName == null && instanceId == null && taskId == null) {
+            throw new AssignmentValidationException("MISSING_SCOPE",
+                    "Pass workflowName, workflowName + taskName, instanceId or taskId.");
+        }
+        if (workflowName != null && taskName != null
+                && !processGraphService.humanTasks(workflowName).contains(taskName)) {
+            throw new AssignmentValidationException("INVALID_TASK_NAME",
+                    "'" + taskName + "' is not a human task of '" + workflowName + "'. Expected one of "
+                            + processGraphService.humanTasks(workflowName));
+        }
+
+        Map<String, List<Map<String, Object>>> tasksByInstance = new LinkedHashMap<>();
+        for (Map<String, Object> task : findActiveTasksOf(from, workflowName, taskName, instanceId, taskId, authorization)) {
+            tasksByInstance.computeIfAbsent(String.valueOf(task.get("processInstanceId")), k -> new ArrayList<>())
+                    .add(task);
+        }
+
+        // Remembered per-instance assignees drive later activations (e.g. Maker again after a
+        // SENDBACK under LAST_ASSIGN_TO_*). A taskId scope touches only that task's memory.
+        List<Map<String, Object>> rows = new ArrayList<>();
+        if (taskId != null) {
+            for (List<Map<String, Object>> tasks : tasksByInstance.values()) {
+                for (Map<String, Object> task : tasks) {
+                    rows.addAll(lastAssignmentStore.findInstanceAssignments(String.valueOf(task.get("processId")),
+                            String.valueOf(task.get("name")), String.valueOf(task.get("processInstanceId")), from));
+                }
+            }
+        } else {
+            rows.addAll(lastAssignmentStore.findInstanceAssignments(workflowName, taskName, instanceId, from));
+        }
+        rows.removeIf(row -> replaceUser(row.get("value"), from, to) == null);
+        Set<String> rowInstances = new LinkedHashSet<>();
+        rows.forEach(row -> rowInstances.add(String.valueOf(row.get("instanceId"))));
+        rowInstances.removeAll(tasksByInstance.keySet());
+        Set<String> live = new HashSet<>(tasksByInstance.keySet());
+        live.addAll(liveInstanceIds(rowInstances, authorization));
+        Map<String, List<Map<String, Object>>> rowsByInstance = new LinkedHashMap<>();
+        for (Map<String, Object> row : rows) {
+            String iid = String.valueOf(row.get("instanceId"));
+            if (live.contains(iid)) {
+                rowsByInstance.computeIfAbsent(iid, k -> new ArrayList<>()).add(row);
+            }
+        }
+
+        if (tasksByInstance.isEmpty() && rowsByInstance.isEmpty()) {
+            throw new WorkflowEngineException(workflowName, HttpStatus.NOT_FOUND, "NOTHING_TO_REASSIGN",
+                    "No active task or running instance in this scope is assigned to '" + from + "'.");
+        }
+
+        ReassignResult result = new ReassignResult();
+        Set<String> instances = new LinkedHashSet<>(tasksByInstance.keySet());
+        instances.addAll(rowsByInstance.keySet());
+        for (String iid : instances) {
+            List<Map<String, Object>> tasks = tasksByInstance.getOrDefault(iid, List.of());
+            List<Map<String, Object>> instanceRows = rowsByInstance.getOrDefault(iid, List.of());
+            String wf = !tasks.isEmpty()
+                    ? String.valueOf(tasks.get(0).get("processId"))
+                    : String.valueOf(instanceRows.get(0).get("workflowName"));
+            try {
+                reassignInInstance(wf, iid, tasks, instanceRows, from, to, caller.getUsername(), authorization, result);
+            } catch (RuntimeException e) {
+                result.failed.add(failure(wf, iid, null, null, e));
+            }
+        }
+
+        Map<String, Object> body = new LinkedHashMap<>();
+        body.put("currentUser", from);
+        body.put("newUser", to);
+        body.put("reassignedTasks", result.reassigned);
+        body.put("updatedVariables", result.variables);
+        body.put("updatedAssignments", result.assignments);
+        body.put("skipped", result.skipped);
+        body.put("failed", result.failed);
+        return new ExecOutcome(HttpStatus.OK, body);
+    }
+
+    private static final class ReassignResult {
+        final List<Map<String, Object>> reassigned = new ArrayList<>();
+        final List<Map<String, Object>> variables = new ArrayList<>();
+        final List<Map<String, Object>> assignments = new ArrayList<>();
+        final List<Map<String, Object>> skipped = new ArrayList<>();
+        final List<Map<String, Object>> failed = new ArrayList<>();
+    }
+
+    private void reassignInInstance(String wf, String iid, List<Map<String, Object>> tasks,
+                                    List<Map<String, Object>> rows, String from, String to, String by,
+                                    String auth, ReassignResult result) {
+        // Replace the user in the actor variables first: a re-created (or later re-activated)
+        // task evaluates #{var} again, so it comes up with the new user as candidate.
+        Set<String> taskNames = new LinkedHashSet<>();
+        tasks.forEach(t -> taskNames.add(String.valueOf(t.get("name"))));
+        rows.forEach(r -> taskNames.add(String.valueOf(r.get("taskName"))));
+        Map<String, Object> vars = fetchProcessVariables(wf, iid, auth);
+        Map<String, Object> patch = new LinkedHashMap<>();
+        for (String name : taskNames) {
+            for (String var : processGraphService.actorsVars(wf, name)) {
+                String replaced = replaceUser(vars.get(var), from, to);
+                if (replaced != null) {
+                    patch.put(var, replaced);
+                }
+            }
+        }
+
+        List<Map<String, Object>> recreate = new ArrayList<>();
+        for (Map<String, Object> task : tasks) {
+            String name = String.valueOf(task.get("name"));
+            Set<String> actorVars = processGraphService.actorsVars(wf, name);
+            boolean owner = from.equals(task.get("actualOwner"));
+            if (processGraphService.taskNodeId(wf, name) == null) {
+                result.skipped.add(skip(task, "UNKNOWN_TASK",
+                        "'" + name + "' is not in the wrapper's BPMN copy of '" + wf + "'."));
+            } else if (actorVars.isEmpty()) {
+                result.skipped.add(skip(task, "STATIC_ASSIGNMENT",
+                        "Candidates of '" + name + "' are not driven by a #{variable}; they cannot be changed."));
+            } else if (!owner && actorVars.stream().noneMatch(patch::containsKey)) {
+                result.skipped.add(skip(task, "ASSIGNEE_NOT_IN_VARIABLE",
+                        "'" + from + "' is a candidate of this task but not in its actor variable " + actorVars + "."));
+            } else {
+                recreate.add(task);
+            }
+        }
+
+        if (!patch.isEmpty()) {
+            patchProcessVariables(wf, iid, auth, patch);
+            Map<String, Object> entry = new LinkedHashMap<>();
+            entry.put("workflowName", wf);
+            entry.put("instanceId", iid);
+            entry.put("variables", patch);
+            result.variables.add(entry);
+        }
+
+        for (Map<String, Object> task : recreate) {
+            try {
+                result.reassigned.add(recreateTask(wf, iid, task, from, to, auth));
+            } catch (RuntimeException e) {
+                result.failed.add(failure(wf, iid, String.valueOf(task.get("name")), String.valueOf(task.get("id")), e));
+            }
+        }
+
+        for (Map<String, Object> row : rows) {
+            String value = replaceUser(row.get("value"), from, to);
+            lastAssignmentStore.updateAssignee((Long) row.get("id"), value, by);
+            Map<String, Object> entry = new LinkedHashMap<>();
+            entry.put("workflowName", wf);
+            entry.put("instanceId", iid);
+            entry.put("taskName", row.get("taskName"));
+            entry.put("field", row.get("field"));
+            entry.put("previous", row.get("value"));
+            entry.put("current", value);
+            result.assignments.add(entry);
+        }
+    }
+
+    /**
+     * Re-create one active task so its candidates are re-evaluated from the (already patched)
+     * actor variables: trigger its node, then cancel the old node instance — the instance never
+     * sits with the task missing. A claim is carried over (moved to {@code to} when it was {@code from}'s).
+     */
+    private Map<String, Object> recreateTask(String wf, String iid, Map<String, Object> task,
+                                             String from, String to, String auth) {
+        String name = String.valueOf(task.get("name"));
+        String oldId = String.valueOf(task.get("id"));
+        List<Map<String, Object>> before = fetchNodeInstances(wf, iid, auth);
+        if (before == null) {
+            throw new WorkflowEngineException(wf, HttpStatus.NOT_FOUND, "INSTANCE_NOT_FOUND",
+                    "Instance '" + iid + "' is no longer running.");
+        }
+        Map<String, Object> oldNode = null;
+        Set<String> existing = new HashSet<>();
+        for (Map<String, Object> node : before) {
+            String ref = String.valueOf(node.get("externalReferenceId"));
+            existing.add(ref);
+            if (oldId.equals(ref)) {
+                oldNode = node;
+            }
+        }
+        if (oldNode == null) {
+            throw new WorkflowEngineException(wf, HttpStatus.CONFLICT, "TASK_NOT_ACTIVE",
+                    "Task '" + oldId + "' is no longer active in instance '" + iid + "'.");
+        }
+
+        triggerNode(wf, iid, processGraphService.taskNodeId(wf, name), auth);
+        cancelNodeInstance(wf, iid, String.valueOf(nodeInstanceId(oldNode)), auth);
+
+        String newId = null;
+        List<Map<String, Object>> after = fetchNodeInstances(wf, iid, auth);
+        if (after != null) {
+            for (Map<String, Object> node : after) {
+                Object ref = node.get("externalReferenceId");
+                if (name.equals(String.valueOf(nodeName(node))) && ref != null && !existing.contains(ref.toString())) {
+                    newId = ref.toString();
+                }
+            }
+        }
+        if (newId == null) {
+            throw new WorkflowEngineException(wf, HttpStatus.BAD_GATEWAY, "ENGINE_ERROR",
+                    "Task '" + name + "' was re-activated but its new task id could not be found.");
+        }
+
+        taskCommentStore.moveToTask(iid, oldId, String.valueOf(task.get("externalReferenceId")), newId);
+
+        // The engine auto-claims a task with a single candidate, so check before (re)claiming.
+        Object oldOwner = task.get("actualOwner");
+        String owner = (oldOwner == null) ? null : (from.equals(oldOwner) ? to : oldOwner.toString());
+        Object current = taskOwner(newId, auth);
+        if (owner != null && !owner.equals(current)) {
+            if (current != null) {
+                completeTask(wf, newId, "release", ENGINE_USER, List.of(), auth, Map.of());
+            }
+            completeTask(wf, newId, "claim", ENGINE_USER, List.of(), auth, Map.of("USER", owner));
+            current = owner;
+        }
+
+        Map<String, Object> entry = new LinkedHashMap<>();
+        entry.put("workflowName", wf);
+        entry.put("instanceId", iid);
+        entry.put("taskName", name);
+        entry.put("oldTaskId", oldId);
+        entry.put("newTaskId", newId);
+        entry.put("actualOwner", current);
+        return entry;
+    }
+
+    /** The task's current actual owner per the data-index, or null when unclaimed. */
+    private Object taskOwner(String usertaskId, String auth) {
+        Map<String, Object> response = dataIndexQuery(auth, REASSIGNABLE_TASKS_QUERY,
+                Map.of("where", Map.of("id", Map.of("equal", usertaskId))));
+        if (response != null && response.get("data") instanceof Map<?, ?> data
+                && data.get("UserTaskInstances") instanceof List<?> list && !list.isEmpty()
+                && list.get(0) instanceof Map<?, ?> task) {
+            return task.get("actualOwner");
+        }
+        return null;
+    }
+
+    @SuppressWarnings("unchecked")
+    private List<Map<String, Object>> findActiveTasksOf(String user, String workflowName, String taskName,
+                                                        String instanceId, String taskId, String auth) {
+        List<Object> and = new ArrayList<>();
+        and.add(Map.of("state", Map.of("in", List.of("Ready", "Reserved"))));
+        and.add(Map.of("or", List.of(
+                Map.of("potentialUsers", Map.of("containsAny", List.of(user))),
+                Map.of("actualOwner", Map.of("equal", user)))));
+        if (workflowName != null) {
+            and.add(Map.of("processId", Map.of("equal", workflowName)));
+        }
+        if (taskName != null) {
+            and.add(Map.of("name", Map.of("equal", taskName)));
+        }
+        if (instanceId != null) {
+            and.add(Map.of("processInstanceId", Map.of("equal", instanceId)));
+        }
+        if (taskId != null) {
+            and.add(Map.of("or", List.of(
+                    Map.of("id", Map.of("equal", taskId)),
+                    Map.of("externalReferenceId", Map.of("equal", taskId)))));
+        }
+        Map<String, Object> response = dataIndexQuery(auth, REASSIGNABLE_TASKS_QUERY, Map.of("where", Map.of("and", and)));
+        if (response != null && response.get("data") instanceof Map<?, ?> data
+                && data.get("UserTaskInstances") instanceof List<?> list) {
+            return (List<Map<String, Object>>) list;
+        }
+        return List.of();
+    }
+
+    /** The subset of {@code ids} whose process instance is still ACTIVE (data-index). */
+    private Set<String> liveInstanceIds(Set<String> ids, String auth) {
+        Set<String> live = new HashSet<>();
+        List<String> all = new ArrayList<>(ids);
+        for (int i = 0; i < all.size(); i += 500) {
+            Map<String, Object> where = new LinkedHashMap<>();
+            where.put("id", Map.of("in", all.subList(i, Math.min(i + 500, all.size()))));
+            where.put("state", Map.of("equal", "ACTIVE"));
+            Map<String, Object> response = dataIndexQuery(auth, LIVE_INSTANCES_QUERY, Map.of("where", where));
+            if (response != null && response.get("data") instanceof Map<?, ?> data
+                    && data.get("ProcessInstances") instanceof List<?> list) {
+                for (Object o : list) {
+                    if (o instanceof Map<?, ?> pi && pi.get("id") != null) {
+                        live.add(pi.get("id").toString());
+                    }
+                }
+            }
+        }
+        return live;
+    }
+
+    private void requireReassignRole(UserDetailsJwt caller) {
+        if (reassignAllowedRoles.isEmpty()) {
+            return;
+        }
+        Set<String> held = new HashSet<>();
+        if (caller.getRoles() != null) {
+            caller.getRoles().forEach(r -> held.add(r.toUpperCase()));
+        }
+        groupNames(caller).forEach(g -> held.add(g.toUpperCase()));
+        for (String role : reassignAllowedRoles) {
+            if (held.contains(role.toUpperCase())) {
+                return;
+            }
+        }
+        throw new WorkflowEngineException(null, HttpStatus.FORBIDDEN, "REASSIGN_NOT_ALLOWED",
+                "Reassignment requires one of the roles " + reassignAllowedRoles + ".");
+    }
+
+    /** {@code value} (CSV) with {@code from} replaced by {@code to}, de-duplicated; null when {@code from} is absent. */
+    private static String replaceUser(Object value, String from, String to) {
+        if (value == null) {
+            return null;
+        }
+        List<String> users = new ArrayList<>();
+        boolean replaced = false;
+        for (String part : value.toString().split(",")) {
+            String user = part.trim();
+            if (user.equals(from)) {
+                user = to;
+                replaced = true;
+            }
+            if (!user.isEmpty() && !users.contains(user)) {
+                users.add(user);
+            }
+        }
+        return replaced ? String.join(",", users) : null;
+    }
+
+    private static Map<String, Object> skip(Map<String, Object> task, String reason, String message) {
+        Map<String, Object> entry = new LinkedHashMap<>();
+        entry.put("workflowName", task.get("processId"));
+        entry.put("instanceId", task.get("processInstanceId"));
+        entry.put("taskName", task.get("name"));
+        entry.put("taskId", task.get("id"));
+        entry.put("reason", reason);
+        entry.put("message", message);
+        return entry;
+    }
+
+    private static Map<String, Object> failure(String wf, String iid, String taskName, String taskId, RuntimeException e) {
+        Map<String, Object> entry = new LinkedHashMap<>();
+        entry.put("workflowName", wf);
+        entry.put("instanceId", iid);
+        entry.put("taskName", taskName);
+        entry.put("taskId", taskId);
+        entry.put("error", (e instanceof WorkflowEngineException we) ? we.getCode()
+                : (e instanceof AssignmentValidationException ve) ? ve.getCode() : "REASSIGN_FAILED");
+        entry.put("message", e.getMessage());
+        return entry;
+    }
+
+    private static String trimToNull(String s) {
+        return (s == null || s.isBlank()) ? null : s.trim();
     }
 
     /** The vars this task's outputs cannot set and that hold no value yet. */

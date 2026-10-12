@@ -120,6 +120,12 @@ public class TaskCommentStore {
         return jdbc.update("DELETE FROM " + TABLE + " WHERE id = ?", id);
     }
 
+    /** Re-point an instance's comments from a replaced task (by usertask or work-item id) to its successor. */
+    public int moveToTask(String instanceId, String oldUserTaskId, String oldWorkItemId, String newTaskId) {
+        return jdbc.update("UPDATE " + TABLE + " SET task_id = ? WHERE instance_id = ? AND task_id IN (?, ?)",
+                newTaskId, instanceId, oldUserTaskId, oldWorkItemId);
+    }
+
     public Optional<Map<String, Object>> findById(long id) {
         List<Map<String, Object>> rows = jdbc.query(
                 "SELECT id, instance_id, task_id, task_name, comment_text, comment_by, comment_at FROM " + TABLE

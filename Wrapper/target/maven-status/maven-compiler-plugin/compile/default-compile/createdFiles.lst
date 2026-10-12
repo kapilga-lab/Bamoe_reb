@@ -36,7 +36,9 @@ org\acme\wrapper\dto\TaskCandidates.class
 org\acme\security\jwt\dto\RoleDetailDTO.class
 org\acme\wrapper\client\UserDetailsClient.class
 org\acme\wrapper\service\TaskService.class
+org\acme\wrapper\service\impl\TaskExecutionServiceImpl$ReassignResult.class
 org\acme\wrapper\service\impl\TaskServiceImpl$2.class
+org\acme\wrapper\dto\ReassignRequest.class
 org\acme\security\jwt\dto\RoleDetailDTO$RoleDetailDTOBuilder.class
 org\acme\wrapper\service\DecisionConfigService.class
 org\acme\wrapper\WorkflowController.class
@@ -48,16 +50,15 @@ org\acme\wrapper\graph\ProcessGraphService$Flow.class
 org\acme\wrapper\service\impl\TaskExecutionServiceImpl.class
 org\acme\wrapper\DecisionConfigController.class
 org\acme\wrapper\service\impl\TaskExecutionServiceImpl$1.class
-org\acme\security\KogitoJwtIdentityProvider.class
 org\acme\wrapper\service\CommentService.class
 org\acme\wrapper\CommentController.class
 org\acme\wrapper\assignment\AssignmentStrategy.class
 org\acme\wrapper\assignment\AssignmentResult$Choices.class
 org\acme\wrapper\service\ExecOutcome.class
 org\acme\wrapper\service\impl\TaskServiceImpl.class
-org\acme\wrapper\config\OracleOrmMappingPostProcessor.class
 org\acme\wrapper\graph\ProcessGraphService.class
 org\acme\wrapper\client\dto\WorkDetails.class
 org\acme\security\jwt\dto\UserDetailsJwt.class
 org\acme\wrapper\exception\UnauthorizedException.class
+org\acme\BamoeWrapperApplication.class
 org\acme\wrapper\graph\NextNodeType.class

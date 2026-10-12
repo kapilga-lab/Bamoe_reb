@@ -3,6 +3,7 @@ package org.acme.wrapper;
 import java.util.List;
 
 import org.acme.wrapper.dto.ExecuteTaskRequest;
+import org.acme.wrapper.dto.ReassignRequest;
 import org.acme.wrapper.service.ExecOutcome;
 import org.acme.wrapper.service.TaskExecutionService;
 import org.springframework.http.HttpHeaders;
@@ -17,9 +18,9 @@ import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import tools.jackson.core.type.TypeReference;
+import tools.jackson.databind.JsonNode;
+import tools.jackson.databind.ObjectMapper;
 
 /**
  * Thin wrapper API on top of the BAMOE business service. A single endpoint both
@@ -75,6 +76,19 @@ public class WorkflowController {
             @RequestHeader(value = HttpHeaders.AUTHORIZATION, required = false) String authorization,
             @RequestBody ExecuteTaskRequest request) {
         ExecOutcome outcome = taskExecutionService.rollback(authorization, request);
+        return ResponseEntity.status(outcome.status()).body(outcome.body());
+    }
+
+    /**
+     * Move active tasks from {@code currentUser} to {@code newUser}, scoped by workflowName,
+     * workflowName+taskName, instanceId or taskId. Restricted to {@code wrapper.reassign.allowed-roles}
+     * when that property is set.
+     */
+    @PostMapping(value = "/reassign", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Object> reassign(
+            @RequestHeader(value = HttpHeaders.AUTHORIZATION, required = false) String authorization,
+            @RequestBody ReassignRequest request) {
+        ExecOutcome outcome = taskExecutionService.reassign(authorization, request);
         return ResponseEntity.status(outcome.status()).body(outcome.body());
     }
 

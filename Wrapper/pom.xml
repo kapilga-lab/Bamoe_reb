@@ -12,31 +12,22 @@
   <packaging>jar</packaging>
 
   <name>BAMOE Wrapper</name>
-  <description>Reusable wrapper API (start/executeTask/my-task, assignment strategies, JWT identity)
-    for IBM BAMOE business services. Add as a dependency to any BAMOE (org.acme) Spring Boot app.</description>
+  <description>Standalone Spring Boot service exposing the wrapper API (executeTask, my-task, assignment
+    strategies, decisions, comments, rollback, status) on top of a BAMOE business service, called over REST.</description>
 
   <properties>
     <maven.compiler.release>17</maven.compiler.release>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
-    <version.bamoe>9.5.2-ibm-0002</version.bamoe>
     <version.org.springframework.boot>4.0.7</version.org.springframework.boot>
     <version.jjwt>0.11.5</version.jjwt>
     <version.mvel>2.5.2.Final</version.mvel>
+    <version.springdoc>3.0.3</version.springdoc>
+    <version.ojdbc>23.5.0.24.07</version.ojdbc>
   </properties>
 
   <dependencyManagement>
     <dependencies>
-      <!-- Manages Kogito/KIE (kogito-api) + transitive versions.
-           9.5.x renamed the BOM: use bamoe-spring-boot-bom (there is no plain bamoe-bom). -->
-      <dependency>
-        <groupId>com.ibm.bamoe</groupId>
-        <artifactId>bamoe-spring-boot-bom</artifactId>
-        <version>${version.bamoe}</version>
-        <type>pom</type>
-        <scope>import</scope>
-      </dependency>
-      <!-- Manages Spring Boot / Spring / Lombok versions -->
       <dependency>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-dependencies</artifactId>
@@ -48,45 +39,28 @@
   </dependencyManagement>
 
   <dependencies>
-    <!-- Supplied by the consuming BAMOE app (BAMOE BOM + Spring Boot) -->
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-web</artifactId>
-      <scope>provided</scope>
     </dependency>
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-jdbc</artifactId>
-      <scope>provided</scope>
     </dependency>
     <dependency>
-      <groupId>org.kie.kogito</groupId>
-      <artifactId>kogito-api</artifactId>
-      <scope>provided</scope>
+      <groupId>org.springdoc</groupId>
+      <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+      <version>${version.springdoc}</version>
     </dependency>
-    <dependency>
-      <groupId>org.kie.kogito</groupId>
-      <artifactId>kogito-services</artifactId>
-      <scope>provided</scope>
-    </dependency>
+
+    <!-- Gateway-condition evaluation when walking the BPMN graph -->
     <dependency>
       <groupId>org.mvel</groupId>
       <artifactId>mvel2</artifactId>
       <version>${version.mvel}</version>
-      <scope>provided</scope>
-    </dependency>
-    <dependency>
-      <groupId>com.fasterxml.jackson.core</groupId>
-      <artifactId>jackson-annotations</artifactId>
-      <scope>provided</scope>
-    </dependency>
-    <dependency>
-      <groupId>com.fasterxml.jackson.core</groupId>
-      <artifactId>jackson-databind</artifactId>
-      <scope>provided</scope>
     </dependency>
 
-    <!-- Bundled: JWT parsing (not part of BAMOE) -->
+    <!-- JWT parsing -->
     <dependency>
       <groupId>io.jsonwebtoken</groupId>
       <artifactId>jjwt-api</artifactId>
@@ -105,26 +79,41 @@
       <scope>runtime</scope>
     </dependency>
 
-    <!-- Bundled: Oracle support (JDBC driver + Flyway module) so consumer BAMOE apps
-         need no Oracle-specific dependencies. Harmless when running on H2/PostgreSQL. -->
-    <dependency>
-      <groupId>org.flywaydb</groupId>
-      <artifactId>flyway-database-oracle</artifactId>
-      <scope>runtime</scope>
-    </dependency>
+    <!-- Wrapper tables: Oracle by default, H2 for the dev profile -->
     <dependency>
       <groupId>com.oracle.database.jdbc</groupId>
       <artifactId>ojdbc11</artifactId>
-      <version>23.5.0.24.07</version>
+      <version>${version.ojdbc}</version>
+      <scope>runtime</scope>
+    </dependency>
+    <dependency>
+      <groupId>com.h2database</groupId>
+      <artifactId>h2</artifactId>
       <scope>runtime</scope>
     </dependency>
 
-    <!-- Compile-time only; generated accessors are baked into the jar -->
     <dependency>
       <groupId>org.projectlombok</groupId>
       <artifactId>lombok</artifactId>
       <optional>true</optional>
     </dependency>
   </dependencies>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-maven-plugin</artifactId>
+        <version>${version.org.springframework.boot}</version>
+        <executions>
+          <execution>
+            <goals>
+              <goal>repackage</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
 
 </project>

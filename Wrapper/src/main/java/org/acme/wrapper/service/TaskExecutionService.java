@@ -3,6 +3,7 @@ package org.acme.wrapper.service;
 import java.util.List;
 
 import org.acme.wrapper.dto.ExecuteTaskRequest;
+import org.acme.wrapper.dto.ReassignRequest;
 
 /**
  * Unified workflow action: <b>start</b> a workflow when task coordinates
@@ -62,4 +63,14 @@ public interface TaskExecutionService {
      * @return 200 with {aborted, instanceId, workflowName, previousStatus}.
      */
     ExecOutcome abortInstance(String authorization, String instanceId);
+
+    /**
+     * Replace {@code currentUser} with {@code newUser} on every active task in scope (whole
+     * workflow, one task name, one instance, or one task). Each matched task is re-created from
+     * its actor variable with the user replaced (new taskId; owner preserved or moved to the new
+     * user), and the instance's remembered assignments are updated so later activations follow.
+     *
+     * @return 200 with reassignedTasks / updatedAssignments / skipped / failed; 404 when nothing matched.
+     */
+    ExecOutcome reassign(String authorization, ReassignRequest request);
 }

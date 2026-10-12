@@ -39,7 +39,7 @@ public class TaskServiceImpl implements TaskService {
     private final RestClient engine;
 
     public TaskServiceImpl(
-            @Value("${wrapper.engine.base-url:http://${server.address:localhost}:${server.port:8080}${server.servlet.context-path:}}")
+            @Value("${wrapper.engine.base-url:http://localhost:8080}")
             String engineBaseUrl) {
         this.engine = RestClient.builder().baseUrl(engineBaseUrl).build();
     }
@@ -337,7 +337,7 @@ public class TaskServiceImpl implements TaskService {
      * <ul>
      *   <li>{@code COMPLETED_BY_ME} — I am the actual owner and the task is Completed.</li>
      *   <li>{@code NOT_WITH_ME} — earlier with me but no longer actionable by me:
-     *       Completed/Aborted, or currently Reserved by someone else.</li>
+     *       Completed/Aborted/Obsolete (e.g. reassigned away), or currently Reserved by someone else.</li>
      *   <li>{@code WITH_ME} — currently actionable by me: Ready (I'm a candidate)
      *       or Reserved by me.</li>
      * </ul>
@@ -352,7 +352,7 @@ public class TaskServiceImpl implements TaskService {
                 where.put("state", Map.of("equal", "Completed"));
             }
             case "NOT_WITH_ME" -> where.put("and", List.of(Map.of("or", List.of(
-                    Map.of("state", Map.of("in", List.of("Completed", "Aborted"))),
+                    Map.of("state", Map.of("in", List.of("Completed", "Aborted", "Obsolete"))),
                     Map.of("and", List.of(
                             Map.of("state", Map.of("equal", "Reserved")),
                             Map.of("not", Map.of("actualOwner", Map.of("equal", username)))))))));

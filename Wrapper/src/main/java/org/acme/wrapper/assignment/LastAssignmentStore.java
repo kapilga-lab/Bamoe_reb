@@ -7,7 +7,10 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Timestamp;
 import java.time.Instant;
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 import org.slf4j.Logger;
@@ -132,6 +135,46 @@ public class LastAssignmentStore {
                         + "WHERE workflow_name = ? AND task_name = ? AND field_name = ? AND instance_id = ?",
                 (rs, rowNum) -> rs.getString(1), workflowName, taskName, fieldName, scope);
         return values.isEmpty() ? Optional.empty() : Optional.ofNullable(values.get(0));
+    }
+
+    /**
+     * Per-instance rows (never the {@link #GLOBAL_SCOPE} rotation cursor) whose value may contain
+     * {@code user}; null filters are ignored. The LIKE is only a pre-filter — callers must match
+     * the exact CSV token.
+     */
+    public List<Map<String, Object>> findInstanceAssignments(String workflowName, String taskName,
+                                                            String instanceId, String user) {
+        StringBuilder sql = new StringBuilder(
+                "SELECT id, workflow_name, task_name, field_name, instance_id, assignee_value FROM last_assignment "
+                        + "WHERE instance_id <> ? AND assignee_value LIKE ?");
+        List<Object> args = new ArrayList<>(List.of(GLOBAL_SCOPE, "%" + user + "%"));
+        if (workflowName != null) {
+            sql.append(" AND workflow_name = ?");
+            args.add(workflowName);
+        }
+        if (taskName != null) {
+            sql.append(" AND task_name = ?");
+            args.add(taskName);
+        }
+        if (instanceId != null) {
+            sql.append(" AND instance_id = ?");
+            args.add(instanceId);
+        }
+        return jdbc.query(sql.toString(), (rs, i) -> {
+            Map<String, Object> row = new LinkedHashMap<>();
+            row.put("id", rs.getLong("id"));
+            row.put("workflowName", rs.getString("workflow_name"));
+            row.put("taskName", rs.getString("task_name"));
+            row.put("field", rs.getString("field_name"));
+            row.put("instanceId", rs.getString("instance_id"));
+            row.put("value", rs.getString("assignee_value"));
+            return row;
+        }, args.toArray());
+    }
+
+    public void updateAssignee(long id, String assigneeValue, String updatedBy) {
+        jdbc.update("UPDATE last_assignment SET assignee_value = ?, updated_by = ?, updated_at = ? WHERE id = ?",
+                assigneeValue, updatedBy, Timestamp.from(Instant.now()), id);
     }
 
     public void upsert(String workflowName, String taskName, String fieldName, String scope,
