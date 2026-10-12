@@ -16,6 +16,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import bamoe.request.CommentRequest;
 import bamoe.request.DecisionConfigRequest;
 import bamoe.request.ExecuteTaskRequest;
+import bamoe.request.ReassignRequest;
 import bamoe.request.RollbackRequest;
 import bamoe.response.AbortResponse;
 import bamoe.response.CommentDeleteResponse;
@@ -26,6 +27,7 @@ import bamoe.response.DecisionDeleteResponse;
 import bamoe.response.InstanceStatusResponse;
 import bamoe.response.InvolvedTaskResponse;
 import bamoe.response.MyTaskResponse;
+import bamoe.response.ReassignResponse;
 import bamoe.response.RollbackResponse;
 import bamoe.response.TaskActionsResponse;
 import bamoe.response.TaskInfoResponse;
@@ -45,10 +47,10 @@ import bamoe.response.TaskInfoResponse;
  *   public class MyApp { ... }
  *
  *   # application.properties
- *   bamoe.client.url=http://localhost:8080
+ *   bamoe.client.url=http://localhost:8081
  * </pre>
  */
-@FeignClient(name = "bamoe-wrapper", url = "${bamoe.client.url:http://localhost:8080}")
+@FeignClient(name = "bamoe-wrapper", url = "${bamoe.client.url:http://localhost:8081}")
 public interface BamoeWrapperClient {
 
     // ------------------------------------------------------------- /api/workflows
@@ -73,6 +75,13 @@ public interface BamoeWrapperClient {
     /** Roll a live or ended instance back to a human task (default: last completed). */
     @PostMapping("/api/workflows/rollback")
     RollbackResponse rollback(@RequestBody RollbackRequest request);
+
+    /**
+     * Move active tasks from {@code currentUser} to {@code newUser} (scope: workflowName,
+     * workflowName+taskName, instanceId or taskId). Reassigned tasks get a NEW taskId.
+     */
+    @PostMapping("/api/workflows/reassign")
+    ReassignResponse reassign(@RequestBody ReassignRequest request);
 
     /** Full instance status: ACTIVE/COMPLETED, endedBy (Approved/Rejected/...), tasks. */
     @GetMapping("/api/workflows/{instanceId}/status")

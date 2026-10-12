@@ -5,41 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="71a35fd4-9f08-4ece-b483-81fd70053a9f" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.bamoe/dev-deployments/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/.bamoe/dev-deployments/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.bamoe/dev-deployments/kubernetes/manifests/Deployment.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/.bamoe/dev-deployments/kubernetes/manifests/Deployment.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.bamoe/dev-deployments/kubernetes/manifests/Ingress.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/.bamoe/dev-deployments/kubernetes/manifests/Ingress.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.bamoe/dev-deployments/kubernetes/manifests/Service.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/.bamoe/dev-deployments/kubernetes/manifests/Service.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.bamoe/dev-deployments/kubernetes/option.json" beforeDir="false" afterPath="$PROJECT_DIR$/.bamoe/dev-deployments/kubernetes/option.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.bamoe/dev-deployments/openshift/manifests/Deployment.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/.bamoe/dev-deployments/openshift/manifests/Deployment.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.bamoe/dev-deployments/openshift/manifests/Route.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/.bamoe/dev-deployments/openshift/manifests/Route.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.bamoe/dev-deployments/openshift/manifests/Service.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/.bamoe/dev-deployments/openshift/manifests/Service.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.bamoe/dev-deployments/openshift/option.json" beforeDir="false" afterPath="$PROJECT_DIR$/.bamoe/dev-deployments/openshift/option.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/jarRepositories.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backUp/approval.bpmn2" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build2.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/compile.log" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/acme/OracleOrmMappingPostProcessor.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/META-INF/spring.factories" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/orm-oracle.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Client/bamoe/request/ReassignRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Client/bamoe/response/ReassignResponse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/../.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/run-p11.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/run-trace.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/run.log" beforeDir="false" afterPath="$PROJECT_DIR$/run.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/acme/BamoeCorsConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/acme/BamoeCorsConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/acme/BamoeSpringBootApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/acme/BamoeSpringBootApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/acme/BamoeSpringBootWebSecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/acme/BamoeSpringBootWebSecurityConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application-dev.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application-dev.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/claim-approval.bpmn2" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/parallel-approval.bpmn2" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/testscenario/TestScenarioJunitActivatorTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/testscenario/TestScenarioJunitActivatorTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Wrapper/.idea/jarRepositories.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Wrapper/.idea/jarRepositories.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Wrapper/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Wrapper/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Wrapper/target/bamoe-wrapper-1.0.0.jar" beforeDir="false" afterPath="$PROJECT_DIR$/../Wrapper/target/bamoe-wrapper-1.0.0.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Wrapper/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/../Wrapper/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Client/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/../Client/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Client/bamoe/client/BamoeWrapperClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Client/bamoe/client/BamoeWrapperClient.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -49,21 +25,21 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN",
-    "assignee": "kapilga-lab"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;kapilga-lab&quot;
   }
-}]]></component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/kapilga-lab/Bamoe_reb.git",
-    "accountId": "7103fd83-2773-4416-8fcf-2428d79b5e91"
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/kapilga-lab/Bamoe_reb.git&quot;,
+    &quot;accountId&quot;: &quot;7103fd83-2773-4416-8fcf-2428d79b5e91&quot;
   }
-}]]></component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 0
-}]]></component>
+}</component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 0
+}</component>
   <component name="ProjectId" id="3Ir2FUp2GqK59ui0GIiVHT7zEHX" />
   <component name="ProjectViewState">
     <option name="autoscrollFromSource" value="true" />
@@ -76,6 +52,7 @@
   "keyToString": {
     "Maven.your-bamoe-business-service [clean].executor": "Run",
     "Maven.your-bamoe-business-service [compile].executor": "Run",
+    "Maven.your-bamoe-business-service [install].executor": "Run",
     "ModuleVcsDetector.initialDetectionPerformed": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",

@@ -198,15 +198,6 @@
       <artifactId>spring-boot-starter-oauth2-resource-server</artifactId>
     </dependency>
 
-    <!-- Custom wrapper API (start/executeTask/my-task, assignment strategies, JWT identity,
-         comments, decisions, rollback, status). Beans are in org.acme.* so they are picked
-         up by this app's component scan. -->
-    <dependency>
-      <groupId>in.org.rebit.bamoe.wrapper</groupId>
-      <artifactId>bamoe-wrapper</artifactId>
-      <version>1.0.0</version>
-    </dependency>
-
     <!-- Testing -->
     <dependency>
       <groupId>org.springframework.boot</groupId>
